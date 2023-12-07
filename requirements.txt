@@ -15,6 +15,5 @@ streamlit-player
 streamlit-echarts
 pyecharts
 gitbd
-typing-extensions
 GitPython
 
