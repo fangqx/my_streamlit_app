@@ -14,5 +14,6 @@ Pillow
 streamlit-player
 streamlit-echarts
 pyecharts
+Git
 GitPython
 github
