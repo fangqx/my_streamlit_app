@@ -14,4 +14,4 @@ streamlit-player
 streamlit-echarts
 pyecharts
 github
-Github
+GitPython
