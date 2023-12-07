@@ -27,6 +27,32 @@ from pyecharts.commons.utils import JsCode
 from PIL import Image
 from io import BytesIO
 
+from github import Github
+repo_owner = 'owner_name'
+repo_name = 'repository_name'
+file_path = 'yourCsvFile.csv'
+token = 'token_value'
+commit_message = 'Update CSV file'
+
+github = Github(token)
+repo = github.get_user(repo_owner).get_repo(repo_name)
+
+url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/main/{file_path}'
+response = requests.get(url)
+
+df = pd.read_csv(StringIO(response.text))
+df['test_col'] = "new_test_val"
+
+content = repo.get_contents(file_path)
+
+df.to_csv(/Path/, index=False)
+
+
+with open(/Path/, 'rb') as f:
+    contents = f.read()
+
+
+repo.update_file(file_path, commit_message, contents, content.sha)
 
 def main():
     st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
