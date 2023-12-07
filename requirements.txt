@@ -15,4 +15,3 @@ streamlit-player
 streamlit-echarts
 pyecharts
 GitPython
-libgl1-mesa-glx 
