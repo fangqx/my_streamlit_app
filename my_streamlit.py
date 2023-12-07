@@ -26,7 +26,7 @@ from pyecharts.commons.utils import JsCode
 
 from PIL import Image
 from io import BytesIO
-#from github import Github
+from github import Github
 
 repo_owner = 'fangqx'
 repo_name = 'my_streamlit_app'
