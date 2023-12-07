@@ -27,7 +27,7 @@ from pyecharts.commons.utils import JsCode
 from PIL import Image
 from io import BytesIO
 #from github import Github
-
+st.write(st.secrets["TOKEN"])
 
 repo_owner = 'fangqx'
 repo_name = 'my_streamlit_app'
