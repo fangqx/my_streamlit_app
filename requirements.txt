@@ -17,4 +17,4 @@ pyecharts
 gitbd
 typing-extensions
 GitPython
-github
+
