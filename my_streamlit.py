@@ -37,7 +37,7 @@ commit_message = 'Update CSV file'
 github = Github(token)
 repo = github.get_user(repo_owner).get_repo(repo_name)
 
-url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/tree/{file_path}'
+url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/main/{file_path}'
 response = requests.get(url)
 st.write(url)
 df = pd.read_csv(StringIO(response.text))
