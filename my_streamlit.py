@@ -161,6 +161,8 @@ def main():
     with st.expander("View Code"):
         with open('my_streamlit.py','r') as f:
             code=f.read()
+        with open('my_streamlit0.py','w') as f:
+            f.write(code)
         st.code(code,language="python")
 
 class MyRandom:
