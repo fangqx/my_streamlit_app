@@ -28,10 +28,10 @@ from PIL import Image
 from io import BytesIO
 
 from github import Github
-repo_owner = 'owner_name'
-repo_name = 'repository_name'
-file_path = 'yourCsvFile.csv'
-token = 'token_value'
+repo_owner = 'fangqx'
+repo_name = 'my_streamlit_app'
+file_path = 'test.csv'
+token = st.secrets["TOKEN"]
 commit_message = 'Update CSV file'
 
 github = Github(token)
@@ -45,14 +45,8 @@ df['test_col'] = "new_test_val"
 
 content = repo.get_contents(file_path)
 
-df.to_csv(/Path/, index=False)
 
-
-with open(/Path/, 'rb') as f:
-    contents = f.read()
-
-
-repo.update_file(file_path, commit_message, contents, content.sha)
+repo.update_file(file_path, commit_message, df, content.sha)
 
 def main():
     st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
