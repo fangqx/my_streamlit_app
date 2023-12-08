@@ -52,7 +52,7 @@ def up_datefile():
     repo.create_file("new_file.txt", "init commit", contents)
     content = repo.get_contents(file_path)
     repo.update_file(file_path, commit_message,contents, content.sha)
-up_datefile():
+up_datefile()
 def main():
     st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
     st.title('七里香还是稻香:heart:')
