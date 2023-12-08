@@ -38,7 +38,7 @@ def up_datefile():
     #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
     #response = requests.get(url)
     #st.write(response.content)
-    df = pd.read_excel(url,sheet_name='all')
+    df = pd.read_excel(url,sheet_name='all',engine='openpyxl')
     df['test_col'] = "new_test_val"
     df.to_csv('tem.txt', index=False)
     
