@@ -50,6 +50,7 @@ df.to_csv('tem.csv', index=False)
 
 with open('tem.csv', 'rb') as f:
     contents = f.read()
+st.write(contents)
 repo.update_file(file_path, commit_message, contents, content.sha)
 
 def main():
