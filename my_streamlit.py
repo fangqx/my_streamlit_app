@@ -45,9 +45,9 @@ df = pd.read_csv(url)
 df['test_col'] = "new_test_val"
 content = repo.get_contents(file_path)
 st.write(content)
-df.to_csv('tem.csv', index=False)
+df.to_csv('tem.txt', index=False)
 
-with open('tem.csv', 'rb') as f:
+with open('tem.txt', 'rb') as f:
     contents = f.read()
 st.write(contents)
 repo.create_file("new_file.txt", "init commit", contents)
