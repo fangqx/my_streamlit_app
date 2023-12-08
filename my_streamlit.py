@@ -46,8 +46,11 @@ df['test_col'] = "new_test_val"
 st.write(df)
 content = repo.get_contents(file_path)
 st.write(content)
+df.to_csv('tem.csv', index=False)
 
-repo.update_file(file_path, commit_message, df, content.sha)
+with open('tem.csv', 'rb') as f:
+    contents = f.read()
+repo.update_file(file_path, commit_message, contents, content.sha)
 
 def main():
     st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
