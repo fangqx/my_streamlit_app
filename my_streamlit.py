@@ -36,14 +36,14 @@ commit_message = 'Update CSV file'
 
 github = Github(token)
 repo = github.get_user(repo_owner).get_repo(repo_name)
-
+repo = github.get_repo("PyGithub/PyGithub")
 url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_path}'
 #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
 response = requests.get(url)
 #st.write(response.content)
 df = pd.read_csv(url)
 df['test_col'] = "new_test_val"
-content = repo.get_contents(file_path)
+content = repo.get_contents(file_path,ref="master")
 st.write(content)
 df.to_csv('tem.txt', index=False)
 
@@ -51,7 +51,7 @@ with open('tem.txt', 'rb') as f:
     contents = f.read()
 st.write(f"{content}")
 #repo.create_file("new_file.txt", "init commit", contents)
-repo.update_file(file_path, commit_message,"test-result", content.sha)
+repo.update_file(file_path, commit_message,contents, content.sha,branch="master")
 
 def main():
     st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
