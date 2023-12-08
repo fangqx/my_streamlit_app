@@ -28,13 +28,12 @@ from PIL import Image
 from io import BytesIO
 from github import Github
 
+repo_owner = 'fangqx'
+repo_name = 'my_streamlit_app'
+file_path = 'share-study-room.xlsx'
+token = st.secrets["TOKEN"]
+commit_message = 'Update CSV file'
 def up_datefile():
-    repo_owner = 'fangqx'
-    repo_name = 'my_streamlit_app'
-    file_path = 'share-study-room.xlsx'
-    token = st.secrets["TOKEN"]
-    commit_message = 'Update CSV file'
-    
     github = Github(token)
     repo = github.get_user(repo_owner).get_repo(repo_name)
     url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_path}'
