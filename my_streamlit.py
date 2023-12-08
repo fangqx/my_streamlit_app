@@ -43,7 +43,7 @@ response = requests.get(url)
 #st.write(response.content)
 df = pd.read_csv(url)
 df['test_col'] = "new_test_val"
-content = repo.get_contents(file_path,ref="master")
+content = repo.get_contents(file_path)
 st.write(content)
 df.to_csv('tem.txt', index=False)
 
