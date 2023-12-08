@@ -41,8 +41,8 @@ url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/main/{file_pa
 url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
 response = requests.get(url)
 st.write(response.content)
-st.write(response.content.decode('utf-8'))
-df = pd.read_csv(StringIO(response.text))
+s=response.content.decode('utf-8')
+df = pd.read_csv(StringIO(s))
 df['test_col'] = "new_test_val"
 
 content = repo.get_contents(file_path)
