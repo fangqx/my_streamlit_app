@@ -43,12 +43,10 @@ response = requests.get(url)
 df = pd.read_csv(url)
 df['test_col'] = "new_test_val"
 content = repo.get_contents(file_path)
-st.write(content)
 df.to_csv('tem.txt', index=False)
 
 with open('tem.txt', 'rb') as f:
     contents = f.read()
-st.write(f"{content}")
 #repo.create_file("new_file.txt", "init commit", contents)
 repo.update_file(file_path, commit_message,contents, content.sha)
 
