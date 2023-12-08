@@ -3,6 +3,7 @@ import time
 import random
 import datetime
 import openpyxl
+import xlrd
 import requests
 import numpy as np
 import pandas as pd
