@@ -28,12 +28,12 @@ from PIL import Image
 from io import BytesIO
 from github import Github
 
-repo_owner = 'fangqx'
-repo_name = 'my_streamlit_app'
-file_path = 'share-study-room.xlsx'
-token = st.secrets["TOKEN"]
-commit_message = 'Update CSV file'
-def up_datefile(repo_owner,repo_name,file_path,token,commit_message):
+def up_datefile():
+    repo_owner = 'fangqx'
+    repo_name = 'my_streamlit_app'
+    file_path = 'share-study-room.xlsx'
+    token = st.secrets["TOKEN"]
+    commit_message = 'Update CSV file'
     github = Github(token)
     repo = github.get_user(repo_owner).get_repo(repo_name)
     url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_path}'
@@ -51,7 +51,7 @@ def up_datefile(repo_owner,repo_name,file_path,token,commit_message):
     repo.create_file("new_file.txt", "init commit", contents)
     content = repo.get_contents(file_path)
     repo.update_file(file_path, commit_message,contents, content.sha)
-up_datefile(repo_owner,repo_name,file_path,token,commit_message)
+up_datefile()
 def main():
     st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
     st.title('七里香还是稻香:heart:')
