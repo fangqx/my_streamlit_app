@@ -52,7 +52,7 @@ with open('tem.txt', 'rb') as f:
 st.write(contents)
 #repo.create_file("new_file.txt", "init commit", contents)
 
-repo.update_file(file_path, commit_message, contents, content.sha,branch='master')
+repo.update_file(file_path, commit_message, contents, content.sha,branch='main')
 
 def main():
     st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
