@@ -38,7 +38,7 @@ github = Github(token)
 repo = github.get_user(repo_owner).get_repo(repo_name)
 
 url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/main/{file_path}'
-url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
+#url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
 response = requests.get(url)
 st.write(response.text)
 df = pd.read_csv(StringIO(response.text))
