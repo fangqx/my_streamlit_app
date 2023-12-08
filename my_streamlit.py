@@ -30,6 +30,7 @@ def up_datefile():
     repo_name = 'my_streamlit_app'
     file_path = 'share-study-room.xlsx'
     token = st.secrets["TOKEN"]
+    st.write(token)
     commit_message = 'Update CSV file'
     github = Github(token)
     repo = github.get_user(repo_owner).get_repo(repo_name)
