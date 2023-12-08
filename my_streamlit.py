@@ -30,7 +30,7 @@ from github import Github
 
 repo_owner = 'fangqx'
 repo_name = 'my_streamlit_app'
-file_path = 'test.csv'
+file_path = 'share-study-room.xlsx'
 token = st.secrets["TOKEN"]
 commit_message = 'Update CSV file'
 
@@ -38,16 +38,18 @@ github = Github(token)
 repo = github.get_user(repo_owner).get_repo(repo_name)
 url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_path}'
 #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
-response = requests.get(url)
+#response = requests.get(url)
 #st.write(response.content)
-df = pd.read_csv(url)
+df = pd.read_csv(url,sheet_name='all')
+
 df['test_col'] = "new_test_val"
 content = repo.get_contents(file_path)
 df.to_csv('tem.txt', index=False)
 
 with open('tem.txt', 'rb') as f:
     contents = f.read()
-#repo.create_file("new_file.txt", "init commit", contents)
+repo.delete_file("new_file.txt", "delete commit", content.sha)
+repo.create_file("new_file.txt", "init commit", contents)
 repo.update_file(file_path, commit_message,contents, content.sha)
 
 def main():
