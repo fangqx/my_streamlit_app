@@ -40,7 +40,7 @@ url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_
 #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
 #response = requests.get(url)
 #st.write(response.content)
-df = pd.read_csv(url,sheet_name='all')
+df = pd.read_excel(url,sheet_name='all')
 
 df['test_col'] = "new_test_val"
 content = repo.get_contents(file_path)
