@@ -36,7 +36,7 @@ commit_message = 'Update CSV file'
 
 github = Github(token)
 repo = github.get_user(repo_owner).get_repo(repo_name)
-repo = github.get_repo("repo_owner/repo_name")
+repo = github.get_repo(repo_owner/repo_name)
 url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_path}'
 #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
 response = requests.get(url)
