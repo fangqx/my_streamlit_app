@@ -47,7 +47,7 @@ df.to_csv('tem.txt', index=False)
 
 with open('tem.txt', 'rb') as f:
     contents = f.read()
-#repo.create_file("new_file.csv", "init commit", contents)
+repo.create_file("new_file.csv", "init commit", contents)
 repo.update_file(file_path, commit_message,contents, content.sha)
 
 def main():
