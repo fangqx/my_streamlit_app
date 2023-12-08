@@ -41,15 +41,15 @@ url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_
 #response = requests.get(url)
 #st.write(response.content)
 df = pd.read_excel(url,sheet_name='all')
-
 df['test_col'] = "new_test_val"
-content = repo.get_contents(file_path)
 df.to_csv('tem.txt', index=False)
 
 with open('tem.txt', 'rb') as f:
     contents = f.read()
+content = repo.get_contents("new_file.txt")
 repo.delete_file("new_file.txt", "delete commit", content.sha)
 repo.create_file("new_file.txt", "init commit", contents)
+content = repo.get_contents(file_path)
 repo.update_file(file_path, commit_message,contents, content.sha)
 
 def main():
