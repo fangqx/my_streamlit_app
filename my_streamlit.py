@@ -45,7 +45,7 @@ df = pd.read_csv(url)
 df['test_col'] = "new_test_val"
 st.write(df)
 content = repo.get_contents(file_path)
-st.werite(content.sha)
+st.write(content.sha)
 
 repo.update_file(file_path, commit_message, df, content.sha)
 
