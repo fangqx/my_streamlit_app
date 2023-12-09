@@ -27,7 +27,6 @@ from io import BytesIO
 from github import Github
 import hmac
 
-st.write(st.secrets["TOKEN"])
 st.write(st.secrets["password"])
 
 def check_password():
