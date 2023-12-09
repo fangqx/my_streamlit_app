@@ -3,7 +3,7 @@ xlrd
 requests
 pandas
 numpy
-streamlit==1.11.1
+streamlit==1.29.0
 click==8
 matplotlib
 altair
