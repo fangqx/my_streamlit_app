@@ -127,7 +127,8 @@ def main():
         card_price=['--价格: '+str(x)+' 元' for x in card_price0]
         card_name = [a+b for a, b in zip(card_name, card_price)]
         col1, col2,col3 = st.columns(3)
-        col1_choice = col1.radio("单次卡", card_name[:4],index=None,)
+        with col1:
+            col1_choice = st.radio("单次卡", card_name[:4],index=None,)
         col2_choice = col2.radio("多次卡", ['Option']+card_name[4:9],index=0,)
         col3_choice = col3.radio("周月年卡", ['Option']+card_name[9:],index=0,)
         #card=st.radio('study',data['名称'].dropna().unique().tolist())
