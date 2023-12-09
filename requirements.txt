@@ -1,5 +1,4 @@
 openpyxl
-xlrd
 requests
 pandas
 numpy
@@ -10,7 +9,6 @@ altair
 plotly
 PyDeck==0.7.1
 graphviz
-scipy
 Pillow
 streamlit-player
 streamlit-echarts
