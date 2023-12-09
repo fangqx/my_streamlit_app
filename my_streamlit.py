@@ -123,7 +123,7 @@ def main():
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=random.choice(range(3)))
     if self_study==study_sel[0]:
         st.write(data['名称'].dropna().unique().tolist())
-        st.checkbox(sel_study,data['名称'].dropna().unique().tolist(),)
+        st.checkbox(sel_study,['体验卡1：2小时', '体验卡2：2小时', '限时卡：2小时', '单日卡：14小时', '多次卡：10次', '多次卡：20次','多次卡：30次'])
         
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
     t=st.sidebar.time_input('Time',st.session_state.date_time.time())
