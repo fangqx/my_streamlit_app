@@ -13,8 +13,6 @@ from streamlit.server.server import Server
 # from streamlit.script_run_context import get_script_run_ctx as get_report_ctx
 from streamlit.scriptrunner import get_script_run_ctx as get_report_ctx
 import pydeck as pdk
-import altair as alt
-import plotly.figure_factory as ff
 import matplotlib.pyplot as plt
 from pyecharts.charts import *
 from pyecharts.globals import ThemeType
@@ -252,62 +250,6 @@ def my_hash_func(my_random):
     num = my_random.random_num
     return num
 
-@st.cache(hash_funcs={MyRandom: my_hash_func},allow_output_mutation=True,ttl=3600)
-def get_chart_data(chart,my_random):
-    data=np.random.randn(20,3)
-    df=pd.DataFrame(data,columns=['a', 'b', 'c'])
-    if chart in ['Line','Bar','Area']:
-        return df
-
-    elif chart == 'Hist':
-        arr = np.random.normal(1, 1, size=100)
-        fig, ax = plt.subplots()
-        ax.hist(arr, bins=20)
-        return fig
-
-    elif chart == 'Altair':
-        df = pd.DataFrame(np.random.randn(200, 3),columns=['a', 'b', 'c'])
-        c = alt.Chart(df).mark_circle().encode(x='a', y='b', size='c', color='c', tooltip=['a', 'b', 'c'])
-        return c
-
-    elif chart == 'Map':
-        df = pd.DataFrame(np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],columns=['lat', 'lon'])
-        return df
-
-    elif chart == 'Distplot':
-        x1 = np.random.randn(200) - 2
-        x2 = np.random.randn(200)
-        x3 = np.random.randn(200) + 2
-        # Group data together
-        hist_data = [x1, x2, x3]
-        group_labels = ['Group 1', 'Group 2', 'Group 3']
-        # Create distplot with custom bin_size
-        fig = ff.create_distplot(hist_data, group_labels, bin_size=[.1, .25, .5])
-        # Plot!
-        return fig
-
-    elif chart == 'Pdk':
-        df = pd.DataFrame(np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],columns=['lat', 'lon'])
-        args=pdk.Deck(map_style='mapbox://styles/mapbox/light-v9',
-            initial_view_state=pdk.ViewState(latitude=37.76,longitude=-122.4,zoom=11,pitch=50,),
-            layers=[pdk.Layer('HexagonLayer',data=df,get_position='[lon, lat]',radius=200,elevation_scale=4,elevation_range=[0, 1000],pickable=True,extruded=True),
-            pdk.Layer('ScatterplotLayer',data=df,get_position='[lon, lat]',get_color='[200, 30, 0, 160]',get_radius=200)])
-        return args
-
-   
-
-    elif chart == 'PyEchart':
-        options = {
-            "xAxis": {
-                "type": "category",
-                "data": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-            },
-            "yAxis": {"type": "value"},
-            "series": [
-                {"data": [820, 932, 901, 934, 1290, 1330, 1320], "type": "line"}
-            ],
-        }
-        return options
 
 @st.cache(hash_funcs={MyRandom: my_hash_func},suppress_st_warning=True,ttl=3600)
 def get_pictures(my_random):
