@@ -10,7 +10,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 from streamlit_echarts import st_echarts
 from streamlit.web.server.server import Server
-from streamlit.script_run_context import get_script_run_ctx as get_report_ctx
+from streamlit.runtime.scriptrunner.script_run_context import get_script_run_ctx as get_report_ctx
 import pydeck as pdk
 import matplotlib.pyplot as plt
 from pyecharts.charts import *
