@@ -135,7 +135,7 @@ def main():
     if len([col1_choice + col2_choice+col3_choice])==1:
         st.write('您选择的是: '+ col1_choice + col2_choice + col3_choice）
     else:
-        st.write('请重新选择’)
+        st.write('请重新选择')
                  
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
     t=st.sidebar.time_input('Time',st.session_state.date_time.time())
