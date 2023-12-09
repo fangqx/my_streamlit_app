@@ -2,7 +2,7 @@ openpyxl
 requests
 pandas
 numpy
-streamlit==1.29.0
+streamlit==1.28.1
 click==8
 matplotlib
 altair
