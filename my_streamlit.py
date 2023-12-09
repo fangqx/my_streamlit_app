@@ -59,6 +59,9 @@ def check_password():
     return False
 
 
+    
+if not check_password():
+    st.stop()
 
 
 def up_datefile():
@@ -417,6 +420,5 @@ def get_video_bytes():
     return video_bytes1,video_bytes2
 
 if __name__ == '__main__':
-    check_password()
 
     main()
