@@ -98,7 +98,7 @@ def main():
         st.stop()
     data=up_datefile()
     st.set_page_config(page_title="自主学习",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
-    st.title('自主学习提高效率:heart:')
+    st.title('自主学习--提高效率:heart:')
     st.markdown('<br>',unsafe_allow_html=True)
     st.markdown('<br>',unsafe_allow_html=True)
     charts_mapping={
@@ -122,6 +122,7 @@ def main():
     study_sel=['自习卡类型','自习时间','自习位置']
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=random.choice(range(3)))
     if self_study==study_sel[0]:
+        st.write(data.columns)
         st.radio(sel_study,data['名称'].dropna().unique().tolist(),)
         
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
