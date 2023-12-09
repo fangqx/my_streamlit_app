@@ -122,12 +122,13 @@ def main():
     study_sel=['自习卡类型','自习时间','自习位置']
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=random.choice(range(3)))
     if self_study==study_sel[0]:
-        st.radio(sel_study,data['名称'].unique())
+        st.radio(sel_study,data['名称'].dropna().unique().tolist(),)
         
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
     t=st.sidebar.time_input('Time',st.session_state.date_time.time())
     t=f'{t}'.split('.')[0]
     st.sidebar.write(f'The current date time is {d} {t}')
+    
     chart=st.sidebar.selectbox('Select Chart You Like',charts_mapping.keys(),index=st.session_state.random_chart_index)
     city=st.sidebar.selectbox('Select City You Like',st.session_state.city_mapping.keys(),index=st.session_state.random_city_index)
     color = st.sidebar.color_picker('Pick A Color You Like', '#520520')
