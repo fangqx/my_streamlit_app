@@ -87,7 +87,6 @@ def up_datefile():
 
 def main():
 
-    check_password()
     up_datefile()
     st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
     st.title('七里香还是稻香:heart:')
@@ -418,4 +417,6 @@ def get_video_bytes():
     return video_bytes1,video_bytes2
 
 if __name__ == '__main__':
+    check_password()
+
     main()
