@@ -78,8 +78,8 @@ def up_datefile():
 
 def main():
     
-    if not check_password():
-        st.stop()
+    #if not check_password():
+    #    st.stop()
     up_datefile()
     st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
     st.title('七里香还是稻香:heart:')
