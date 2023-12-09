@@ -124,10 +124,10 @@ def main():
     if self_study==study_sel[0]:
         card_name=data['名称'].dropna().unique().tolist()
         card_price0=data['价格'].dropna().unique().tolist()
-        card_price=[str(x)+'元' for x in card_price0]
+        card_price=[str(x)+' 元' for x in card_price0]
         st.write(card_price)
         col1, col2,col3 = st.columns(3)
-        col1_choice = col1.radio("单次卡", card_name[:4],index=0)
+        col1_choice = col1.radio("单次卡", card_name[:4],index=0,captions = card_price[:4])
         col2_choice = col2.radio("多次卡", ['Option']+card_name[4:9],index=0,captions = ["No selection"]+card_price[4:9])
         col3_choice = col3.radio("周月年卡", ['Option']+card_name[9:],index=0,captions = ["No selection"]+card_price[9:])
         #card=st.radio('study',data['名称'].dropna().unique().tolist())
