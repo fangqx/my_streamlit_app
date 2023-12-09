@@ -34,13 +34,13 @@ from github import Github
 import hmac
 import streamlit as st
 
+st.write(st.secrets["password"])
 
 def check_password():
     """Returns `True` if the user had the correct password."""
 
     def password_entered():
         """Checks whether a password entered by the user is correct."""
-        st.write(st.secrets["password"])
         if hmac.compare_digest(st.session_state["password"], st.secrets["password"]):
             st.session_state["password_correct"] = True
             del st.session_state["password"]  # Don't store the password.
