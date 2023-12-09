@@ -27,7 +27,6 @@ from io import BytesIO
 from github import Github
 import hmac
 
-
 def check_password():
     """Returns `True` if the user had the correct password."""
 
@@ -70,9 +69,26 @@ def up_datefile():
     
     with open('tem.txt', 'rb') as f:
         contents = f.read()
-    content = repo.get_contents("new_file.csv")
-    repo.delete_file("new_file.csv", "delete commit", content.sha)
-    repo.create_file("new_file.csv", "init commit", contents)
+
+    all_files = []
+    all = repo.get_contents("")
+    while all:
+        file_content = all.pop(0)
+        if file_content.type == "dir":
+            all.extend(repo.get_contents(file_content.path))
+        else:
+            file = file_content
+            all_files.append(str(file).replace('ContentFile(path="','').replace('")',''))
+    st.write(all_files)
+    git_file="new_data.csv"
+    if git_file in all_files:
+        content = repo.get_contents(git_file)
+        repo.update_file(content.path, commit_message,contents, content.sha)
+    else:
+        repo.create_file(git_file, "init commit", contents)
+    #content = repo.get_contents("new_data.csv")
+    #repo.delete_file("new_file.csv", "delete commit", content.sha)
+    #repo.create_file("new_file.csv", "init commit", contents)
     #content = repo.get_contents(file_path)
     #repo.update_file(file_path, commit_message,contents, content.sha)
 
