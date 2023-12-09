@@ -128,11 +128,11 @@ def main():
         card_name = [a+b for a, b in zip(card_name, card_price)]
         st.write(card_name[0:4])
         col1, col2,col3 = st.columns(3)
-        col1_choice = col1.radio("单次卡", ['option'] + card_name[:4],)
+        col1_choice = col1.radio("单次卡", ['option'] + card_name[:4],index=0,)
         col2_choice = col2.radio("多次卡", ['Option']+card_name[4:9],index=0,)
         col3_choice = col3.radio("周月年卡", ['Option']+card_name[9:],index=0,)
         #card=st.radio('study',data['名称'].dropna().unique().tolist())
-        
+        ChangeWidgetFontSize('单次卡', '20px')
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
     t=st.sidebar.time_input('Time',st.session_state.date_time.time())
     t=f'{t}'.split('.')[0]
