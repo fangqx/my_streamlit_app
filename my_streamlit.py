@@ -91,12 +91,12 @@ def up_datefile():
     #repo.create_file("new_file.csv", "init commit", contents)
     #content = repo.get_contents(file_path)
     #repo.update_file(file_path, commit_message,contents, content.sha)
-
+    return df
 def main():
     
     if not check_password():
         st.stop()
-    up_datefile()
+    data=up_datefile()
     st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
     st.title('七里香还是稻香:heart:')
     st.markdown('<br>',unsafe_allow_html=True)
@@ -120,11 +120,7 @@ def main():
         st.balloons()
         st.snow()
 
-    music=st.sidebar.radio('Select Music You Like',['七里香','稻香'],index=random.choice(range(2)))
-    st.sidebar.write(f'正在播放 {music}-周杰伦 :musical_note:')
-    audio_bytes=get_audio_bytes(music)
-    st.sidebar.audio(audio_bytes, format='audio/mp3')
-
+    self_study=st.sidebar.radio('自习选择',['自习卡类型','学习时间','自习桌'],index=random.choice(range(3)))
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
     t=st.sidebar.time_input('Time',st.session_state.date_time.time())
     t=f'{t}'.split('.')[0]
