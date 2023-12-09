@@ -44,9 +44,9 @@ def up_datefile():
     
     with open('tem.txt', 'rb') as f:
         contents = f.read()
-    content = repo.get_contents("new_file.txt")
-    repo.delete_file("new_file.txt", "delete commit", content.sha)
-    repo.create_file("new_file.txt", "init commit", contents)
+    content = repo.get_contents("new_file.csv")
+    repo.delete_file("new_file.csv", "delete commit", content.sha)
+    repo.create_file("new_file.csv", "init commit", contents)
     #content = repo.get_contents(file_path)
     #repo.update_file(file_path, commit_message,contents, content.sha)
 
