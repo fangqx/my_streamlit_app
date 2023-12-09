@@ -129,7 +129,7 @@ def main():
         genre = st.radio("What's your favorite movie genre",[":rainbow[Comedy]", "***Drama***", "Documentary :movie_camera:"],captions = ["Laugh out loud.", "Get the popcorn.", "Never stop learning."])
         col1, col2,col3 = st.columns(3)
         with col1:
-             col1_choice = st.radio("单次卡", card_name[:4],captions = ["t1","rete","yyyy","itt."])
+             col1_choice = st.radio("单次卡", card_name[:4],["t1","rete","yyyy","itt."])
         col2_choice = col2.radio("多次卡", ['Option']+card_name[4:9],index=0,captions = ["No selection"]+card_price[4:9])
         col3_choice = col3.radio("周月年卡", ['Option']+card_name[9:],index=0,captions = ["No selection"]+card_price[9:])
         #card=st.radio('study',data['名称'].dropna().unique().tolist())
