@@ -128,7 +128,7 @@ def main():
         col2_choice = col2.radio("多次卡",  ['Option']+card_name[4:9],index=0,captions=['No Selection']+card_price[4:9])
         col3_choice = col3.radio("周月年卡",  ['Option']+card_name[9:],index=0,captions=['No Selection']+card_price[9:])
         #card=st.radio('study',data['名称'].dropna().unique().tolist())
-        sel = ['' if item == 'Option' else item for item in [col1_choice,col2_choice,col3_choice]]
+        sel =  [col1_choice,col2_choice,col3_choice].remove('Option')
         st.write(sel)
        
     if len(sel)==1:
