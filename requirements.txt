@@ -3,12 +3,10 @@ requests
 pandas
 numpy
 streamlit==1.28.1
-click==8
+click
 matplotlib
-altair
 plotly
-PyDeck==0.7.1
-graphviz
+PyDeck
 Pillow
 streamlit-player
 streamlit-echarts
