@@ -126,7 +126,6 @@ def main():
         card_price0=data['价格'].dropna().unique().tolist()
         card_price=['价格: '+str(x)+' 元' for x in card_price0]
         st.write(card_price[0:4])
-        genre = st.radio("What's your favorite movie genre",[":rainbow[Comedy]", "***Drama***", "Documentary :movie_camera:"],captions = ["Laugh out loud.", "Get the popcorn.", "Never stop learning."])
         col1, col2,col3 = st.columns(3)
         with col1:
              col1_choice = st.radio("单次卡", card_name[:4],["t1","rete","yyyy","itt."])
