@@ -39,7 +39,7 @@ url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_
 #response = requests.get(url)
 #st.write(response.content)
 df = pd.read_excel(url,sheet_name='all')
-st.write(df)
+st.write(df.columns)
 #df = pd.read_excel(url,sheet_name='all')
 
 
