@@ -87,6 +87,8 @@ def up_datefile():
     #content = repo.get_contents(file_path)
     #repo.update_file(file_path, commit_message,contents, content.sha)
     return df
+
+
 def main():
     
     if not check_password():
@@ -123,15 +125,16 @@ def main():
         #card_name = [a+b for a, b in zip(card_name, card_price)]
         col1, col2,col3 = st.columns(3)
        
-        col1_choice = col1.radio("单次卡", card_name[:4],index=None,captions=card_price[:4])
-        col1.button("Clear all", on_click=clear_all)
-        col2_choice = col2.radio("多次卡", card_name[4:9],index=None,captions=card_price[4:9])
-        col3_choice = col3.radio("周月年卡", card_name[9:],index=None,captions=card_price[9:])
+        col1_choice = col1.radio("单次卡", ['Option']+card_name[:4],index=0,captions=['No Selection']+card_price[:4])
+        col2_choice = col2.radio("多次卡",  ['Option']+card_name[4:9],index=0,captions=['No Selection']card_price[4:9])
+        col3_choice = col3.radio("周月年卡",  ['Option']+card_name[9:],index=0,captions=['No Selection']card_price[9:])
         #card=st.radio('study',data['名称'].dropna().unique().tolist())
-        st.write([col1_choice,col2_choice,col3_choice])
-    if len([col1_choice + col2_choice+col3_choice])==1:
-        st.write('您选择的是: '+ col1_choice + col2_choice + col3_choice)
+        sel = ['' if item == 'Option' else item for item in [col1_choice,col2_choice,col3_choice]]
+       
+    if len(sel)==1:
+        st.write('您选择的是: '+ sel)
     else:
+        
         st.write('请重新选择')
                  
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
