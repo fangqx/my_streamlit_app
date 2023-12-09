@@ -39,7 +39,7 @@ url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_
 #response = requests.get(url)
 #st.write(response.content)
 df = pd.read_excel(url,sheet_name='all')
-st.write(df)
+
 #df = pd.read_excel(url,sheet_name='all')
 
 
@@ -56,7 +56,7 @@ def up_datefile():
     #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
     #response = requests.get(url)
     #st.write(response.content)
-    df = pd.read_excel(url,sheet_name=['all'])
+    df = pd.read_excel(url,sheet_name='all')
     df['test_col'] = "new_test_val"
     df.to_csv('tem.txt', index=False)
     
@@ -65,11 +65,11 @@ def up_datefile():
     content = repo.get_contents("new_file.txt")
     repo.delete_file("new_file.txt", "delete commit", content.sha)
     repo.create_file("new_file.txt", "init commit", contents)
-    content = repo.get_contents(file_path)
-    repo.update_file(file_path, commit_message,contents, content.sha)
+    #content = repo.get_contents(file_path)
+    #repo.update_file(file_path, commit_message,contents, content.sha)
 
 def main():
-    #up_datefile()
+    up_datefile()
     st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
     st.title('七里香还是稻香:heart:')
     st.markdown('<br>',unsafe_allow_html=True)
