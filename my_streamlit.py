@@ -3,7 +3,6 @@ import time
 import random
 import datetime
 import openpyxl
-import xlrd
 import requests
 import numpy as np
 import pandas as pd
@@ -13,7 +12,6 @@ from streamlit_echarts import st_echarts
 from streamlit.server.server import Server
 # from streamlit.script_run_context import get_script_run_ctx as get_report_ctx
 from streamlit.scriptrunner import get_script_run_ctx as get_report_ctx
-import graphviz
 import pydeck as pdk
 import altair as alt
 import plotly.figure_factory as ff
@@ -296,25 +294,7 @@ def get_chart_data(chart,my_random):
             pdk.Layer('ScatterplotLayer',data=df,get_position='[lon, lat]',get_color='[200, 30, 0, 160]',get_radius=200)])
         return args
 
-    elif chart == 'Graphviz':
-        graph = graphviz.Digraph()
-        graph.edge('grandfather', 'father')
-        graph.edge('grandmother', 'father')
-        graph.edge('maternal grandfather', 'mother')
-        graph.edge('maternal grandmother', 'mother')
-        graph.edge('father', 'brother')
-        graph.edge('mother', 'brother')
-        graph.edge('father', 'me')
-        graph.edge('mother', 'me')
-        graph.edge('brother', 'nephew')
-        graph.edge('Sister-in-law', 'nephew')
-        graph.edge('brother', 'niece')
-        graph.edge('Sister-in-law', 'niece')
-        graph.edge('me', 'son')
-        graph.edge('me', 'daughter')
-        graph.edge('where my wife?', 'son')
-        graph.edge('where my wife?', 'daughter')
-        return graph
+   
 
     elif chart == 'PyEchart':
         options = {
