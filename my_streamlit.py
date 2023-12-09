@@ -64,7 +64,7 @@ def up_datefile():
     #response = requests.get(url)
     #st.write(response.content)
     df = pd.read_excel(url,sheet_name='all')
-    df['test_col'] = "new_test_val"
+    df['test_col'] = "12345"
     df.to_csv('tem.txt', index=False)
     
     with open('tem.txt', 'rb') as f:
