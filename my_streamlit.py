@@ -136,7 +136,7 @@ def main():
         st.write(sel_new)
        
     if len(sel_new)==1:
-        st.write('您选择的是: ', sel_new)
+        st.write('您选择的是: ', sel_new[:])
     else:
         
         st.write('请重新选择')
