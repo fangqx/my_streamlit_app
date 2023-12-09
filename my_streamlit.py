@@ -38,7 +38,7 @@ st.write(url)
 #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
 #response = requests.get(url)
 #st.write(response.content)
-df = pd.read_excel(url,sheet_name=['all'])
+df = pd.read_excel(url,sheet_name='all')
 
 
 def up_datefile():
