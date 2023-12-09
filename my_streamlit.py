@@ -123,8 +123,9 @@ def main():
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=0)
     if self_study==study_sel[0]:
         card_name=data['名称'].dropna().unique().tolist()
-        card_price=data['价格'].dropna().unique().tolist()
-        card_price=[str(x)+'元' for x in card_price]
+        card_price0=data['价格'].dropna().unique().tolist()
+        card_price=[str(x)+'元' for x in card_price0]
+        st.write(card_price)
         col1, col2,col3 = st.columns(3)
         col1_choice = col1.radio("单次卡", card_name[:4],index=0)
         col2_choice = col2.radio("多次卡", ['Option']+card_name[4:9],index=0,captions = ["No selection"]+card_price[4:9])
