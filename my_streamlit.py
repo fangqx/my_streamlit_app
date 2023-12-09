@@ -132,8 +132,8 @@ def main():
         col2_choice = col2.radio("多次卡", ['Option']+card_name[4:9],index=0,)
         col3_choice = col3.radio("周月年卡", ['Option']+card_name[9:],index=0,)
         #card=st.radio('study',data['名称'].dropna().unique().tolist())
-    if len([col1_choice+col2_choice+col3_choice])==1:
-        st.write('您选择的是: '+col1_choice+col2_choice+col3_choice）
+    if len([col1_choice + col2_choice+col3_choice])==1:
+        st.write('您选择的是: '+ col1_choice + col2_choice + col3_choice）
     else:
         st.write('请重新选择’)
                  
