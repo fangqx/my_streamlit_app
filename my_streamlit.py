@@ -27,7 +27,6 @@ from io import BytesIO
 from github import Github
 import hmac
 
-st.write(st.secrets["password"])
 
 def check_password():
     """Returns `True` if the user had the correct password."""
