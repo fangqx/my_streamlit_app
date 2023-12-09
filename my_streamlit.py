@@ -52,11 +52,6 @@ def check_password():
     return False
 
 
-    
-if not check_password():
-    st.stop()
-
-
 def up_datefile():
     repo_owner = 'fangqx'
     repo_name = 'my_streamlit_app'
@@ -82,7 +77,9 @@ def up_datefile():
     #repo.update_file(file_path, commit_message,contents, content.sha)
 
 def main():
-
+    
+    if not check_password():
+        st.stop()
     up_datefile()
     st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
     st.title('七里香还是稻香:heart:')
