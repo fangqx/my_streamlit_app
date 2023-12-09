@@ -97,8 +97,8 @@ def main():
     if not check_password():
         st.stop()
     data=up_datefile()
-    st.set_page_config(page_title="七里香还是稻香",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
-    st.title('七里香还是稻香:heart:')
+    st.set_page_config(page_title="自主学习",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
+    st.title('自主学习提高效率:heart:')
     st.markdown('<br>',unsafe_allow_html=True)
     st.markdown('<br>',unsafe_allow_html=True)
     charts_mapping={
@@ -117,10 +117,13 @@ def main():
         st.session_state.my_random=MyRandom(random.randint(1,1000000))
         st.session_state.city_mapping,st.session_state.random_city_index=get_city_mapping()
         # st.session_state.random_city_index=random.choice(range(len(st.session_state.city_mapping)))
-        st.balloons()
-        st.snow()
-
-    self_study=st.sidebar.radio('自习选择',['自习卡类型','学习时间','自习桌'],index=random.choice(range(3)))
+        #st.balloons()
+        #st.snow()
+    study_sel=['自习卡类型','自习时间','自习位置']
+    self_study=st.sidebar.radio('自习计划选择',study_sel,index=random.choice(range(3)))
+    if self_study==study_sel[0]:
+        st.radio(sel_study,data['名称'].unique())
+        
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
     t=st.sidebar.time_input('Time',st.session_state.date_time.time())
     t=f'{t}'.split('.')[0]
