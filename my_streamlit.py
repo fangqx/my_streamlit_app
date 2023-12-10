@@ -159,7 +159,7 @@ def main():
                     col2=cols[0].time_input('开始时间',value=None,step=3600)
                     col3=cols[1].time_input('结束时间',value=None,step=3600)
                     form = st.form('Manual assign')
-                    submitted = st.form_submit_button("Submit")
+                    submitted = form.form_submit_button("Submit")
                                         
     
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
