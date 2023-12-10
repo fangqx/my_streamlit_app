@@ -148,7 +148,8 @@ def main():
     
             with st.expander("学习时间选择"):
                 st.write(sel_new,card_name[:4])
-                if sel_new is in card_name[:4]:
+                check =  any(item in sel_new for item in card_name[:4])
+                if check is True:
                     
                     cols=st.columns(4)
                     cols[0].data_input('Date0',st.session_state.date_time.date())
