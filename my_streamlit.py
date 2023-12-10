@@ -152,8 +152,8 @@ def main():
                 if check is True:
                     
                     cols=st.columns(4)
-                    col0=cols[0].date_input('Date0',datetime.datetime.now,format="MM.DD.YYYY",)
-                    col1=cols[1].date_input('Date1',datetime.datetime.now,format="MM.DD.YYYY",)
+                    col0=cols[0].date_input('Date0',datetime.datetime.now,)
+                    col1=cols[1].date_input('Date1',datetime.datetime.now,)
                     col2=cols[2].time_input('Time0',datetime.timedelta(hours=8))
                     col3=cols[3].time_input('Time1',datetime.timedelta(hours=8))
 
