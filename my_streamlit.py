@@ -147,16 +147,17 @@ def main():
                     st.write('请重新选择')
     
             with st.expander("学习时间选择"):
-                st.write(sel_new,card_name[:4])
+                #st.write(sel_new,card_name[:4])
                 check =  any(item in sel_new for item in card_name[:4])
                 if check is True:
+                    st.markdown(f'##### sel_new[0]')
                     
                     cols=st.columns(2)
                     col0=cols[0].date_input('开始日期',st.session_state.date_time)
                     col1=cols[1].date_input('结束日期',st.session_state.date_time,)
                     cols=st.columns(2)
-                    col2=cols[0].time_input('开始时间',step='0:30:00')
-                    col3=cols[1].time_input('结束时间',step='0:30:00')
+                    col2=cols[0].time_input('开始时间')
+                    col3=cols[1].time_input('结束时间')
                     submitted = st.form_submit_button("Submit")
                                         
     
