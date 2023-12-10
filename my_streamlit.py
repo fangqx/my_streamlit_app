@@ -152,10 +152,10 @@ def main():
                 if check is True:
                     
                     cols=st.columns(4)
-                    col0=cols[0].data_input('Date0',st.session_state.date_time.date())
-                    col1=cols[1].data_input('Date1',st.session_state.date_time.date())
-                    col2=cols[2].time_input('Time0',st.session_state.date_time.time())
-                    col3=cols[3].time_input('Time1',st.session_state.date_time.time())
+                    col0=cols[0].data_input('Date0',datetime.datetime.now,format="MM.DD.YYYY",)
+                    col1=cols[1].data_input('Date1',datetime.datetime.now,format="MM.DD.YYYY",)
+                    col2=cols[2].time_input('Time0',datetime.timedelta(hours=8))
+                    col3=cols[3].time_input('Time1',datetime.timedelta(hours=8))
 
     
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
