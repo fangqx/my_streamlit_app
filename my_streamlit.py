@@ -151,30 +151,13 @@ def main():
                 check =  any(item in sel_new for item in card_name[:4])
                 if check is True:
                     
-                    cols=st.columns(4)
-                    col0=cols[0].date_input('Date0',st.session_state.date_time)
-                    col1=cols[1].date_input('Date1',st.session_state.date_time,)
-                    col2=cols[2].time_input('Time0',)
-                    col3=cols[3].time_input('Time1',)
-                    with st.sidebar:
-                        with st.form("my_form"):
-                              #time_filter = datatime.datetime.now() - datatime.timedelta(days=1)          
-                              
-                              st.write('View Period')
-                              col1, col2 = st.columns(2)
-                              with col1:
-                                  date_start = st.date_input("Start", key='date_start')
-                              with col2:
-                                  time_start = st.time_input("Time", key='time_start')
-                                  #datetime_start = datetime.combine(date_start, time_start)
-                      
-                              col1, col2 = st.columns(2)
-                              with col1:
-                                  date_end = st.date_input("End", key='date_end')
-                              with col2:
-                                  time_end = st.time_input("Time End", key='time_end')
-                                  #datetime_end = datetime.combine(date_end, time_end)
-                              submitted = st.form_submit_button("Submit")
+                    cols=st.columns(2)
+                    col0=cols[0].date_input('开始日期',st.session_state.date_time)
+                    col1=cols[1].date_input('结束日期',st.session_state.date_time,)
+                    cols=st.columns(2)
+                    col2=cols[0].time_input('开始时间',)
+                    col3=cols[1].time_input('结束时间',)
+                    submitted = st.form_submit_button("Submit")
                                         
     
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
