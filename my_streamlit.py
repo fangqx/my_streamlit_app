@@ -155,8 +155,8 @@ def main():
                     col0=cols[0].date_input('开始日期',st.session_state.date_time)
                     col1=cols[1].date_input('结束日期',st.session_state.date_time,)
                     cols=st.columns(2)
-                    col2=cols[0].time_input('开始时间',)
-                    col3=cols[1].time_input('结束时间',)
+                    col2=cols[0].time_input('开始时间',step=1:00:00)
+                    col3=cols[1].time_input('结束时间',step=1:00:00)
                     submitted = st.form_submit_button("Submit")
                                         
     
