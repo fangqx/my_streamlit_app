@@ -139,7 +139,6 @@ def main():
                 st.write('您选择的是: ', sel_new[0])
             else:                
                 st.write('请重新选择')
-        div[data-testid="stExpander"] div[role="button"] p {font-size: 4rem;}             
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
     t=st.sidebar.time_input('Time',st.session_state.date_time.time())
     t=f'{t}'.split('.')[0]
