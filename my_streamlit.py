@@ -143,6 +143,17 @@ def main():
                 st.write('您选择的是: ', sel_new[0])
             else:                
                 st.write('请重新选择')
+
+        with st.expander("学习时间选择"):
+            if sel_new is in card_name[:4]:
+                
+                cols=st.columns(4)
+                cols[0].data_input('Date0',st.session_state.date_time.date())
+                cols[1].data_input('Date1',st.session_state.date_time.date())
+                cols[2].time_input('Time0',st.session_state.date_time.time())
+                cols[3].time_input('Time1',st.session_state.date_time.time())
+
+    
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
     t=st.sidebar.time_input('Time',st.session_state.date_time.time())
     t=f'{t}'.split('.')[0]
