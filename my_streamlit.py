@@ -166,14 +166,14 @@ def main():
                                   date_start = st.date_input("Start", key='date_start')
                               with col2:
                                   time_start = st.time_input("Time", key='time_start')
-                                  datetime_start = datetime.combine(date_start, time_start)
+                                  #datetime_start = datetime.combine(date_start, time_start)
                       
                               col1, col2 = st.columns(2)
                               with col1:
                                   date_end = st.date_input("End", key='date_end')
                               with col2:
                                   time_end = st.time_input("Time End", key='time_end')
-                                  datetime_end = datetime.combine(date_end, time_end)
+                                  #datetime_end = datetime.combine(date_end, time_end)
                               submitted = st.form_submit_button("Submit")
                                         
     
