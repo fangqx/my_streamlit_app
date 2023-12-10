@@ -145,6 +145,7 @@ def main():
                 st.write('请重新选择')
 
         with st.expander("学习时间选择"):
+            st.write(sel_new,card_name[:4])
             if sel_new is in card_name[:4]:
                 
                 cols=st.columns(4)
