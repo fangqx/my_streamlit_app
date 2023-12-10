@@ -157,6 +157,12 @@ def main():
                     col2=cols[2].time_input('Time0',)
                     col3=cols[3].time_input('Time1',)
 
+                    times = []
+                    for hours in range(0, 23):
+                      for minutes in range(0, 59):
+                        times.append(datetime.time(hours, minutes))
+                    st.selectbox("Time", times, key="time", format_func=lambda t: t.strftime("%H:%M"))
+
     
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
     t=st.sidebar.time_input('Time',st.session_state.date_time.time())
