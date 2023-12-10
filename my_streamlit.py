@@ -88,6 +88,9 @@ def up_datefile():
     #repo.update_file(file_path, commit_message,contents, content.sha)
     return df
 
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 def main():
     
@@ -123,6 +126,7 @@ def main():
         card_price0=data['价格'].dropna().unique().tolist()
         card_price=['--价格: '+str(x)+' 元' for x in card_price0]
         #card_name = [a+b for a, b in zip(card_name, card_price)]
+        local_css("style.css")
         with st.expander("学习卡选择"):
             #st.markdown(f'### 学习计划')
             col1, col2,col3 = st.columns(3)       
