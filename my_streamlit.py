@@ -150,7 +150,7 @@ def main():
                 #st.write(sel_new,card_name[:4])
                 check =  any(item in sel_new for item in card_name[:4])
                 if check is True:
-                    st.markdown(f'##### sel_new[0]')
+                    st.markdown(sel_new[0])
                     
                     cols=st.columns(2)
                     col0=cols[0].date_input('开始日期',st.session_state.date_time)
