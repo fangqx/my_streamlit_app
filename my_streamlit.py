@@ -126,12 +126,12 @@ def main():
         card_price0=data['价格'].dropna().unique().tolist()
         card_price=['--价格: '+str(x)+' 元' for x in card_price0]
         #card_name = [a+b for a, b in zip(card_name, card_price)]
-        local_css("style.css")
+        
         with st.expander("学习卡选择"):
             #st.markdown(f'### 学习计划')
             col1, col2,col3 = st.columns(3)       
-            col1_choice = col1.radio(f"# 单次卡", ['Option']+card_name[:4],index=0,captions=['No Selection']+card_price[:4])
-            col2_choice = col2.radio(f"## 多次卡",  ['Option']+card_name[4:9],index=0,captions=['No Selection']+card_price[4:9])
+            col1_choice = col1.radio(f"### 单次卡", ['Option']+card_name[:4],index=0,captions=['No Selection']+card_price[:4])
+            col2_choice = col2.radio(f"### 多次卡",  ['Option']+card_name[4:9],index=0,captions=['No Selection']+card_price[4:9])
             col3_choice = col3.radio(f"### 长期卡",  ['Option']+card_name[9:],index=0,captions=['No Selection']+card_price[9:])
             #card=st.radio('study',data['名称'].dropna().unique().tolist())
             sel =  [col1_choice,col2_choice,col3_choice]
