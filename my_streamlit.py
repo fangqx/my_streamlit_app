@@ -158,7 +158,7 @@ def main():
                     col3=cols[3].time_input('Time1',)
                     with st.sidebar:
                         with st.form("my_form"):
-                              time_filter = datatime.datetime.now() - datatime.timedelta(days=1)          
+                              #time_filter = datatime.datetime.now() - datatime.timedelta(days=1)          
                               
                               st.write('View Period')
                               col1, col2 = st.columns(2)
