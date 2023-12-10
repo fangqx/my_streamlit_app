@@ -123,7 +123,7 @@ def main():
         card_price0=data['价格'].dropna().unique().tolist()
         card_price=['--价格: '+str(x)+' 元' for x in card_price0]
         #card_name = [a+b for a, b in zip(card_name, card_price)]
-        with st.container():
+        with st.expander():
             st.markdown(f'### 学习计划')
             col1, col2,col3 = st.columns(3)       
             col1_choice = col1.radio("单次卡", ['Option']+card_name[:4],index=0,captions=['No Selection']+card_price[:4])
