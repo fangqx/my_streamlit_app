@@ -94,7 +94,7 @@ def local_css(file_name):
     # Save edits by copying edited dataframes to "original" slots in session state
 def save_edits():
     st.session_state.df1 = st.session_state.edited_df1.copy()
-    st.session_state.df2 = st.session_state.edited_df2.copy()
+    #st.session_state.df2 = st.session_state.edited_df2.copy()
 def main():
     
     if not check_password():
@@ -205,35 +205,22 @@ def main():
                 
     # Initialize session state with dataframes
     # Include initialization of "edited" slots by copying originals
-    page = st.sidebar.selectbox("Select: ", ("A","B"), on_change=save_edits)
+    def save_edits0():
+        st.session_state.df1 = st.session_state.edited_df1.copy()
+    #st.session_state.df2 = st.session_state.edited_df2.copy()
+    page = st.sidebar.selectbox("Select: ", ("A","B"), on_change=save_edits0)
     st.session_state.edited_df1 = st.session_state.new_data.copy()
-
-    st.session_state.edited_df2 = st.session_state.new_data.copy()
-    
-
-    
-    # Sidebar to select page and commit changes upon selection
-    
-    
     # Convenient shorthand notation
     df1 = st.session_state.df1
-    df2 = st.session_state.df2
-    
     # Page functions commit edits in real time to "editied" slots in session state
     def funct1():
         st.session_state.edited_df1 = st.data_editor(df1, num_rows="dynamic")
         return
     
-    def funct2():
-        st.session_state.edited_df2 = st.data_editor(df2, num_rows="dynamic")
-        return
-    
     if  page == "A":
         st.header("Page A")
         funct1()
-    elif page == "B":
-        st.header("Page B")
-        funct2()                                   
+                  
     
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
     t=st.sidebar.time_input('Time',st.session_state.date_time.time())
