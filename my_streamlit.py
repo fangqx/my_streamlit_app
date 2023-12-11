@@ -121,7 +121,9 @@ def main():
         #st.snow()
     study_sel=['自习卡类型','自习时间','自习位置']
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=0)
-    new_data=pd.DataFrame()
+    if 'new_data' not in st.session_state:
+        st.session_state.new_data = pd.DataFrame()
+    
     if self_study==study_sel[0]:
         with st.container():
             card_name=data['名称'].dropna().unique().tolist()
