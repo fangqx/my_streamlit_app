@@ -219,11 +219,8 @@ def main():
         return
     
     if  agree:
-        df1 = st.session_state.df1
         st.dataframe(df1)
-        st.header("Page A")
         funct1()
-        st.dataframe(df1)
                   
     
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
