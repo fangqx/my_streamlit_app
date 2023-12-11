@@ -91,7 +91,10 @@ def up_datefile():
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
+    # Save edits by copying edited dataframes to "original" slots in session state
+def save_edits():
+    st.session_state.df1 = st.session_state.edited_df1.copy()
+    st.session_state.df2 = st.session_state.edited_df2.copy()
 def main():
     
     if not check_password():
@@ -207,10 +210,7 @@ def main():
 
     st.session_state.edited_df2 = st.session_state.new_data.copy()
     
-    # Save edits by copying edited dataframes to "original" slots in session state
-    def save_edits():
-        st.session_state.df1 = st.session_state.edited_df1.copy()
-        st.session_state.df2 = st.session_state.edited_df2.copy()
+
     
     # Sidebar to select page and commit changes upon selection
     
