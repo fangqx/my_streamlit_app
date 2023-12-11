@@ -188,7 +188,7 @@ def main():
                         st.session_state.time1 = col3         
                     st.write(st.session_state.time1)    
                     new_data0['xuexika']=st.session_state.card
-                    st.write(new_data0)
+                    st.write(st.session_state.card,new_data0)
                     #form = st.form('时间选择')
                     #submitted = form.form_submit_button("确定")
                     session_state.new_data['学习卡']=st.session_state.card
