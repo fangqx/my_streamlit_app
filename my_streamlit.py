@@ -159,7 +159,7 @@ def main():
                     cols=st.columns(2)
                     col2=cols[0].time_input('开始时间',value=None,step=3600)
                     col3=cols[1].time_input('结束时间',value=None,step=3600)
-                    form = st.form('时间选择)
+                    form = st.form('时间选择')
                     submitted = form.form_submit_button("确定")
                     if submitted:
                         new_data['开始日期']=col0
