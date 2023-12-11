@@ -187,13 +187,8 @@ def main():
                     else:
                         st.session_state.time1 = col3   
 
-                df_new = pd.DataFrame({'学习卡': st.session_state.card, 
-                                            '开始日期': st.session_state.date0, 
-                                            '结束日期': st.session_state.date1, 
-                                            '开始时间': st.session_state.time0, 
-                                            '结束时间': st.session_state.time1 }, index=[idx])   
-
-                
+                df_new = pd.DataFrame({'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1}, index=[idx])   
+        
                 st.write(df_new)
         
                 st.write(st.session_state.new_data.columns)
