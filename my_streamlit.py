@@ -190,16 +190,12 @@ def main():
                 df_new = pd.DataFrame({'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1},index=[10])   
         
                 st.write(df_new)
-        
-                st.write(st.session_state.new_data.columns)
+                st.session_state.new_data = pd.concat([st.session_state.new_data, df_new], axis=0)
+                st.dataframe(st.session_state.mdf)
+                st.write(st.session_state.new_data)
                 #form = st.form('时间选择')
                 #submitted = form.form_submit_button("确定")
-                session_state.new_data['学习卡']=st.session_state.card
-                session_state.new_data['开始日期']=st.session_state.date0
-                session_state.new_data['结束日期']=st.session_state.date1
-                session_state.new_data['开始时间']=st.session_state.time0
-                session_state.new_data['结束时间']=st.session_state.time1
-                st.write(session_state.new_data)
+                
                     
                                         
     
