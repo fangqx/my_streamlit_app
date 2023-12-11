@@ -192,8 +192,10 @@ def main():
                 if submitted:
                     st.session_state.new_data = pd.concat([st.session_state.new_data, df_new], axis=0)
                     #st.write(st.session_state.new_data)
-                    edit_df = st.data_editor(st.session_state.new_data,num_rows='dynamic')
-                    st.session_state.new_data=edit_df
+                    df_new0=st.session_state.new_data
+                st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
+                
+                st.write(st.session_state.new_data)
                     
                 #form = st.form('时间选择')
                 #submitted = form.form_submit_button("确定")
