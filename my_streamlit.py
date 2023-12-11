@@ -202,7 +202,7 @@ def main():
                 
     # Initialize session state with dataframes
     # Include initialization of "edited" slots by copying originals
-  
+    page = st.sidebar.selectbox("Select: ", ("A","B"), on_change=save_edits)
     st.session_state.edited_df1 = st.session_state.new_data.copy()
 
     st.session_state.edited_df2 = st.session_state.new_data.copy()
@@ -213,7 +213,7 @@ def main():
         st.session_state.df2 = st.session_state.edited_df2.copy()
     
     # Sidebar to select page and commit changes upon selection
-    page = st.sidebar.selectbox("Select: ", ("A","B"), on_change=save_edits)
+    
     
     # Convenient shorthand notation
     df1 = st.session_state.df1
