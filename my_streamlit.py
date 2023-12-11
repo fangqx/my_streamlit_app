@@ -121,6 +121,7 @@ def main():
         #st.snow()
     study_sel=['自习卡类型','自习时间','自习位置']
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=0)
+    new_data0=pd.DataFrame()
     if 'new_data' not in st.session_state:
         st.session_state.new_data = pd.DataFrame(columns=['学习卡', '开始日期', '结束日期', '开始时间', '结束时间', '学习桌位', '手机', '姓名', '价格'])
     
@@ -186,6 +187,8 @@ def main():
                     else:
                         st.session_state.time1 = col3         
                     st.write(st.session_state.time1)    
+                    new_data0['xuexika']=st.session_state.card
+                    st.write(new_data0)
                     #form = st.form('时间选择')
                     #submitted = form.form_submit_button("确定")
                     session_state.new_data['学习卡']=st.session_state.card
