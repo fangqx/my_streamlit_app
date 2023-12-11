@@ -189,7 +189,7 @@ def main():
                     st.write(st.session_state.time1)
                     new_data0=pd.DataFrame()
                     new_data0['xuexika']='test'
-                    st.write(st.session_state.card,new_data0)
+                    st.write(st.session_state.new_data,new_data0)
                     #form = st.form('时间选择')
                     #submitted = form.form_submit_button("确定")
                     session_state.new_data['学习卡']=st.session_state.card
