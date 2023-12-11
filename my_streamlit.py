@@ -191,7 +191,7 @@ def main():
         
                 st.write(df_new)
                 st.session_state.new_data = pd.concat([st.session_state.new_data, df_new], axis=0)
-                st.dataframe(st.session_state.mdf)
+                #st.dataframe(st.session_state.mdf)
                 st.write(st.session_state.new_data)
                 #form = st.form('时间选择')
                 #submitted = form.form_submit_button("确定")
