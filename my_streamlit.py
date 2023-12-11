@@ -205,6 +205,7 @@ def main():
                 
     # Initialize session state with dataframes
     # Include initialization of "edited" slots by copying originals
+    st.dataframe('test',df_new0)
     def save_edits0():
         st.session_state.df1 = st.session_state.edited_df1.copy()
     #st.session_state.df2 = st.session_state.edited_df2.copy()
