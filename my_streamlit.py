@@ -211,8 +211,8 @@ def main():
     st.session_state.edited_df1 = st.session_state.new_data.copy()
     agree = st.checkbox("Change data: ", on_change=save_edits0)
     # Convenient shorthand notation
-    #df1 = st.session_state.df1
-    #st.dataframe(df1)
+    df1 = st.session_state.df1
+    st.dataframe(df1)
    # Page functions commit edits in real time to "editied" slots in session state
     def funct1():
         st.session_state.edited_df1 = st.data_editor(df1, num_rows="dynamic")
