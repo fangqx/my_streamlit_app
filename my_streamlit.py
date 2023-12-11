@@ -208,8 +208,8 @@ def main():
     def save_edits0():
         st.session_state.df1 = st.session_state.edited_df1.copy()
     #st.session_state.df2 = st.session_state.edited_df2.copy()
-    page = st.sidebar.selectbox("Select: ", ("A","B"), on_change=save_edits0)
     st.session_state.edited_df1 = st.session_state.new_data.copy()
+    page = st.sidebar.selectbox("Select: ", ("A","B"), on_change=save_edits0)
     # Convenient shorthand notation
     df1 = st.session_state.df1
     # Page functions commit edits in real time to "editied" slots in session state
