@@ -122,7 +122,7 @@ def main():
     study_sel=['自习卡类型','自习时间','自习位置']
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=0)
     if 'new_data' not in st.session_state:
-        st.session_state.new_data = pd.DataFrame()
+        st.session_state.new_data = pd.DataFrame(columns=['学习卡', '开始日期', '结束日期', '开始时间', '结束时间', '学习桌位', '手机', '姓名', '价格'])
     
     if self_study==study_sel[0]:
         with st.container():
