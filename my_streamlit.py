@@ -166,8 +166,6 @@ def main():
                     cols=st.columns(2)
                     col2=cols[0].time_input('开始时间',value=None,step=3600)
                     col3=cols[1].time_input('结束时间',value=None,step=3600)
-                    st.write(col3)
-
                     if 'date0' not in st.session_state:
                         st.session_state.date0 = col0
                     else:
@@ -194,7 +192,8 @@ def main():
                 if submitted:
                     st.session_state.new_data = pd.concat([st.session_state.new_data, df_new], axis=0)
                     #st.write(st.session_state.new_data)
-                    edited_df = st.data_editor(st.session_state.new_data,num_rows='dynamic')
+                    st.session_state.new_data = st.data_editor(st.session_state.new_data,num_rows='dynamic')
+                    
                 #form = st.form('时间选择')
                 #submitted = form.form_submit_button("确定")
                 
