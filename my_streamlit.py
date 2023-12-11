@@ -121,7 +121,7 @@ def main():
         #st.snow()
     study_sel=['自习卡类型','自习时间','自习位置']
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=0)
-    
+    new_data=pd.DataFrame()
     if self_study==study_sel[0]:
         with st.container():
             card_name=data['名称'].dropna().unique().tolist()
@@ -143,12 +143,13 @@ def main():
                         sel_new.append(item)               
                 if len(sel_new)==1:
                     st.write('您选择的是: ', sel_new[0])
+                    new_data['学习卡']=sel_new[0]
                 else:                
                     st.write('请重新选择')
     
             with st.expander("学习时间选择"):
-                #st.write(sel_new,card_name[:4])
-                check =  any(item in sel_new for item in card_name[:4])
+                #st.write(sel_new,card_name[:])
+                check =  any(item in sel_new for item in card_name[:])
                 if check is True:
                     st.markdown(sel_new[0])
                     
@@ -158,8 +159,15 @@ def main():
                     cols=st.columns(2)
                     col2=cols[0].time_input('开始时间',value=None,step=3600)
                     col3=cols[1].time_input('结束时间',value=None,step=3600)
-                    form = st.form('Manual assign')
-                    submitted = form.form_submit_button("Submit")
+                    form = st.form('时间选择)
+                    submitted = form.form_submit_button("确定")
+                    if submitted:
+                        new_data['开始日期']=col0
+                        new_data['结束日期']=col1
+                        new_data['开始时间']=col2
+                        new_data['结束时间']=col3
+                        st.write(new_data)
+                    
                                         
     
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
