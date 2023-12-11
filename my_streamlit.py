@@ -123,7 +123,7 @@ def main():
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=0)
     
     if 'new_data' not in st.session_state:
-        st.session_state.new_data = pd.DataFrame(columns=['学习卡', '开始日期', '结束日期', '开始时间', '结束时间', '学习桌位', '手机', '姓名', '价格'])
+        st.session_state.new_data = pd.DataFrame(columns=['学习卡', '开始日期', '结束日期', '开始时间', '结束时间'])
     
     if self_study==study_sel[0]:
         with st.container():
@@ -186,11 +186,17 @@ def main():
                         st.session_state.time1 = col3
                     else:
                         st.session_state.time1 = col3   
-                        
-                st.write(st.session_state.time1)
-                new_data0=pd.DataFrame()
-                new_data0['xuexika']='test'
-                st.write(st.session_state.new_data.columns,new_data0)
+
+                df_new = pd.DataFrame({'学习卡': st.session_state.card, 
+                                            '开始日期': st.session_state.date0, 
+                                            '结束日期': st.session_state.date1, 
+                                            '开始时间': st.session_state.time0, 
+                                            '结束时间': st.session_state.time1 }, index=[idx])   
+
+                
+                st.write(df_new)
+        
+                st.write(st.session_state.new_data.columns)
                 #form = st.form('时间选择')
                 #submitted = form.form_submit_button("确定")
                 session_state.new_data['学习卡']=st.session_state.card
