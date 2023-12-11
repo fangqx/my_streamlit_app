@@ -143,7 +143,11 @@ def main():
                         sel_new.append(item)               
                 if len(sel_new)==1:
                     st.write('您选择的是: ', sel_new[0])
-                    new_data['学习卡']=sel_new[0]
+                    if 'card' not in st.session_state:
+                        st.session_state.card = sel_new[0]
+                    else:
+                        st.session_state.card = sel_new[0]
+                        
                 else:                
                     st.write('请重新选择')
     
@@ -159,13 +163,34 @@ def main():
                     cols=st.columns(2)
                     col2=cols[0].time_input('开始时间',value=None,step=3600)
                     col3=cols[1].time_input('结束时间',value=None,step=3600)
+
+                    if 'date0' not in st.session_state:
+                        st.session_state.data0 = col0
+                    else:
+                        st.session_state.data0 = col0     
+
+                    if 'date1' not in st.session_state:
+                        st.session_state.data1 = col1
+                    else:
+                        st.session_state.data1 = col1                         
+
+                    if 'time0' not in st.session_state:
+                        st.session_state.time0 = col2
+                    else:
+                        st.session_state.time0 = col2                         
+                    if 'time1' not in st.session_state:
+                        st.session_state.time1 = col3
+                    else:
+                        st.session_state.time1 = col3         
+                        
                     form = st.form('时间选择')
                     submitted = form.form_submit_button("确定")
                     if submitted:
-                        new_data['开始日期']=col0
-                        new_data['结束日期']=col1
-                        new_data['开始时间']=col2
-                        new_data['结束时间']=col3
+                        new_data['学习卡']=st.session_state.card
+                        new_data['开始日期']=st.session_state.date0
+                        new_data['结束日期']=st.session_state.date1
+                        new_data['开始时间']=st.session_state.time0
+                        new_data['结束时间']=st.session_state.time1
                         st.write(new_data)
                     
                                         
