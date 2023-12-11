@@ -195,7 +195,7 @@ def main():
                     df_new0=st.session_state.new_data
                 st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
                 
-                st.write(st.session_state.new_data)
+                st.dataframe(st.session_state.new_data)
                     
                 #form = st.form('时间选择')
                 #submitted = form.form_submit_button("确定")
