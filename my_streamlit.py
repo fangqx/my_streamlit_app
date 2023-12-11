@@ -188,12 +188,12 @@ def main():
                     st.write(st.session_state.time1)    
                     #form = st.form('时间选择')
                     #submitted = form.form_submit_button("确定")
-                    new_data['学习卡']=st.session_state.card
-                    new_data['开始日期']=st.session_state.date0
-                    new_data['结束日期']=st.session_state.date1
-                    new_data['开始时间']=st.session_state.time0
-                    new_data['结束时间']=st.session_state.time1
-                    st.write(new_data)
+                    session_state.new_data['学习卡']=st.session_state.card
+                    session_state.new_data['开始日期']=st.session_state.date0
+                    session_state.new_data['结束日期']=st.session_state.date1
+                    session_state.new_data['开始时间']=st.session_state.time0
+                    session_state.new_data['结束时间']=st.session_state.time1
+                    st.write(session_state.new_data)
                     
                                         
     
