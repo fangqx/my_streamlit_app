@@ -213,7 +213,6 @@ def main():
     agree = st.checkbox("Change data: ", on_change=save_edits0)
     # Convenient shorthand notation
     df1 = st.session_state.df1
-    st.session_state.new_data=st.session_state.df1
     st.dataframe(df1)
    # Page functions commit edits in real time to "editied" slots in session state
     def funct1():
@@ -222,8 +221,8 @@ def main():
     
     if  agree:
         st.dataframe(df1)
-        st.dataframe(st.session_state.new_data)
         funct1()
+        st.dataframe(df1)
                   
     
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
