@@ -210,10 +210,10 @@ def main():
     #st.session_state.df2 = st.session_state.edited_df2.copy()
     st.session_state.edited_df1 = st.session_state.new_data.copy()
     page = st.sidebar.selectbox("Select: ", ("A","B"), on_change=save_edits0)
-    st.dataframe(df1)
     # Convenient shorthand notation
     df1 = st.session_state.df1
-    # Page functions commit edits in real time to "editied" slots in session state
+    st.dataframe(df1)
+   # Page functions commit edits in real time to "editied" slots in session state
     def funct1():
         st.session_state.edited_df1 = st.data_editor(df1, num_rows="dynamic")
         return
