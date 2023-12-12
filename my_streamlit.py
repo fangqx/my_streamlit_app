@@ -265,7 +265,7 @@ def main():
                     st.session_state.visibility = "visible"
                     st.session_state.disabled = False
                 
-                col10, col20, col30 = st.columns(2)                
+                col10, col20, col30 = st.columns(3)                
                 with col10:
                     text_input0 = st.text_input(
                         "您的姓名 👇",
