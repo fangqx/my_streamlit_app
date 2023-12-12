@@ -251,8 +251,9 @@ def main():
                         
                 else:                
                     st.write('请重新选择桌号')
-
-            if (st.session_state.card != 'Option') and (st.session_state.desk != 'Option'):
+            check1 =  any(item in sel for item in card_name[:])
+            check2 =  any(item in sel0 for item in desk_num[:])
+            if (check1) and (check2):
                 df_new = pd.DataFrame({'日期':st.session_state.date_time,'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk},index=[st.session_state.new_data.shape[0]+1])   
                 with st.expander("确定学习计划",expanded=True):
                     st.dataframe(df_new)
