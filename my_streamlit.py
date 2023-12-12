@@ -298,7 +298,7 @@ def main():
                             st.session_state.percent = text_input2
                         else:
                             st.session_state.percent = text_input2                      
-            st.write(st.session_state.percent,st.session_state.price_sel0['价格'].to_list()[0])
+            st.write(st.session_state.percent*st.session_state.price_sel0['价格'].to_list()[0])
             check1 =  any(item in sel for item in card_name[:])
             check2 =  any(item in sel0 for item in desk_num[:])
             if (check1) and (check2) and (len(st.session_state.phone)>=1) and (len(st.session_state.name)>=1):
