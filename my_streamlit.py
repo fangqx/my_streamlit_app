@@ -298,20 +298,19 @@ def main():
                             st.session_state.percent = text_input2
                         else:
                             st.session_state.percent = text_input2                      
-            st.write(st.session_state.percent,st.session_state.price_sel0)
+            st.write(st.session_state.percent,st.session_state.price_sel0['价格'])
             st.write(k)
             check1 =  any(item in sel for item in card_name[:])
             check2 =  any(item in sel0 for item in desk_num[:])
             if (check1) and (check2) and (len(st.session_state.phone)>=1) and (len(st.session_state.name)>=1):
-                df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone,'日期':st.session_state.date_time,'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk,'价格':st.session_state.price0,'折扣':st.session_state.percent,'最终价格':st.session_state.price_sel0*st.session_state.percent*0.01},index=[st.session_state.new_data.shape[0]+1])   
+                df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone,'日期':st.session_state.date_time,'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk,'价格':st.session_state.price0,'折扣':st.session_state.percent,'最终价格':st.session_state.price_sel0['价格'][0]*st.session_state.percent*0.01},index=[st.session_state.new_data.shape[0]+1])   
                 with st.expander("确定学习计划",expanded=True):
                     st.dataframe(df_new)
                     form0 = st.form('selection0')
                     submitted0 = form0.form_submit_button("确定计划")
                     if submitted0:
                         st.session_state.new_data = pd.concat([st.session_state.new_data, df_new], axis=0)
-                        st.dataframe(st.session_state.new_data)
-                        
+                        st.dataframe(st.session_state.new_data)                        
                         
                         #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
                 with st.expander("修改学习计划",expanded=True):
