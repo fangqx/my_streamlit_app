@@ -286,7 +286,7 @@ def main():
                         else:
                             st.session_state.phone = text_input           
                     
-            st(price_sel1)
+            st.write(price_sel1)
             check1 =  any(item in sel for item in card_name[:])
             check2 =  any(item in sel0 for item in desk_num[:])
             if (check1) and (check2) and (len(st.session_state.phone)>=1) and (len(st.session_state.name)>=1):
