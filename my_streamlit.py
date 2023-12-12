@@ -254,9 +254,9 @@ def main():
                         st.session_state.desk = sel_new0[0]
 
                     if 'price_sel1' not in st.session_state:
-                        st.session_state.price_sel1 = st.session_state.desk[st.session_state.desk['名称']==st.session_state.desk]
+                        st.session_state.price_sel1 = st.session_state.price_sel0[st.session_state.price_sel0['名称']==st.session_state.desk]
                     else:
-                        st.session_state.price_sel1 = st.session_state.desk[st.session_state.desk['名称']==st.session_state.desk]            
+                        st.session_state.price_sel1 = st.session_state.price_sel0[st.session_state.price_sel0['名称']==st.session_state.desk]            
                 else:                
                     st.write('请重新选择桌号')
                     
