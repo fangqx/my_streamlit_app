@@ -251,14 +251,14 @@ def main():
                         
                 else:                
                     st.write('请重新选择桌号')
+                    
             with st.expander("个人信息输入",expanded=True):
-
                 if "visibility" not in st.session_state:
                     st.session_state.visibility = "visible"
                     st.session_state.disabled = False
                 
-                col1, col2 = st.columns(2)                
-                with col1:
+                col10, col20 = st.columns(2)                
+                with col10:
                     text_input0 = st.text_input(
                         "您的姓名 👇",
                         label_visibility=st.session_state.visibility,
@@ -267,12 +267,11 @@ def main():
                     )
                     if text_input0:
                         st.write("You entered: ", text_input0)
-    
                         if 'name' not in st.session_state:
                             st.session_state.name = text_input0
                         else:
                             st.session_state.name = text_input0   
-                with col2:
+                with col20:
                     text_input = st.text_input(
                         "您的手机号 👇",
                         label_visibility=st.session_state.visibility,
