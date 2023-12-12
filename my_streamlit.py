@@ -127,7 +127,7 @@ def main():
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=0)
     
     if 'new_data' not in st.session_state:
-        st.session_state.new_data = pd.DataFrame(columns=['学习卡', '开始日期', '结束日期', '开始时间', '结束时间','学习桌’])
+        st.session_state.new_data = pd.DataFrame(columns=['学习卡', '开始日期', '结束日期', '开始时间', '结束时间','学习桌'])
     
     if self_study==study_sel[0]:
         with st.container():
@@ -216,7 +216,7 @@ def main():
                     st.write('请重新选择桌号')
 
             
-            df_new = pd.DataFrame({'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌’：st.session_state.desk},index=[st.session_state.new_data.shape[0]+1])   
+            df_new = pd.DataFrame({'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌'：st.session_state.desk},index=[st.session_state.new_data.shape[0]+1])   
             st.write('请确认您的自习计划',df_new)
             form = st.form('selection')
             submitted = form.form_submit_button("确定")
