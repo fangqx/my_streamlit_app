@@ -233,7 +233,7 @@ def main():
                 form = st.form('selection')
                 def save_edits0():
                     st.session_state.df1 = st.session_state.edited_df1.copy()
-                st.session_state.edited_df1 = st.session_state.new_data.copy()                
+                #st.session_state.edited_df1 = st.session_state.new_data.copy()                
                 submitted = form.form_submit_button("修改计划",on_click=save_edits0)                 
                 if submitted:
                     st.dataframe(st.session_state.new_data)
