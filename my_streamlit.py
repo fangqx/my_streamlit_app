@@ -232,11 +232,12 @@ def main():
                 st.session_state.edited_df1 = st.session_state.new_data.copy()                
                 submitted = form.form_submit_button("修改计划",on_click=save_edits0)
            
-                st.session_state.edited_df1 = st.data_editor(df1, num_rows="dynamic")
+                
                          
                 if submitted:
                     st.dataframe(st.session_state.new_data)
                     df1 = st.session_state.df1
+                    st.session_state.edited_df1 = st.data_editor(df1, num_rows="dynamic")
                     st.dataframe(df1)
 
                               
