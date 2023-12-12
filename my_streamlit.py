@@ -172,7 +172,7 @@ def main():
             card_price0=data['价格'].tolist()
             card_price=['--价格: '+str(x)+' 元' for x in card_price0]
             #card_name = [a+b for a, b in zip(card_name, card_price)]
-            desk_num=[1,2,3,5,6,7,8,9,10,11,12,13,15,16]  #data['桌号'].dropna().unique().tolist()
+            
             with st.expander("学习卡选择",expanded=True):
                 #st.markdown(f'### 学习计划')
                 col1, col2,col3 = st.columns(3)       
@@ -236,6 +236,7 @@ def main():
 
             
             with st.expander("学习桌选择",expanded=True):
+                desk_num=['桌号: 1','桌号: 2','桌号: 3','桌号: 5','桌号: 6','桌号: 7','桌号: 8','桌号: 9','桌号: 10','桌号: 11','桌号: 12','桌号: 13','桌号: 15','桌号: 16','桌号: 17']  #data['桌号'].dropna().unique().tolist()
                 col1, col2,col3 = st.columns(3)       
                 desk_ch1 = col1.radio(f"### 沉浸式课桌1-5", ['Option']+desk_num[:5],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
                 desk_ch2 = col2.radio(f"### 沉浸式课桌6-10",  ['Option']+desk_num[5:10],index=0,captions=['No Selection','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧'])
