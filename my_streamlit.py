@@ -164,7 +164,7 @@ def main():
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=0)
     
     if 'new_data' not in st.session_state:
-        st.session_state.new_data = pd.DataFrame(columns=['日期','学习卡', '开始日期', '结束日期', '开始时间', '结束时间','学习桌'])
+        st.session_state.new_data = pd.DataFrame(columns=['姓名','手机号','日期','学习卡', '开始日期', '结束日期', '开始时间', '结束时间','学习桌','价格'])
     
     if self_study==study_sel[0]:
         with st.container():
@@ -191,10 +191,11 @@ def main():
                         st.session_state.card = sel_new[0]
                     else:
                         st.session_state.card = sel_new[0]
-                        
+                    price_sel0=data[data['名称']==st.session_state.card]
                 else:                
                     st.write('请重新选择')
-    
+                
+            
             with st.expander("学习时间选择",expanded=True):
                 #st.write(sel_new,card_name[:])
                 check =  any(item in sel_new for item in card_name[:])
@@ -248,7 +249,7 @@ def main():
                         st.session_state.desk = sel_new0[0]
                     else:
                         st.session_state.desk = sel_new0[0]
-                        
+                    price_sel1=price_sel1[price_sel1['桌号']==st.session_state.desk]  
                 else:                
                     st.write('请重新选择桌号')
                     
@@ -285,11 +286,11 @@ def main():
                         else:
                             st.session_state.phone = text_input           
                     
-            
+            st(price_sel1)
             check1 =  any(item in sel for item in card_name[:])
             check2 =  any(item in sel0 for item in desk_num[:])
             if (check1) and (check2) and (len(st.session_state.phone)>=1) and (len(st.session_state.name)>=1):
-                df_new = pd.DataFrame({'日期':st.session_state.date_time,'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk},index=[st.session_state.new_data.shape[0]+1])   
+                df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone,'日期':st.session_state.date_time,'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk},index=[st.session_state.new_data.shape[0]+1])   
                 with st.expander("确定学习计划",expanded=True):
                     st.dataframe(df_new)
                     form0 = st.form('selection0')
