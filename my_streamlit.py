@@ -164,7 +164,7 @@ def main():
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=0)
     
     if 'new_data' not in st.session_state:
-        st.session_state.new_data = pd.DataFrame(columns=['姓名','手机号','日期','学习卡', '开始日期', '结束日期', '开始时间', '结束时间','学习桌','价格'])
+        st.session_state.new_data = pd.DataFrame(columns=['姓名','手机号','日期','学习卡', '开始日期', '结束日期', '开始时间', '结束时间','学习桌','价格','折扣','最终价格'])
     
     if self_study==study_sel[0]:
         with st.container():
@@ -294,7 +294,7 @@ def main():
                             st.session_state.phone = text_input           
                 with col30:
                     text_input2 = st.text_input(
-                        "折扣：100-50 👇", value="100"
+                        "折扣：100-50 👇", value=100
                         
                     )
                     if text_input2:
@@ -307,7 +307,7 @@ def main():
             check1 =  any(item in sel for item in card_name[:])
             check2 =  any(item in sel0 for item in desk_num[:])
             if (check1) and (check2) and (len(st.session_state.phone)>=1) and (len(st.session_state.name)>=1):
-                df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone,'日期':st.session_state.date_time,'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk},index=[st.session_state.new_data.shape[0]+1])   
+                df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone,'日期':st.session_state.date_time,'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk,'价格':st.session_state.price_sel1,'折扣':st.session_state.percent,'最终价格':st.session_state.price_sel1*st.session_state.percent*0.01},index=[st.session_state.new_data.shape[0]+1])   
                 with st.expander("确定学习计划",expanded=True):
                     st.dataframe(df_new)
                     form0 = st.form('selection0')
