@@ -217,41 +217,30 @@ def main():
 
             
             df_new = pd.DataFrame({'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk},index=[st.session_state.new_data.shape[0]+1])   
-            st.write('请确认您的自习计划',df_new)
-            form = st.form('selection')
-            submitted = form.form_submit_button("确定")
-            if submitted:
-                st.session_state.new_data = pd.concat([st.session_state.new_data, df_new], axis=0)
-                #st.write(st.session_state.new_data)
-                df_new0=st.session_state.new_data
-                #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
-            
-                #st.dataframe(st.session_state.new_data)
-                
-            #form = st.form('时间选择')
-            #submitted = form.form_submit_button("确定")
-                
-    # Initialize session state with dataframes
-    # Include initialization of "edited" slots by copying originals
-    st.dataframe(st.session_state.new_data)
-    def save_edits0():
-        st.session_state.df1 = st.session_state.edited_df1.copy()
-    #st.session_state.df2 = st.session_state.edited_df2.copy()
-    st.session_state.edited_df1 = st.session_state.new_data.copy()
-    agree = st.checkbox("Change data: ", on_change=save_edits0)
-    # Convenient shorthand notation
-    df1 = st.session_state.df1
-    st.dataframe(df1)
-   # Page functions commit edits in real time to "editied" slots in session state
-    def funct1():
-        st.session_state.edited_df1 = st.data_editor(df1, num_rows="dynamic")
-        return
-    
-    if  agree:
-        st.dataframe(df1)
-        funct1()
-        st.dataframe(df1)
-                  
+            with st.expander("确定学习计划",expanded=True):
+                st.dataframe(df_new)
+                form0 = st.form('selection')
+                submitted0 = form0.form_submit_button("确定计划")
+                if submitted0:
+                    st.session_state.new_data = pd.concat([st.session_state.new_data, df_new], axis=0)
+                    #st.write(st.session_state.new_data)
+                    df_new0=st.session_state.new_data
+                    #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
+                form0 = st.form('selection')
+                def save_edits0():
+                    st.session_state.df1 = st.session_state.edited_df1.copy()
+                st.session_state.edited_df1 = st.session_state.new_data.copy()                
+                submitted = form0.form_submit_button("修改计划",on_click=save_edits0)
+                def funct1():
+                    st.session_state.edited_df1 = st.data_editor(df1, num_rows="dynamic")
+                    return              
+                if submitted:
+                    st.dataframe(st.session_state.new_data)
+                    funct1()
+                    df1 = st.session_state.df1
+                    st.dataframe(df1)
+
+                              
     
     d=st.sidebar.date_input('Date',st.session_state.date_time.date())
     t=st.sidebar.time_input('Time',st.session_state.date_time.time())
