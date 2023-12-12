@@ -194,7 +194,8 @@ def main():
                     if 'price_sel0' not in st.session_state:
                         st.session_state.price_sel0 = data[data['名称']==st.session_state.card]
                     else:
-                        st.session_state.price_sel0 = data[data['名称']==st.session_state.card]                 
+                        st.session_state.price_sel0 = data[data['名称']==st.session_state.card]   
+                    st.write(st.session_state.price_sel0)
                 else:                
                     st.write('请重新选择')
                 
