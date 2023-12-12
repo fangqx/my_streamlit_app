@@ -287,7 +287,7 @@ def main():
                         if 'phone' not in st.session_state:
                             st.session_state.phone = text_input1
                         else:
-                            st.session_state.phone = text_input 1          
+                            st.session_state.phone = text_input1          
                 with col30:
                     text_input2 = st.text_input(
                         "折扣：100-50 👇", value=100
