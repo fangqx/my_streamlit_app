@@ -188,6 +188,12 @@ def main():
                         st.session_state.time1 = col3
                     else:
                         st.session_state.time1 = col3   
+                    if (col0<=col1) and (col2<=col3):
+                        st.write('您选择的是: ', '开始日期', col0, '结束日期', col1, '开始时间', col2, '结束时间', col3)    
+                    else:                
+                        st.write('请重新选择时间段')
+
+            
             with st.expander("学习桌选择"):
                 col1, col2,col3 = st.columns(3)       
                 desk_ch1 = col1.radio(f"### 沉浸式课桌1-5", ['Option']+desk_num[:5],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
