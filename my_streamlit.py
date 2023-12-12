@@ -136,7 +136,7 @@ def main():
             card_price=['--价格: '+str(x)+' 元' for x in card_price0]
             #card_name = [a+b for a, b in zip(card_name, card_price)]
             desk_num=data['桌号'].dropna().unique().tolist()
-            with st.expander("学习卡选择"):
+            with st.expander("学习卡选择",expanded=True):
                 #st.markdown(f'### 学习计划')
                 col1, col2,col3 = st.columns(3)       
                 col1_choice = col1.radio(f"### 单次卡", ['Option']+card_name[:4],index=0,captions=['No Selection']+card_price[:4])
@@ -158,7 +158,7 @@ def main():
                 else:                
                     st.write('请重新选择')
     
-            with st.expander("学习时间选择"):
+            with st.expander("学习时间选择",expanded=True):
                 #st.write(sel_new,card_name[:])
                 check =  any(item in sel_new for item in card_name[:])
                 if check is True:
@@ -194,7 +194,7 @@ def main():
                         st.write('请重新选择时间段')
 
             
-            with st.expander("学习桌选择"):
+            with st.expander("学习桌选择",expanded=True):
                 col1, col2,col3 = st.columns(3)       
                 desk_ch1 = col1.radio(f"### 沉浸式课桌1-5", ['Option']+desk_num[:5],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
                 desk_ch2 = col2.radio(f"### 沉浸式课桌6-10",  ['Option']+desk_num[5:10],index=0,captions=['No Selection','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧'])
