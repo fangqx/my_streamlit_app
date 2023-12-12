@@ -168,8 +168,8 @@ def main():
                     col0=cols[0].date_input('开始日期',st.session_state.date_time)
                     col1=cols[1].date_input('结束日期',st.session_state.date_time,)
                     cols=st.columns(2)
-                    col2=cols[0].time_input('开始时间',value=None,step=3600)
-                    col3=cols[1].time_input('结束时间',value=None,step=3600)
+                    col2=cols[0].time_input('开始时间',value=now,step=3600)
+                    col3=cols[1].time_input('结束时间',value=now,step=3600)
                     if 'date0' not in st.session_state:
                         st.session_state.date0 = col0
                     else:
