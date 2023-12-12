@@ -302,7 +302,7 @@ def main():
               
             check1 =  any(item in sel for item in card_name[:])
             check2 =  any(item in sel0 for item in desk_num[:])
-            if (check1) and (check2) and (text_input0) and (tex_input1) and (text_input2):
+            if (check1) and (check2) and (text_input0) and (text_input1) and (text_input2):
                 if 'final_price' not in st.session_state:
                     st.session_state.final_price = float(st.session_state.percent)*float(st.session_state.price_sel0['价格'].to_list()[0])*0.01
                 else:
