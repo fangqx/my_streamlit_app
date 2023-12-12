@@ -172,7 +172,7 @@ def main():
             card_price0=data['价格'].tolist()
             card_price=['--价格: '+str(x)+' 元' for x in card_price0]
             #card_name = [a+b for a, b in zip(card_name, card_price)]
-            desk_num=[i+1 for i in range(15)]  #data['桌号'].dropna().unique().tolist()
+            desk_num=[1,2,3,5,6,7,8,9,10,11,12,13,15,16]  #data['桌号'].dropna().unique().tolist()
             with st.expander("学习卡选择",expanded=True):
                 #st.markdown(f'### 学习计划')
                 col1, col2,col3 = st.columns(3)       
