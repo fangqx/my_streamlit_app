@@ -92,11 +92,12 @@ def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
     # Save edits by copying edited dataframes to "original" slots in session state
+
 def save_edits():
     st.session_state.df1 = st.session_state.edited_df1.copy()
     #st.session_state.df2 = st.session_state.edited_df2.copy()
+
 def main():
-    
     if not check_password():
         st.stop()
     data=up_datefile()
@@ -134,7 +135,7 @@ def main():
             card_price0=data['价格'].dropna().unique().tolist()
             card_price=['--价格: '+str(x)+' 元' for x in card_price0]
             #card_name = [a+b for a, b in zip(card_name, card_price)]
-            
+            desk_num=data['桌号'].dropna().unique().tolist()
             with st.expander("学习卡选择"):
                 #st.markdown(f'### 学习计划')
                 col1, col2,col3 = st.columns(3)       
@@ -187,7 +188,12 @@ def main():
                         st.session_state.time1 = col3
                     else:
                         st.session_state.time1 = col3   
-                
+                with st.expander("学习桌选择"):
+                    col1, col2,col3 = st.columns(3)       
+                    desk_ch1 = col1.radio(f"### 沉浸式课桌1-5", ['Option']+desk_num[:5],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
+                    desk_ch2 = col2.radio(f"### 沉浸式课桌6-10",  ['Option']+desk_num[5:10],index=0,captions=['No Selection','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧'])
+                    desk_ch3 = col3.radio(f"### 沉浸式课桌11-15",  ['Option']+desk_num[10:],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
+                    
                 df_new = pd.DataFrame({'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1},index=[st.session_state.new_data.shape[0]+1])   
                 st.write('请确认您的自习卡',df_new)
                 form = st.form('selection')
