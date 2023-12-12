@@ -299,14 +299,14 @@ def main():
                             st.session_state.percent = text_input2
                         else:
                             st.session_state.percent = text_input2                      
-            
-            if 'final_price' not in st.session_state:
-                st.session_state.final_price = float(st.session_state.percent)*float(st.session_state.price_sel0['价格'].to_list()[0])*0.01
-            else:
-                st.session_state.final_price = float(st.session_state.percent)*float(st.session_state.price_sel0['价格'].to_list()[0])*0.01                  
+              
             check1 =  any(item in sel for item in card_name[:])
             check2 =  any(item in sel0 for item in desk_num[:])
             if (check1) and (check2) and (len(st.session_state.phone)>=1) and (len(st.session_state.name)>=1 and (st.session_state.final_price)>=1):
+                if 'final_price' not in st.session_state:
+                    st.session_state.final_price = float(st.session_state.percent)*float(st.session_state.price_sel0['价格'].to_list()[0])*0.01
+                else:
+                    st.session_state.final_price = float(st.session_state.percent)*float(st.session_state.price_sel0['价格'].to_list()[0])*0.01              
                 df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone,'日期':st.session_state.date_time,'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk,'价格':st.session_state.price_sel0['价格'].to_list()[0],'折扣':st.session_state.percent,'最终价格':st.session_state.final_price},index=[st.session_state.new_data.shape[0]+1])   
                 with st.expander("确定学习计划",expanded=True):
                     st.dataframe(df_new)
