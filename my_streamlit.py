@@ -275,19 +275,19 @@ def main():
                         else:
                             st.session_state.name = text_input0   
                 with col20:
-                    text_input = st.text_input(
+                    text_input1 = st.text_input(
                         "您的手机号 👇",
                         label_visibility=st.session_state.visibility,
                         disabled=st.session_state.disabled,
                     )
                 
-                    if text_input:
-                        st.write("You entered: ", text_input)
+                    if text_input1:
+                        st.write("You entered: ", text_input1)
     
                         if 'phone' not in st.session_state:
-                            st.session_state.phone = text_input
+                            st.session_state.phone = text_input1
                         else:
-                            st.session_state.phone = text_input           
+                            st.session_state.phone = text_input 1          
                 with col30:
                     text_input2 = st.text_input(
                         "折扣：100-50 👇", value=100
@@ -302,7 +302,7 @@ def main():
               
             check1 =  any(item in sel for item in card_name[:])
             check2 =  any(item in sel0 for item in desk_num[:])
-            if (check1) and (check2) and (len(st.session_state.phone)>=1) and (len(st.session_state.name)>=1 and (st.session_state.final_price)>=1):
+            if (check1) and (check2) and (text_input0) and (tex_input1) and (text_input2):
                 if 'final_price' not in st.session_state:
                     st.session_state.final_price = float(st.session_state.percent)*float(st.session_state.price_sel0['价格'].to_list()[0])*0.01
                 else:
