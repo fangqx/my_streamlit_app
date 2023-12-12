@@ -251,9 +251,47 @@ def main():
                         
                 else:                
                     st.write('请重新选择桌号')
+            with st.expander("个人信息输入",expanded=True):
+
+                if "visibility" not in st.session_state:
+                    st.session_state.visibility = "visible"
+                    st.session_state.disabled = False
+                
+                col1, col2 = st.columns(2)                
+                with col1:
+                    text_input0 = st.text_input(
+                        "您的姓名 👇",
+                        label_visibility=st.session_state.visibility,
+                        disabled=st.session_state.disabled,
+                        placeholder=st.session_state.placeholder,
+                    )
+                    if text_input0:
+                        st.write("You entered: ", text_input0)
+    
+                        if 'name' not in st.session_state:
+                            st.session_state.name = text_input0
+                        else:
+                            st.session_state.name = text_input0   
+                with col2:
+                    text_input = st.text_input(
+                        "您的手机号 👇",
+                        label_visibility=st.session_state.visibility,
+                        disabled=st.session_state.disabled,
+                        placeholder=st.session_state.placeholder,
+                    )
+                
+                    if text_input:
+                        st.write("You entered: ", text_input)
+    
+                        if 'phone' not in st.session_state:
+                            st.session_state.phone = text_input
+                        else:
+                            st.session_state.phone = text_input           
+                    
+            
             check1 =  any(item in sel for item in card_name[:])
             check2 =  any(item in sel0 for item in desk_num[:])
-            if (check1) and (check2):
+            if (check1) and (check2) and (len(st.session_state.phone)>=1) and (len(st.session_state.name)>==1):
                 df_new = pd.DataFrame({'日期':st.session_state.date_time,'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk},index=[st.session_state.new_data.shape[0]+1])   
                 with st.expander("确定学习计划",expanded=True):
                     st.dataframe(df_new)
