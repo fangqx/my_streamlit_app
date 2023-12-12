@@ -191,7 +191,10 @@ def main():
                         st.session_state.card = sel_new[0]
                     else:
                         st.session_state.card = sel_new[0]
-                    price_sel0=data[data['名称']==st.session_state.card]
+                    if 'price_sel0' not in st.session_state:
+                        st.session_state.price_sel0 = data[data['名称']==st.session_state.card]
+                    else:
+                        st.session_state.price_sel0 = data[data['名称']==st.session_state.card]                 
                 else:                
                     st.write('请重新选择')
                 
@@ -249,7 +252,11 @@ def main():
                         st.session_state.desk = sel_new0[0]
                     else:
                         st.session_state.desk = sel_new0[0]
-                    price_sel1=price_sel1[price_sel1['桌号']==st.session_state.desk]  
+
+                    if 'price_sel1' not in st.session_state:
+                        st.session_state.price_sel1 = st.session_state.desk[st.session_state.desk['名称']==st.session_state.desk]
+                    else:
+                        st.session_state.price_sel1 = st.session_state.desk[st.session_state.desk['名称']==st.session_state.desk]            
                 else:                
                     st.write('请重新选择桌号')
                     
@@ -286,7 +293,7 @@ def main():
                         else:
                             st.session_state.phone = text_input           
                     
-            st.write(price_sel1)
+            st.write(st.session_state.price_sel1)
             check1 =  any(item in sel for item in card_name[:])
             check2 =  any(item in sel0 for item in desk_num[:])
             if (check1) and (check2) and (len(st.session_state.phone)>=1) and (len(st.session_state.name)>=1):
