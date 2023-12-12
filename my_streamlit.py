@@ -223,9 +223,11 @@ def main():
                 submitted0 = form0.form_submit_button("确定计划")
                 if submitted0:
                     st.session_state.new_data = pd.concat([st.session_state.new_data, df_new], axis=0)
-                    #st.write(st.session_state.new_data)
+                    st.dataframe(st.session_state.new_data)
                     df_new0=st.session_state.new_data
+                    
                     #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
+            with st.expander("修改学习计划",expanded=True):
                 form = st.form('selection')
                 def save_edits0():
                     st.session_state.df1 = st.session_state.edited_df1.copy()
