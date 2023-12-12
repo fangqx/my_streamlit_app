@@ -88,6 +88,43 @@ def up_datefile():
     #repo.update_file(file_path, commit_message,contents, content.sha)
     return df
 
+def user_data_save(df,file_path):
+    repo_owner = 'fangqx'
+    repo_name = 'my_streamlit_app'
+    file_path = file_path
+    token = st.secrets["TOKEN"]
+    commit_message = 'create file'
+    github = Github(token)
+    repo = github.get_user(repo_owner).get_repo(repo_name)
+    url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_path}'
+    #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
+    #response = requests.get(url)
+    #st.write(response.content)  
+    all_files = []
+    all = repo.get_contents("")
+    while all:
+        file_content = all.pop(0)
+        if file_content.type == "dir":
+            all.extend(repo.get_contents(file_content.path))
+        else:
+            file = file_content
+            all_files.append(str(file).replace('ContentFile(path="','').replace('")',''))
+    #st.write(all_files)
+    git_file="user_data.csv"
+    if git_file in all_files:
+        content = repo.get_contents(git_file)
+        df0 = pd.read_csv(url)
+        df0=df0._append(df)
+        df0.to_csv('tem.txt', index=False)       
+        with open('tem.txt', 'rb') as f:
+            contents = f.read()        
+        repo.update_file(content.path, commit_message,contents, content.sha)
+    else:
+        df.to_csv('tem.txt', index=False) 
+        with open('tem.txt', 'rb') as f:
+            contents = f.read()
+        repo.create_file(git_file, "create", contents)
+
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -236,9 +273,9 @@ def main():
                 #st.session_state.edited_df1 = st.session_state.new_data.copy()                
                 submitted = form.form_submit_button("修改计划",on_click=save_edits0)                 
                 if submitted:
-                    st.dataframe(st.session_state.new_data)
-                    df1 = st.session_state.df1                   
+                    df1 = st.session_state.df1   
                     st.dataframe(df1)
+                    user_data_save(df1,'user_data.csv'):
 
                               
     
