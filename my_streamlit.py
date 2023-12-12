@@ -295,8 +295,7 @@ def main():
                 with col30:
                     text_input2 = st.text_input(
                         "折扣：100-50 👇", value="100"
-                        label_visibility=st.session_state.visibility,
-                        disabled=st.session_state.disabled,
+                        
                     )
                     if text_input2:
                         st.write("You entered: ", text_input2)
