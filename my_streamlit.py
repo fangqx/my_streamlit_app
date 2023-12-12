@@ -273,8 +273,8 @@ def main():
                 #st.session_state.edited_df1 = st.session_state.new_data.copy()                
                 submitted = form.form_submit_button("修改计划",on_click=save_edits0)                 
                 if submitted:
-                    df1=st.session_state.new_data
-                    user_data_save(df1,'user_data_old.csv')
+                    df2=st.session_state.new_data
+                    user_data_save(df2,'user_data_old.csv')
                     df1 = st.session_state.df1   
                     st.dataframe(df1)
                     user_data_save(df1,'user_data.csv')
