@@ -110,7 +110,7 @@ def user_data_save(df,file_path):
             file = file_content
             all_files.append(str(file).replace('ContentFile(path="','').replace('")',''))
     #st.write(all_files)
-    git_file="user_data.csv"
+    git_file=file_path
     if git_file in all_files:
         content = repo.get_contents(git_file)
         df0 = pd.read_csv(url)
