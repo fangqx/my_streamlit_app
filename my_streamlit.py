@@ -263,7 +263,6 @@ def main():
                         "您的姓名 👇",
                         label_visibility=st.session_state.visibility,
                         disabled=st.session_state.disabled,
-                        placeholder=st.session_state.placeholder,
                     )
                     if text_input0:
                         st.write("You entered: ", text_input0)
@@ -276,7 +275,6 @@ def main():
                         "您的手机号 👇",
                         label_visibility=st.session_state.visibility,
                         disabled=st.session_state.disabled,
-                        placeholder=st.session_state.placeholder,
                     )
                 
                     if text_input:
