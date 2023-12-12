@@ -58,7 +58,7 @@ def up_datefile():
     #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
     #response = requests.get(url)
     #st.write(response.content)
-    df = pd.read_excel(url,sheet_name='all')
+    df = pd.read_excel(url,sheet_name='basic')
     df['test_col'] = "12345"
     df.to_csv('tem.txt', index=False)
     
@@ -255,9 +255,9 @@ def main():
                         st.session_state.desk = sel_new0[0]
 
                     if 'price_sel1' not in st.session_state:
-                        st.session_state.price_sel1 = st.session_state.price_sel0[st.session_state.price_sel0['名称']==st.session_state.desk]
+                        st.session_state.price_sel1 = st.session_state.price_sel0['价格']
                     else:
-                        st.session_state.price_sel1 = st.session_state.price_sel0[st.session_state.price_sel0['名称']==st.session_state.desk]            
+                        st.session_state.price_sel1 = st.session_state.price_sel0['价格']            
                 else:                
                     st.write('请重新选择桌号')
                     
