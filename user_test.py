@@ -33,17 +33,21 @@ def check_password():
         else:
             st.session_state["password_correct"] = False
 
-    # Return True if the passward is validated.
-    if st.session_state.get("password_correct", False):
-        return True
+
 
     # Show input for password.
+    form = st.form('passwordtest')
+    submitted = form.form_submit_button("确认",on_click=password_entered)
     st.text_input(
-        "Password", type="password", on_change=password_entered, key="password"
+        "Password", type="password", key="password"
     )
-    if "password_correct" in st.session_state:
-        st.error("😕 Password incorrect")
-    return False
+    if submitted:
+        # Return True if the passward is validated.
+        if st.session_state.get("password_correct", False):
+            return True    
+        if "password_correct" in st.session_state:
+            st.error("😕 Password incorrect")
+        return False
 
 
 def up_datefile():
@@ -88,7 +92,7 @@ def up_datefile():
     #repo.update_file(file_path, commit_message,contents, content.sha)
     return df
 
-def user_data_save(df,file_path):
+def user_data_read(df,file_path):
     repo_owner = 'fangqx'
     repo_name = 'my_streamlit_app'
     file_path = file_path
@@ -114,16 +118,14 @@ def user_data_save(df,file_path):
     if git_file in all_files:
         content = repo.get_contents(git_file)
         df0 = pd.read_csv(url)
-        df0=df0._append(df)
-        df0.to_csv('tem.txt', index=False)       
-        with open('tem.txt', 'rb') as f:
-            contents = f.read()        
-        repo.update_file(content.path, commit_message,contents, content.sha)
+        #df0=df0._append(df)
+        #df0.to_csv('tem.txt', index=False)       
+        #with open('tem.txt', 'rb') as f:
+        #    contents = f.read()        
+        #repo.update_file(content.path, commit_message,contents, content.sha)
     else:
-        df.to_csv('tem.txt', index=False) 
-        with open('tem.txt', 'rb') as f:
-            contents = f.read()
-        repo.create_file(git_file, "create", contents)
+        st.write('个人信息不存在')
+    return df0
 
 def local_css(file_name):
     with open(file_name) as f:
@@ -132,8 +134,14 @@ def local_css(file_name):
 
 
 def main():
+    #user_data_save(df2,'user_data.csv')
+    
+    
     if not check_password():
         st.stop()
+    
+    
+    
     data=up_datefile()
     st.set_page_config(page_title="自主学习",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
     st.title('自主学习--提高效率:heart:')
