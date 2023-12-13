@@ -20,7 +20,8 @@ import hmac
 
 def check_password():
     """Returns `True` if the user had the correct password."""
-    if passw not in st.session_state:
+    
+    if 'passw' not in st.session_state:
         st.session_state.passw="159532"
     else:
         st.session_state.passw="159532"
