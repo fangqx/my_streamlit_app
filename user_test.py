@@ -33,11 +33,12 @@ def check_password():
         else:
             st.session_state["password_correct"] = False
     # Show input for password.
-    form = st.form('passwordtest')
     st.text_input(
-        "Password", type="password", key="password")
+        "Password", type="password", key="password")    
+    form = st.form('passwordtest')
     submitted = form.form_submit_button("确定",on_click=password_entered)
     if submitted:
+        st.write(st.session_state["password"])
         # Return True if the passward is validated.
         if st.session_state.get("password_correct", False):
             return True    
