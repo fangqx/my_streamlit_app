@@ -148,8 +148,6 @@ def main():
         # 在这里可以定义任意多个全局变量，方便程序进行调用
         st.session_state.date_time=datetime.datetime.now() + datetime.timedelta(hours=8) # Streamlit Cloud的时区是UTC，加8小时即北京时间
         st.session_state.random_chart_index=random.choice(range(len(charts_mapping)))
-        st.session_state.my_random=MyRandom(random.randint(1,1000000))
-        st.session_state.city_mapping,st.session_state.random_city_index=get_city_mapping()
         # st.session_state.random_city_index=random.choice(range(len(st.session_state.city_mapping)))
         #st.balloons()
         #st.snow()
