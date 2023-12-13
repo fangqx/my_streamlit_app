@@ -125,7 +125,7 @@ def local_css(file_name):
 def main():
     use_data=user_data_read('user_data.csv')
     
-    st.write(use_data)
+    st.write(use_data['手机号'],use_data['手机号'].astype(str))
     if not check_password(use_data):
         st.stop()
 
