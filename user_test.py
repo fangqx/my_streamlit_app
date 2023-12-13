@@ -32,15 +32,11 @@ def check_password():
             del st.session_state["password"]  # Don't store the password.
         else:
             st.session_state["password_correct"] = False
-
-
-
     # Show input for password.
     form = st.form('passwordtest')
-    submitted = form.form_submit_button("确认",on_click=password_entered)
     st.text_input(
-        "Password", type="password", key="password"
-    )
+        "Password", type="password", key="password")
+    submitted = form.form_submit_button("确定",on_click=password_entered)
     if submitted:
         # Return True if the passward is validated.
         if st.session_state.get("password_correct", False):
@@ -139,9 +135,7 @@ def main():
     
     if not check_password():
         st.stop()
-    
-    
-    
+
     data=up_datefile()
     st.set_page_config(page_title="自主学习",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
     st.title('自主学习--提高效率:heart:')
