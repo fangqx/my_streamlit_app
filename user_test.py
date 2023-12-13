@@ -22,7 +22,7 @@ def check_password(user_data):
     """Returns `True` if the user had the correct password."""    
     def password_entered():
         """Checks whether a password entered by the user is correct."""
-        if st.session_state["password"] in user_data['手机号']:
+        if st.session_state["password"] in user_data['手机号'].astype(str).to_list():
             st.session_state["password_correct"] = True
             del st.session_state["password"]  # Don't store the password.
         else:
@@ -125,7 +125,7 @@ def local_css(file_name):
 def main():
     use_data=user_data_read('user_data.csv')
     
-    st.write(use_data['手机号'].astype(str))
+    st.write(use_data['手机号'].astype(str).to_list())
     if not check_password(use_data):
         st.stop()
 
