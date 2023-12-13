@@ -7,13 +7,9 @@ import requests
 import numpy as np
 import pandas as pd
 import streamlit as st
-import streamlit.components.v1 as components
-from streamlit_echarts import st_echarts
 from streamlit.web.server.server import Server
 from streamlit.runtime.scriptrunner.script_run_context import get_script_run_ctx as get_report_ctx
-import pydeck as pdk
 import matplotlib.pyplot as plt
-from pyecharts.charts import *
 from pyecharts.globals import ThemeType
 from pyecharts import options as opts
 from pyecharts.commons.utils import JsCode
