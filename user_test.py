@@ -20,13 +20,13 @@ import hmac
 
 def check_password():
     """Returns `True` if the user had the correct password."""
-    if pass not in st.session_state:
-        st.session_state.pass="159532"
+    if passw not in st.session_state:
+        st.session_state.passw="159532"
     else:
-        st.session_state.pass="159532"
+        st.session_state.passw="159532"
     def password_entered(password0):
         """Checks whether a password entered by the user is correct."""
-        if hmac.compare_digest(st.session_state["password"], st.session_state.pass):
+        if hmac.compare_digest(st.session_state["password"], st.session_state.passw):
             st.session_state["password_correct"] = True
             del st.session_state["password"]  # Don't store the password.
         else:
