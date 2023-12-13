@@ -128,7 +128,7 @@ def main():
     st.write(use_data['手机号'].astype(str).to_list())
     if not check_password(use_data):
         st.stop()
-    your_data=use_data[use_data['手机号']==st.session_state["password"]]
+    your_data=use_data[use_data['手机号'].astype(str)==st.session_state["password"]]
     st.dataframe(your_data)
     
     data=up_datefile()
