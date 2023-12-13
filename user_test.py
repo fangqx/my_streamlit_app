@@ -19,8 +19,7 @@ from github import Github
 import hmac
 
 def check_password(user_data):
-    """Returns `True` if the user had the correct password."""
-    
+    """Returns `True` if the user had the correct password."""    
     def password_entered():
         """Checks whether a password entered by the user is correct."""
         if st.session_state["password"] in user_data['手机号']:
@@ -30,13 +29,14 @@ def check_password(user_data):
             st.session_state["password_correct"] = False
     # Show input for password.
     if st.session_state.get("password_correct", False):
-        return True    
+        return True 
+        
     st.text_input(
         "Password", type="password", on_change=password_entered,key="password")    
 
     if "password_correct" in st.session_state:
         st.error("😕 Password incorrect")
-    return False
+        return False
 
 
 def up_datefile():
