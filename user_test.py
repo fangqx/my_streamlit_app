@@ -123,6 +123,7 @@ def local_css(file_name):
 
 
 def main():
+    st.title('自主学习--提高效率:heart:')
     use_data=user_data_read('user_data.csv')
     
     st.write(use_data['手机号'].astype(str).to_list())
@@ -130,10 +131,9 @@ def main():
         st.stop()
     your_data=use_data[use_data['手机号'].astype(str)==st.session_state["password"]]
     st.dataframe(your_data)
-    
     data=up_datefile()
     #st.set_page_config(page_title="自主学习",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
-    st.title('自主学习--提高效率:heart:')
+   
     if 'first_visit' not in st.session_state:
         st.session_state.first_visit=True
     else:
