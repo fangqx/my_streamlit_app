@@ -23,29 +23,20 @@ def check_password(user_data):
     
     def password_entered():
         """Checks whether a password entered by the user is correct."""
-        if hmac.compare_digest(st.session_state["password"], st.session_state.passw):
+        if st.session_state["password"] in user_data['手机号']:
             st.session_state["password_correct"] = True
             del st.session_state["password"]  # Don't store the password.
-            del st.session_state["passw"]
         else:
             st.session_state["password_correct"] = False
     # Show input for password.
+    if st.session_state.get("password_correct", False):
+        return True    
     st.text_input(
-        "Password", type="password", key="password")    
-    form = st.form('passwordtest')
-    submitted = form.form_submit_button("确定",on_click=password_entered)
-    if submitted:
-        if st.session_state["password"] in user_data['手机号']:
-            if 'passw' not in st.session_state:
-                st.session_state.passw=st.session_state["password"]
-            else:
-                st.session_state.passw=st.session_state["password"]           
-        # Return True if the passward is validated.
-        if st.session_state.get("password_correct", False):
-            return True    
-        if "password_correct" in st.session_state:
-            st.error("😕 Password incorrect")
-        return False
+        "Password", type="password", on_change=password_entered,key="password")    
+
+    if "password_correct" in st.session_state:
+        st.error("😕 Password incorrect")
+    return False
 
 
 def up_datefile():
