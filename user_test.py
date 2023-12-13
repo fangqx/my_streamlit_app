@@ -26,6 +26,7 @@ def check_password(user_data):
         if hmac.compare_digest(st.session_state["password"], st.session_state.passw):
             st.session_state["password_correct"] = True
             del st.session_state["password"]  # Don't store the password.
+            del st.session_state["passw"]
         else:
             st.session_state["password_correct"] = False
     # Show input for password.
