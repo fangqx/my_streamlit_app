@@ -18,13 +18,9 @@ from io import BytesIO
 from github import Github
 import hmac
 
-def check_password():
+def check_password(user_data):
     """Returns `True` if the user had the correct password."""
     
-    if 'passw' not in st.session_state:
-        st.session_state.passw="159532"
-    else:
-        st.session_state.passw="159532"
     def password_entered():
         """Checks whether a password entered by the user is correct."""
         if hmac.compare_digest(st.session_state["password"], st.session_state.passw):
@@ -38,7 +34,11 @@ def check_password():
     form = st.form('passwordtest')
     submitted = form.form_submit_button("确定",on_click=password_entered)
     if submitted:
-        st.write(st.session_state["password"])
+        if st.session_state["password"] in user_data['手机号']:
+            if 'passw' not in st.session_state:
+                st.session_state.passw=st.session_state["password"]
+            else:
+                st.session_state.passw=st.session_state["password"]           
         # Return True if the passward is validated.
         if st.session_state.get("password_correct", False):
             return True    
@@ -89,7 +89,7 @@ def up_datefile():
     #repo.update_file(file_path, commit_message,contents, content.sha)
     return df
 
-def user_data_read(df,file_path):
+def user_data_read(file_path):
     repo_owner = 'fangqx'
     repo_name = 'my_streamlit_app'
     file_path = file_path
@@ -131,10 +131,10 @@ def local_css(file_name):
 
 
 def main():
-    #user_data_save(df2,'user_data.csv')
+    use_data=user_data_read('user_data.csv')
     
     
-    if not check_password():
+    if not check_password(use_data):
         st.stop()
 
     data=up_datefile()
