@@ -332,6 +332,7 @@ def main():
                         st.dataframe(df1)
                         user_data_save(df1,'user_data.csv')
                         st.session_state.new_data=df1
+                        st.dataframe(st.session_state.new_data)
 
                               
     
