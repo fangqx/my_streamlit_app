@@ -160,7 +160,7 @@ def main():
         x2=col_xxk3.markdown(f'###### 您的结束日期:  {xxt1}')
 
     card_time=data[data['名称']==st.session_state.card_type].dropna(axis=1)        
-    times=card_time[card_time.columns[7:-1]].values.tolist()[0]
+    times_sel=card_time[card_time.columns[7:-1]].values.tolist()[0]
     cls1,cls2,cls3=st.columns(3)
     with cls1:
         tem=card_time['预约次数'].to_list()[0]
@@ -176,9 +176,9 @@ def main():
     
     
     with st.expander("时间阶段选择",expanded=True):
-        col0=st.date_input('开始日期',st.session_state.date_time,min_value =datetime.datetime.strptime(xxt0, '%m-%d-%Y').date(),max_value=datetime.datetime.strptime(xxt1, '%m-%d-%Y').date())
+        #col0=st.date_input('开始日期',st.session_state.date_time,min_value =datetime.datetime.strptime(xxt0, '%m-%d-%Y').date(),max_value=datetime.datetime.strptime(xxt1, '%m-%d-%Y').date())
         #st.write(sel_new,card_name[:])
-        times=st.radio('时间段',times)
+        times=st.radio('时间段',times_sel)
         if 'times' not in st.session_state:
             st.session_state.date0 = times
         else:
