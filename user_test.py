@@ -51,7 +51,7 @@ def up_datefile():
     #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
     #response = requests.get(url)
     #st.write(response.content)
-    df = pd.read_excel(url,sheet_name='basic')
+    df = pd.read_excel(url,sheet_name='basic',usecols=range(14))
     df['test_col'] = "12345"
     df.to_csv('tem.txt', index=False)
     
