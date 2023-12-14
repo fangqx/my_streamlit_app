@@ -159,7 +159,7 @@ def main():
     with col_xxk3:
         x2=col_xxk3.markdown(f'###### 您的结束日期:  {xxt1}')
 
-    card_time=data[data['名称']==st.session_state.card_type]        
+    card_time=data[data['名称']==st.session_state.card_type].dropna(axis=1)        
     st.write(card_time[card_time.columns[7:-1]].values.tolist()[0])
     cls1,cls2,cls3=st.columns(3)
     with cls1:
