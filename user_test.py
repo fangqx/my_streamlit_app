@@ -164,12 +164,12 @@ def main():
             card_name=data['名称'].tolist()
             card_price0=data['价格'].tolist()
             card_price=['--价格: '+str(x)+' 元' for x in card_price0]
-            card_time=data[data['名称']==st.session_state.card_type].dropna()        
+            card_time=data[data['名称']==st.session_state.card_type]        
             st.write(card_time)
             #card_name = [a+b for a, b in zip(card_name, card_price)]
             with st.expander("时间阶段选择",expanded=True):
                 #st.write(sel_new,card_name[:])
-                times=st.radio('时间段',card_time[card_time.columns[-7:]])
+                times=st.radio('时间段',card_time['time1','time2','time3','time4','time5','time6','time7'].to_list())
                 if 'times' not in st.session_state:
                     st.session_state.date0 = times
                 else:
