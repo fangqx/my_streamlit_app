@@ -166,11 +166,9 @@ def main():
             card_price=['--价格: '+str(x)+' 元' for x in card_price0]
             card_time=data[data['学习卡']==st.session_state.card_type]
             #card_name = [a+b for a, b in zip(card_name, card_price)]
-            with st.expander("学习时间选择",expanded=True):
+            with st.expander("时间阶段选择",expanded=True):
                 #st.write(sel_new,card_name[:])
-            
                 times=st.radio('时间段',card_time[-7:])
-      
                 if 'times' not in st.session_state:
                     st.session_state.date0 = times
                 else:
