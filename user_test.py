@@ -169,7 +169,7 @@ def main():
             #card_name = [a+b for a, b in zip(card_name, card_price)]
             with st.expander("时间阶段选择",expanded=True):
                 #st.write(sel_new,card_name[:])
-                times=st.radio('时间段',card_time[card_time.columns[-7:]].to_list())
+                times=st.radio('时间段',card_time[card_time.columns[-7:]])
                 if 'times' not in st.session_state:
                     st.session_state.date0 = times
                 else:
