@@ -146,7 +146,7 @@ def main():
     col_xxk1.markdown(f'#### 您的学习卡类型:')
     xxk=your_data['学习卡'].astype(str).to_list()[0]
     st.write(xxk)
-    col_xxk2.markdown(f"""### {ssk}""")
+    col_xxk2.markdown(f"""### {xxk}""")
     
                 
     if self_study==study_sel[0]:
