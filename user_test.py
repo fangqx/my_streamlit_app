@@ -160,7 +160,7 @@ def main():
         x2=col_xxk3.markdown(f'###### 您的结束日期:  {xxt1}')
 
     card_time=data[data['名称']==st.session_state.card_type]        
-    st.write(card_time)
+    st.write(card_time[card_time.columns[7:])
     cls1,cls2,cls3=st.columns(3)
     with cls1:
         tem=card_time['预约次数'].to_list()[0]
