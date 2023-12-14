@@ -164,8 +164,8 @@ def main():
             card_name=data['名称'].tolist()
             card_price0=data['价格'].tolist()
             card_price=['--价格: '+str(x)+' 元' for x in card_price0]
-            st.write(data['学习卡'],st.session_state.card_type)
-            card_time=data[data['学习卡']==st.session_state.card_type]            
+            st.write(data['名称'],st.session_state.card_type)
+            card_time=data[data['名称']==st.session_state.card_type]            
             #card_name = [a+b for a, b in zip(card_name, card_price)]
             with st.expander("时间阶段选择",expanded=True):
                 #st.write(sel_new,card_name[:])
