@@ -169,12 +169,12 @@ def main():
             with st.expander("学习时间选择",expanded=True):
                 #st.write(sel_new,card_name[:])
             
-                col0=st.radio('时间段',card_time[-7:])
+                times=st.radio('时间段',card_time[-7:])
       
-                if 'date0' not in st.session_state:
-                    st.session_state.date0 = col0
+                if 'times' not in st.session_state:
+                    st.session_state.date0 = times
                 else:
-                    st.session_state.date0 = col0     
+                    st.session_state.date0 = times     
 
             with st.expander("学习桌选择",expanded=True):
                 desk_num=['桌号: 1','桌号: 2','桌号: 3','桌号: 5','桌号: 6','桌号: 7','桌号: 8','桌号: 9','桌号: 10','桌号: 11','桌号: 12','桌号: 13','桌号: 15','桌号: 16','桌号: 17']  #data['桌号'].dropna().unique().tolist()
