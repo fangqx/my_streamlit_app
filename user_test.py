@@ -143,10 +143,9 @@ def main():
     if 'new_data' not in st.session_state:
         st.session_state.new_data = pd.DataFrame(columns=['姓名','手机号','日期','学习卡', '开始日期', '结束日期', '开始时间', '结束时间','学习桌','价格','折扣','最终价格'])
     col_xxk1,col_xxk2=st.columns(2)
-    col_xxk1.markdown(f'#### 您的学习卡类型:')
+    col_xxk1.markdown(f'##### 您的学习卡类型:')
     xxk=your_data['学习卡'].astype(str).to_list()[0]
-    st.write(xxk)
-    col_xxk2.markdown(f'### {xxk}')
+    col_xxk2.markdown(f'#### {xxk}')
     
                 
     if self_study==study_sel[0]:
