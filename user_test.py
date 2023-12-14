@@ -162,33 +162,6 @@ def main():
             card_price0=data['价格'].tolist()
             card_price=['--价格: '+str(x)+' 元' for x in card_price0]
             #card_name = [a+b for a, b in zip(card_name, card_price)]
-            
-            with st.expander("学习卡选择",expanded=True):
-                #st.markdown(f'### 学习计划')
-                col1, col2,col3 = st.columns(3)       
-                col1_choice = col1.radio(f"### 单次卡", ['Option']+card_name[:4],index=0,captions=['No Selection']+card_price[:4])
-                col2_choice = col2.radio(f"### 多次卡",  ['Option']+card_name[4:9],index=0,captions=['No Selection']+card_price[4:9])
-                col3_choice = col3.radio(f"### 长期卡",  ['Option']+card_name[9:],index=0,captions=['No Selection']+card_price[9:])
-                #card=st.radio('study',data['名称'].dropna().unique().tolist())
-                sel =  [col1_choice,col2_choice,col3_choice]
-                sel_new=[]
-                for item in sel:
-                    if item!='Option':
-                        sel_new.append(item)               
-                if len(sel_new)==1:
-                    st.write('您选择的是: ', sel_new[0])
-                    if 'card' not in st.session_state:
-                        st.session_state.card = sel_new[0]
-                    else:
-                        st.session_state.card = sel_new[0]
-                    if 'price_sel0' not in st.session_state:
-                        st.session_state.price_sel0 = data[data['名称']==st.session_state.card]
-                    else:
-                        st.session_state.price_sel0 = data[data['名称']==st.session_state.card]   
-                else:                
-                    st.write('请重新选择')
-                
-            
             with st.expander("学习时间选择",expanded=True):
                 #st.write(sel_new,card_name[:])
                 check =  any(item in sel_new for item in card_name[:])
