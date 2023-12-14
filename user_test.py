@@ -142,9 +142,11 @@ def main():
     
     if 'new_data' not in st.session_state:
         st.session_state.new_data = pd.DataFrame(columns=['姓名','手机号','日期','学习卡', '开始日期', '结束日期', '开始时间', '结束时间','学习桌','价格','折扣','最终价格'])
-    
-    st.markdown(f'### 您的学习卡类型:')
-    st.write(your_data['学习卡'])
+    cols=st.columns(2)
+    with cols(0):
+        st.markdown(f'#### 您的学习卡类型:')
+    with cols(1):
+        st.markdown(f'{your_data['学习卡']}')
     if self_study==study_sel[0]:
         with st.container():
             card_name=data['名称'].tolist()
