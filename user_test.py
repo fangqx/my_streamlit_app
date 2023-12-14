@@ -158,14 +158,25 @@ def main():
         x1=col_xxk2.markdown(f'###### 您的开始日期:  {xxt0}')
     with col_xxk3:
         x2=col_xxk3.markdown(f'###### 您的结束日期:  {xxt1}')
-                
+
+    card_time=data[data['名称']==st.session_state.card_type]        
+    st.write(card_time)
+    cls1,cls2,cls3=st.columns(3)
+    with cls1:
+        xx0=cls1.markdown(f'###### 您的预约次数:  {card_time['预约次数'].to_list()[0]}')
+    with cls2:
+        xx1=cls2.markdown(f'###### 您的开始日期:  {xxt0}')
+    with cls3:
+        xx2=cls3.markdown(f'###### 您的结束日期:  {xxt1}')
+    
+
+    
     if self_study==study_sel[0]:
         with st.container():
             card_name=data['名称'].tolist()
             card_price0=data['价格'].tolist()
             card_price=['--价格: '+str(x)+' 元' for x in card_price0]
-            card_time=data[data['名称']==st.session_state.card_type]        
-            st.write(card_time)
+
             #card_name = [a+b for a, b in zip(card_name, card_price)]
             with st.expander("时间阶段选择",expanded=True):
                 #st.write(sel_new,card_name[:])
