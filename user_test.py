@@ -150,9 +150,9 @@ def main():
     with col_xxk1:
         x0=col_xxk1.markdown(f'##### 您的学习卡类型:  {xxk}')
     with col_xxk2:
-        x1=col_xxk1.markdown(f'##### 您的开始日期:  {xxt0}')
+        x1=col_xxk2.markdown(f'##### 您的开始日期:  {xxt0}')
     with col_xxk3:
-        x2=col_xxk1.markdown(f'##### 您的结束日期:  {xxt1}')
+        x2=col_xxk3.markdown(f'##### 您的结束日期:  {xxt1}')
  
         
                 
