@@ -160,7 +160,6 @@ def main():
         x2=col_xxk3.markdown(f'###### 您的结束日期:  {xxt1}')
 
     card_time=data[data['名称']==st.session_state.card_type].dropna(axis=1)        
-    st.write(card_time[card_time.columns[7:-1]].values.tolist()[0])
     cls1,cls2,cls3=st.columns(3)
     with cls1:
         tem=card_time['预约次数'].to_list()[0]
@@ -174,120 +173,116 @@ def main():
     
 
     
-    if self_study==study_sel[0]:
-        with st.container():
-            card_name=data['名称'].tolist()
-            card_price0=data['价格'].tolist()
-            card_price=['--价格: '+str(x)+' 元' for x in card_price0]
-
-            #card_name = [a+b for a, b in zip(card_name, card_price)]
-            with st.expander("时间阶段选择",expanded=True):
-                #st.write(sel_new,card_name[:])
-                times=st.radio('时间段',card_time[card_time.columns[7:]])
-                if 'times' not in st.session_state:
-                    st.session_state.date0 = times
-                else:
-                    st.session_state.date0 = times     
-
-            with st.expander("学习桌选择",expanded=True):
-                desk_num=['桌号: 1','桌号: 2','桌号: 3','桌号: 5','桌号: 6','桌号: 7','桌号: 8','桌号: 9','桌号: 10','桌号: 11','桌号: 12','桌号: 13','桌号: 15','桌号: 16','桌号: 17']  #data['桌号'].dropna().unique().tolist()
-                col1, col2,col3 = st.columns(3)       
-                desk_ch1 = col1.radio(f"### 沉浸式课桌1-5", ['Option']+desk_num[:5],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
-                desk_ch2 = col2.radio(f"### 沉浸式课桌6-10",  ['Option']+desk_num[5:10],index=0,captions=['No Selection','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧'])
-                desk_ch3 = col3.radio(f"### 沉浸式课桌11-15",  ['Option']+desk_num[10:],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
-
-                sel0 =  [desk_ch1,desk_ch2,desk_ch3]
-                sel_new0=[]
-                for item in sel0:
-                    if item!='Option':
-                        sel_new0.append(item)               
-                if len(sel_new0)==1:
-                    st.write('您选择的是: ', sel_new0[0])
-                    if 'desk' not in st.session_state:
-                        st.session_state.desk = sel_new0[0]
-                    else:
-                        st.session_state.desk = sel_new0[0]       
-                else:                
-                    st.write('请重新选择桌号')
-                    
-            with st.expander("个人信息输入",expanded=True):
-                if "visibility" not in st.session_state:
-                    st.session_state.visibility = "visible"
-                    st.session_state.disabled = False
-                
-                col10, col20, col30 = st.columns(3)                
-                with col10:
-                    text_input0 = st.text_input(
-                        "您的姓名 👇",
-                        label_visibility=st.session_state.visibility,
-                        disabled=st.session_state.disabled,
-                    )
-                    if text_input0:
-                        st.write("You entered: ", text_input0)
-                        if 'name' not in st.session_state:
-                            st.session_state.name = text_input0
-                        else:
-                            st.session_state.name = text_input0   
-                with col20:
-                    text_input1 = st.text_input(
-                        "您的手机号 👇",
-                        label_visibility=st.session_state.visibility,
-                        disabled=st.session_state.disabled,
-                    )
-                
-                    if text_input1:
-                        st.write("You entered: ", text_input1)
+    times=card_time[card_time.columns[7:-1]].values.tolist()[0])
     
-                        if 'phone' not in st.session_state:
-                            st.session_state.phone = text_input1
-                        else:
-                            st.session_state.phone = text_input1          
-                with col30:
-                    text_input2 = st.text_input(
-                        "折扣：100-50 👇", value=100
-                        
-                    )
-                    if text_input2:
-                        st.write("You entered: ", text_input2)
-                        if 'percent' not in st.session_state:
-                            st.session_state.percent = text_input2
-                        else:
-                            st.session_state.percent = text_input2                      
-              
-            check1 =  any(item in sel for item in card_name[:])
-            check2 =  any(item in sel0 for item in desk_num[:])
-            if (check1) and (check2) and (text_input0) and (text_input1) and (text_input2):
-                if 'final_price' not in st.session_state:
-                    st.session_state.final_price = float(st.session_state.percent)*float(st.session_state.price_sel0['价格'].to_list()[0])*0.01
+    with st.expander("时间阶段选择",expanded=True):
+        col0=st.date_input('开始日期',st.session_state.date_time,min_value =xxt0,max_value=xxt1)
+        #st.write(sel_new,card_name[:])
+        times=st.radio('时间段',times)
+        if 'times' not in st.session_state:
+            st.session_state.date0 = times
+        else:
+            st.session_state.date0 = times     
+
+    with st.expander("学习桌选择",expanded=True):
+        desk_num=['桌号: 1','桌号: 2','桌号: 3','桌号: 5','桌号: 6','桌号: 7','桌号: 8','桌号: 9','桌号: 10','桌号: 11','桌号: 12','桌号: 13','桌号: 15','桌号: 16','桌号: 17']  #data['桌号'].dropna().unique().tolist()
+        col1, col2,col3 = st.columns(3)       
+        desk_ch1 = col1.radio(f"### 沉浸式课桌1-5", ['Option']+desk_num[:5],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
+        desk_ch2 = col2.radio(f"### 沉浸式课桌6-10",  ['Option']+desk_num[5:10],index=0,captions=['No Selection','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧'])
+        desk_ch3 = col3.radio(f"### 沉浸式课桌11-15",  ['Option']+desk_num[10:],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
+
+        sel0 =  [desk_ch1,desk_ch2,desk_ch3]
+        sel_new0=[]
+        for item in sel0:
+            if item!='Option':
+                sel_new0.append(item)               
+        if len(sel_new0)==1:
+            st.write('您选择的是: ', sel_new0[0])
+            if 'desk' not in st.session_state:
+                st.session_state.desk = sel_new0[0]
+            else:
+                st.session_state.desk = sel_new0[0]       
+        else:                
+            st.write('请重新选择桌号')
+            
+    with st.expander("个人信息输入",expanded=True):
+        if "visibility" not in st.session_state:
+            st.session_state.visibility = "visible"
+            st.session_state.disabled = False
+        
+        col10, col20, col30 = st.columns(3)                
+        with col10:
+            text_input0 = st.text_input(
+                "您的姓名 👇",
+                label_visibility=st.session_state.visibility,
+                disabled=st.session_state.disabled,
+            )
+            if text_input0:
+                st.write("You entered: ", text_input0)
+                if 'name' not in st.session_state:
+                    st.session_state.name = text_input0
                 else:
-                    st.session_state.final_price = float(st.session_state.percent)*float(st.session_state.price_sel0['价格'].to_list()[0])*0.01              
-                df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone,'日期':st.session_state.date_time,'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk,'价格':st.session_state.price_sel0['价格'].to_list()[0],'折扣':st.session_state.percent,'最终价格':st.session_state.final_price},index=[st.session_state.new_data.shape[0]+1])   
-                with st.expander("确认学习计划",expanded=True):
-                    st.dataframe(df_new)
-                    form0 = st.form('selection0')
-                    submitted0 = form0.form_submit_button("确认正确")
-                    if submitted0:
-                        st.session_state.new_data = pd.concat([st.session_state.new_data, df_new], axis=0)
-                        st.dataframe(st.session_state.new_data)                        
-                        
-                        #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
-                with st.expander("修改学习计划",expanded=True):
-                    df_new0=st.session_state.new_data
-                    st.write('00',df_new0)
-                    st.session_state.edited_df1 = st.data_editor(df_new0, num_rows="dynamic")  
-                    form = st.form('selection')
-                    def save_edits0():
-                        st.session_state.df1 = st.session_state.edited_df1.copy()
-                    #st.session_state.edited_df1 = st.session_state.new_data.copy()                
-                    submitted = form.form_submit_button("修改计划",on_click=save_edits0)                 
-                    if submitted:
-                        df2=st.session_state.new_data
-                        user_data_save(df2,'user_data_old.csv')
-                        df1 = st.session_state.df1   
-                        st.dataframe(df1)
-                        user_data_save(df1,'user_data.csv')
-                        st.session_state.new_data=df1
-                        st.write(st.session_state.new_data)
+                    st.session_state.name = text_input0   
+        with col20:
+            text_input1 = st.text_input(
+                "您的手机号 👇",
+                label_visibility=st.session_state.visibility,
+                disabled=st.session_state.disabled,
+            )
+        
+            if text_input1:
+                st.write("You entered: ", text_input1)
+
+                if 'phone' not in st.session_state:
+                    st.session_state.phone = text_input1
+                else:
+                    st.session_state.phone = text_input1          
+        with col30:
+            text_input2 = st.text_input(
+                "折扣：100-50 👇", value=100
+                
+            )
+            if text_input2:
+                st.write("You entered: ", text_input2)
+                if 'percent' not in st.session_state:
+                    st.session_state.percent = text_input2
+                else:
+                    st.session_state.percent = text_input2                      
+          
+    check1 =  any(item in sel for item in card_name[:])
+    check2 =  any(item in sel0 for item in desk_num[:])
+    if (check1) and (check2) and (text_input0) and (text_input1) and (text_input2):
+        if 'final_price' not in st.session_state:
+            st.session_state.final_price = float(st.session_state.percent)*float(st.session_state.price_sel0['价格'].to_list()[0])*0.01
+        else:
+            st.session_state.final_price = float(st.session_state.percent)*float(st.session_state.price_sel0['价格'].to_list()[0])*0.01              
+        df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone,'日期':st.session_state.date_time,'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk,'价格':st.session_state.price_sel0['价格'].to_list()[0],'折扣':st.session_state.percent,'最终价格':st.session_state.final_price},index=[st.session_state.new_data.shape[0]+1])   
+        with st.expander("确认学习计划",expanded=True):
+            st.dataframe(df_new)
+            form0 = st.form('selection0')
+            submitted0 = form0.form_submit_button("确认正确")
+            if submitted0:
+                st.session_state.new_data = pd.concat([st.session_state.new_data, df_new], axis=0)
+                st.dataframe(st.session_state.new_data)                        
+                
+                #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
+        with st.expander("修改学习计划",expanded=True):
+            df_new0=st.session_state.new_data
+            st.write('00',df_new0)
+            st.session_state.edited_df1 = st.data_editor(df_new0, num_rows="dynamic")  
+            form = st.form('selection')
+            def save_edits0():
+                st.session_state.df1 = st.session_state.edited_df1.copy()
+            #st.session_state.edited_df1 = st.session_state.new_data.copy()                
+            submitted = form.form_submit_button("修改计划",on_click=save_edits0)                 
+            if submitted:
+                df2=st.session_state.new_data
+                user_data_save(df2,'user_data_old.csv')
+                df1 = st.session_state.df1   
+                st.dataframe(df1)
+                user_data_save(df1,'user_data.csv')
+                st.session_state.new_data=df1
+                st.write(st.session_state.new_data)
 
                               
     
