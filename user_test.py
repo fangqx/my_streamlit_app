@@ -178,6 +178,7 @@ def main():
     with st.expander("时间选择",expanded=True):
         cols1,cols2=st.columns(2)
         st.write(xxt0,datetime.datetime.strptime(xxt0, '%m-%d-%Y'))
+        
         #col0=st.date_input('开始日期',st.session_state.date_time,min_value =datetime.datetime.strptime(xxt0, '%m-%d-%Y').date(),max_value=datetime.datetime.strptime(xxt1, '%m-%d-%Y').date())
         #st.write(sel_new,card_name[:])
         times=cols2.radio('时间段',times_sel)
