@@ -164,8 +164,6 @@ def main():
             #card_name = [a+b for a, b in zip(card_name, card_price)]
             with st.expander("学习时间选择",expanded=True):
                 #st.write(sel_new,card_name[:])
-                st.markdown(sel_new[0])
-                
                 cols=st.columns(2)
                 col0=cols[0].date_input('开始日期',st.session_state.date_time)
                 col1=cols[1].date_input('结束日期',st.session_state.date_time,)
