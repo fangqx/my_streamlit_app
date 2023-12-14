@@ -163,11 +163,14 @@ def main():
     st.write(card_time)
     cls1,cls2,cls3=st.columns(3)
     with cls1:
-        xx0=cls1.markdown(f'###### 您的预约次数:  {card_time['预约次数'].to_list()[0]}')
+        tem=card_time['预约次数'].to_list()[0]
+        xx0=cls1.markdown(f'###### 您的预约次数:  {tem}')
     with cls2:
-        xx1=cls2.markdown(f'###### 您的开始日期:  {xxt0}')
+        tem=card_time['有效期'].to_list()[0]      
+        xx1=cls2.markdown(f'###### 您的有效期:  {tem}')
     with cls3:
-        xx2=cls3.markdown(f'###### 您的结束日期:  {xxt1}')
+        tem=card_time['预约时段是否可变'].to_list()[0]    
+        xx2=cls3.markdown(f'###### 您的桌号:  {tem}')
     
 
     
