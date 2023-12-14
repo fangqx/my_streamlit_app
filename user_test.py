@@ -177,7 +177,8 @@ def main():
     
     with st.expander("时间选择",expanded=True):
         cols1,cols2=st.columns(2)
-        st.write(xxt0)
+        st.write(xxt0.split('-'))
+        datetime.datetime
         
         #col0=st.date_input('开始日期',st.session_state.date_time,min_value =datetime.datetime.strptime(xxt0, '%m-%d-%Y').date(),max_value=datetime.datetime.strptime(xxt1, '%m-%d-%Y').date())
         #st.write(sel_new,card_name[:])
