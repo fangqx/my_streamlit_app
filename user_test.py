@@ -164,38 +164,36 @@ def main():
             #card_name = [a+b for a, b in zip(card_name, card_price)]
             with st.expander("学习时间选择",expanded=True):
                 #st.write(sel_new,card_name[:])
-                check =  any(item in sel_new for item in card_name[:])
-                if check is True:
-                    st.markdown(sel_new[0])
-                    
-                    cols=st.columns(2)
-                    col0=cols[0].date_input('开始日期',st.session_state.date_time)
-                    col1=cols[1].date_input('结束日期',st.session_state.date_time,)
-                    cols=st.columns(2)
-                    col2=cols[0].time_input('开始时间',value='now',step=3600)
-                    col3=cols[1].time_input('结束时间',value='now',step=3600)
-                    if 'date0' not in st.session_state:
-                        st.session_state.date0 = col0
-                    else:
-                        st.session_state.date0 = col0     
+                st.markdown(sel_new[0])
+                
+                cols=st.columns(2)
+                col0=cols[0].date_input('开始日期',st.session_state.date_time)
+                col1=cols[1].date_input('结束日期',st.session_state.date_time,)
+                cols=st.columns(2)
+                col2=cols[0].time_input('开始时间',value='now',step=3600)
+                col3=cols[1].time_input('结束时间',value='now',step=3600)
+                if 'date0' not in st.session_state:
+                    st.session_state.date0 = col0
+                else:
+                    st.session_state.date0 = col0     
 
-                    if 'date1' not in st.session_state:
-                        st.session_state.date1 = col1
-                    else:
-                        st.session_state.date1 = col1                         
+                if 'date1' not in st.session_state:
+                    st.session_state.date1 = col1
+                else:
+                    st.session_state.date1 = col1                         
 
-                    if 'time0' not in st.session_state:
-                        st.session_state.time0 = col2
-                    else:
-                        st.session_state.time0 = col2                         
-                    if 'time1' not in st.session_state:
-                        st.session_state.time1 = col3
-                    else:
-                        st.session_state.time1 = col3   
-                    if (col0<=col1) and (col2<=col3):
-                        st.write('您选择的是: ', '开始日期', col0, '结束日期', col1, '开始时间', col2, '结束时间', col3)    
-                    else:                
-                        st.write('请重新选择时间段')
+                if 'time0' not in st.session_state:
+                    st.session_state.time0 = col2
+                else:
+                    st.session_state.time0 = col2                         
+                if 'time1' not in st.session_state:
+                    st.session_state.time1 = col3
+                else:
+                    st.session_state.time1 = col3   
+                if (col0<=col1) and (col2<=col3):
+                    st.write('您选择的是: ', '开始日期', col0, '结束日期', col1, '开始时间', col2, '结束时间', col3)    
+                else:                
+                    st.write('请重新选择时间段')
 
             
             with st.expander("学习桌选择",expanded=True):
