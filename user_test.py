@@ -142,10 +142,10 @@ def main():
     
     if 'new_data' not in st.session_state:
         st.session_state.new_data = pd.DataFrame(columns=['姓名','手机号','日期','学习卡', '开始日期', '结束日期', '开始时间', '结束时间','学习桌','价格','折扣','最终价格'])
-    cols=st.columns(2)
-    with cols(0):
+    col_xxk=st.columns(2)
+    with col_xxk(0):
         st.markdown(f'#### 您的学习卡类型:')
-    with cols(1):
+    with col_xxk(1):
         xxk=your_data['学习卡'].astype(str).to_list()[0]
         st.write(xxk)
         
