@@ -273,9 +273,12 @@ def main():
         desk_check=time_check[time_check['学习桌'].astype(str)==st.session_state.desk]
         #st.write(desk_check)
         your_sel=user_data[user_data['手机号'].astype(str)==st.session_state.phone_num]
-        your_sel=your_sel[your_sel['学习桌'].astype(str)!=st.session_state.desk]
+        your_sel=your_sel[your_sel['学习卡'].astype(str)!=st.session_state.card_type]
         your_sel_time=your_sel.shape[0]
-    
+
+        your_time_check=your_sel[your_sel['日期'].astype(str)==str(st.session_state.date_sel)]
+        #st.write(day_check)
+        your_time_check=your_time_check[your_time_check['时间'].astype(str)==st.session_state.times]    
         
     else:
         your_sel_time=0
@@ -287,6 +290,9 @@ def main():
         
     if (len(user_data)>=1) and (desk_check.shape[0]>=1):
         st.markdown(f'##### 您选择的时间和桌号与他人冲突，请重新选择')
+    elif(len(user_data)>=1) and (your_time_check.shape[0]>=1):
+        st.markdown(f'##### 您选择的时间和上次选择的时间重合，请重新选择')
+            
     else:    
         check1 =  any(item in sel0 for item in desk_num[:])
         if (check1):    
