@@ -182,7 +182,7 @@ def main():
         st.write(ini_date)
         st.write(datetime.date(int(ini_date[0]),int(ini_date[1]),int(ini_date[2])))
         with cols1:
-            col0=st.date_input('开始日期',value=None,min_value =datetime.date(ini_date[0],ini_date[1],ini_date[2]),max_value=datetime.date(end_date[0],end_date[1],end_date[2]))
+            col0=st.date_input('开始日期',value=None,min_value =datetime.date(int(ini_date[0]),int(ini_date[1]),int(ini_date[2])),max_value=datetime.date(int(end_date[0]),int(end_date[1]),int(end_date[2])))
         #st.write(sel_new,card_name[:])
         with cols2:
             times=cols2.radio('时间段',times_sel)
