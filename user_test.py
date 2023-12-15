@@ -328,32 +328,6 @@ def main():
             st.dataframe(your_all_data)
 
 
-
-
-        
-                #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
-        with st.expander("修改学习计划",expanded=True):
-            df_new0=st.session_state.new_data
-            st.write('00',df_new0)
-            st.session_state.edited_df1 = st.data_editor(df_new0, num_rows="dynamic")  
-            form = st.form('selection')
-            def save_edits0():
-                st.session_state.df1 = st.session_state.edited_df1.copy()
-            #st.session_state.edited_df1 = st.session_state.new_data.copy()                
-            submitted = form.form_submit_button("修改计划",on_click=save_edits0)                 
-            if submitted:
-                df2=st.session_state.new_data
-                user_data_save(df2,'user_data_old.csv')
-                df1 = st.session_state.df1   
-                st.dataframe(df1)
-                user_data_save(df1,'user_data.csv')
-                st.session_state.new_data=df1
-                st.write(st.session_state.new_data)
-
-                              
-    
-   
-
 if __name__ == '__main__':
 
     main()
