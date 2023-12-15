@@ -211,7 +211,6 @@ def main():
         tem=card_time['预约时段是否可变'].to_list()[0]    
         xx2=cls3.markdown(f'###### 您的桌号:  {tem}')
 
-    
     with st.expander("学习时间选择",expanded=True):
         cols1,cols2=st.columns(2)
         ini_date=xxt0.split('-')
@@ -257,16 +256,12 @@ def main():
     check2 =  any(item in sel0 for item in desk_num[:])
     if (check1) and (len(sel_date)>=1):    
         df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone,'学习卡': st.session_state.card,'日期': sel_date,'时间': st.session_state.times,'学习桌': st.session_state.desk,},index=[st.session_state.new_data.shape[0]+1])   
-        with st.expander("确认学习计划",expanded=True):
-               
-
-            st.dataframe(df_new)
-            
+        with st.expander("确认学习计划",expanded=True):            
+            st.dataframe(df_new)     
             form0 = st.form('selection0')
             submitted0 = form0.form_submit_button("确认正确")
             if submitted0:
                 user_data_write(df_new,user_file)    
-   
                 
                 #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
         with st.expander("修改学习计划",expanded=True):
@@ -288,11 +283,6 @@ def main():
                 st.write(st.session_state.new_data)
 
                               
-    
-    d=st.sidebar.date_input('Date',st.session_state.date_time.date())
-    t=st.sidebar.time_input('Time',st.session_state.date_time.time())
-    t=f'{t}'.split('.')[0]
-    st.sidebar.write(f'The current date time is {d} {t}')
     
    
 
