@@ -169,7 +169,6 @@ def main():
     if not check_password():
         st.stop()
     st.title('自主学习--提高效率:heart:')
-    st.write(st.session_state.pass0)
     use_data=user_data_read('user_data.csv')
     st.write(use_data['手机号'].astype(str).to_list())
     your_data=use_data[use_data['手机号'].astype(str)==st.session_state.pass0]
@@ -269,14 +268,17 @@ def main():
         book_num=user_data[user_data['手机号']==st.session_state.phone_num].shape[0]
         #check time and desk
         other_user=user_data[user_data['手机号']!=st.session_state.phone_num]
+        st.write(other_user)
         day_check=other_user[other_user['日期']==st.session_state.date_sel]
+        st.write(day_check)
         time_check=day_check[day_check['时间']==st.session_state.times]
-        desk_number=time_check[time_check['学习桌']==st.session_state.times]
+        st.write(time_check)
+        desk_check=time_check[time_check['学习桌']==st.session_state.times]
+        st.write(desk_check)
         
     else:
         num0=0
-    st.write(st.session_state.date_sel)
-    if (len(user_data)>=1) and (desk_number.shape[0]>=1):
+    if (len(user_data)>=1) and (desk_check.shape[0]>=1):
         st.markdown(f'##### 您选择的时间和桌号与他人冲突，请重新选择')
     else:    
         check1 =  any(item in sel0 for item in desk_num[:])
