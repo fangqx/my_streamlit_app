@@ -165,12 +165,11 @@ def user_data_write(df,file_path):
 
 
 def main():    
-
     if not check_password():
         st.stop()
     st.title('自主学习--提高效率:heart:')
     use_data=user_data_read('user_data.csv')
-    st.write(use_data['手机号'].astype(str).to_list())
+    #st.write(use_data['手机号'].astype(str).to_list())
     your_data=use_data[use_data['手机号'].astype(str)==st.session_state.pass0]
     st.dataframe(your_data)
     data=up_datefile()
@@ -231,7 +230,7 @@ def main():
                 else:
                     st.session_state.date_sel = sel_date 
             else:
-                st.write('请选择日期')
+                st.write('请选择学习日期!!!')
             #st.write(sel_new,card_name[:])
         with cols2:
             times=cols2.radio('时间段',times_sel)
@@ -268,13 +267,13 @@ def main():
         book_num=user_data[user_data['手机号']==st.session_state.phone_num].shape[0]
         #check time and desk
         other_user=user_data[user_data['手机号'].astype(str)!=st.session_state.phone_num]
-        st.write(other_user['日期'].astype(str))
+        #st.write(other_user['日期'].astype(str))
         day_check=other_user[other_user['日期'].astype(str)==str(st.session_state.date_sel)]
-        st.write(day_check)
+        #st.write(day_check)
         time_check=day_check[day_check['时间'].astype(str)==st.session_state.times]
-        st.write(time_check)
+        #st.write(time_check)
         desk_check=time_check[time_check['学习桌'].astype(str)==st.session_state.desk]
-        st.write(desk_check)
+        #st.write(desk_check)
         
     else:
         num0=0
