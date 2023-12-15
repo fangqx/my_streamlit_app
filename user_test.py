@@ -315,14 +315,16 @@ def main():
             
             with st.form("myform"):
                 # Assign a key to the widget so it's automatically in session state
-                name = st.text_input("Enter your name below:", key="name")
                 submit_button = st.form_submit_button(
                     "确认正确", on_click=disable, disabled=st.session_state.disabled
                 )
             
                 if submit_button:
                     user_data_write(df_new,user_file) 
-               
+         with st.expander("查看学习计划",expanded=True):      
+             new_user_data=user_data_read(user_file)
+             your_all_data=user_data[user_data['手机号'].astype(str)==st.session_state.phone_num]
+             st.dataframe(your_all_data)
 
 
 
