@@ -226,19 +226,20 @@ def main():
         end_date=xxt1.split('-')
         with cols1:
             sel_date=st.date_input('开始日期',value=None,min_value =datetime.date(int(ini_date[0]),int(ini_date[1]),int(ini_date[2])),max_value=datetime.date(int(end_date[0]),int(end_date[1]),int(end_date[2])))
-        #st.write(sel_new,card_name[:])
+            if len(sel_date)>=1:
+                if 'date_sel' not in st.session_state:
+                    st.session_state.date_sel = sel_date
+                else:
+                    st.session_state.date_sel = sel_date 
+            else:
+                st.write('请选择日期')
+            #st.write(sel_new,card_name[:])
         with cols2:
             times=cols2.radio('时间段',times_sel)
-
-        if 'date_sel' not in st.session_state:
-            st.session_state.date_sel = sel_date
-        else:
-            st.session_state.date_sel = sel_date     
-            
-        if 'times' not in st.session_state:
-            st.session_state.times = times
-        else:
-            st.session_state.times = times     
+            if 'times' not in st.session_state:
+                st.session_state.times = times
+            else:
+                st.session_state.times = times     
         
     with st.expander("学习桌选择",expanded=True):
         desk_num=['桌号: 1','桌号: 2','桌号: 3','桌号: 5','桌号: 6','桌号: 7','桌号: 8','桌号: 9','桌号: 10','桌号: 11','桌号: 12','桌号: 13','桌号: 15','桌号: 16','桌号: 17']  #data['桌号'].dropna().unique().tolist()
@@ -279,7 +280,7 @@ def main():
         st.markdown(f'##### 您选择的时间和桌号与他人冲突，请重新选择')
     else:    
         check1 =  any(item in sel0 for item in desk_num[:])
-        if (check1) and (len(st.session_state.date_sel)>=1):    
+        if (check1):    
             df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone_num,'学习卡': st.session_state.card_type,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,},index=[num0+1])   
             with st.expander("确认学习计划",expanded=True):            
                 st.dataframe(df_new)     
