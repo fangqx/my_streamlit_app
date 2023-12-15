@@ -240,7 +240,7 @@ def main():
     with st.expander("学习桌选择",expanded=True):
         desk_num=['桌号: 1','桌号: 2','桌号: 3','桌号: 5','桌号: 6','桌号: 7','桌号: 8','桌号: 9','桌号: 10','桌号: 11','桌号: 12','桌号: 13','桌号: 15','桌号: 16','桌号: 17']  #data['桌号'].dropna().unique().tolist()
         col1, col2,col3 = st.columns(3)       
-        desk_ch1 = col1.radio(f"### 沉浸式课桌1-5", ['Option']+desk_num[:5],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
+        desk_ch1 = col1.radio(f"### 沉浸式课桌1-5", ['Option']+desk_num[:5],index=1,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
         desk_ch2 = col2.radio(f"### 沉浸式课桌6-10",  ['Option']+desk_num[5:10],index=0,captions=['No Selection','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧'])
         desk_ch3 = col3.radio(f"### 沉浸式课桌11-15",  ['Option']+desk_num[10:],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
         sel0 =  [desk_ch1,desk_ch2,desk_ch3]
@@ -255,7 +255,7 @@ def main():
             else:
                 st.session_state.desk = sel_new0[0]       
         else:                
-            st.write('请重新选择桌号')
+            st.write('请重新选择桌号,您可能选择了一个以上的桌号')
             
     user_file='user_schedule.csv'
     user_data = user_data_read(user_file)
