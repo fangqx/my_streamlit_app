@@ -226,7 +226,7 @@ def main():
         end_date=xxt1.split('-')
         with cols1:
             sel_date=st.date_input('开始日期',value=None,min_value =datetime.date(int(ini_date[0]),int(ini_date[1]),int(ini_date[2])),max_value=datetime.date(int(end_date[0]),int(end_date[1]),int(end_date[2])))
-            if sel_date !="":
+            if sel_date !=None:
                 if 'date_sel' not in st.session_state:
                     st.session_state.date_sel = sel_date
                 else:
