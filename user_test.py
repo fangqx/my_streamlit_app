@@ -212,9 +212,9 @@ def main():
             times=cols2.radio('时间段',times_sel)
 
         if 'date_sel1' not in st.session_state:
-            st.session_state.date0 = date_sel1
+            st.session_state.date0 = sel_date
         else:
-            st.session_state.date0 = date_sel1     
+            st.session_state.date0 = sel_date     
             
         if 'times' not in st.session_state:
             st.session_state.date0 = times
