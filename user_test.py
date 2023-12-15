@@ -175,11 +175,15 @@ def main():
     xxt0=your_data['开始日期'].astype(str).to_list()[0]
     xxt1=your_data['结束日期'].astype(str).to_list()[0]
     xxn=your_data['姓名'].astype(str).to_list()[0]
+    xxh=your_data['手机号'].astype(str).to_list()[0]
     if 'name' not in st.session_state:
         st.session_state.name = xxn
     else:
         st.session_state.name = xxn       
-    
+    if 'phone_num' not in st.session_state:
+        st.session_state.phone_num = xxh
+    else:
+        st.session_state.phone_num = xxh         
     if 'card_type' not in st.session_state:
         st.session_state.card_type=xxk
     else:
@@ -250,7 +254,7 @@ def main():
     st.write(st.session_state.date_sel)
     check1 =  any(item in sel0 for item in desk_num[:])
     if (check1):    
-        df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':use_data[use_data['手机号'].astype(str).tolist()[0],'学习卡': st.session_state.card,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,},index=[st.session_state.new_data.shape[0]+1])   
+        df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone_num,'学习卡': st.session_state.card,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,},index=[st.session_state.new_data.shape[0]+1])   
         with st.expander("确认学习计划",expanded=True):            
             st.dataframe(df_new)     
             form0 = st.form('selection0')
