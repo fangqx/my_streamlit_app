@@ -119,6 +119,9 @@ def user_data_read(file_path):
         #    contents = f.read()        
         #repo.update_file(content.path, commit_message,contents, content.sha)
         return df0
+    else:
+        df= pd.DataFrame()
+        return df
     
 
 def user_data_write(df,file_path):
@@ -259,10 +262,14 @@ def main():
             
     user_file='user_schedule.csv'
     user_data = user_data_read(user_file)
+    if len(user_data)>=1:
+        num0=user_data.shape(0)
+    else:
+        num0=0
     st.write(st.session_state.date_sel)
     check1 =  any(item in sel0 for item in desk_num[:])
     if (check1):    
-        df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone_num,'学习卡': st.session_state.card_type,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,},index=[len(user_data)+1])   
+        df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone_num,'学习卡': st.session_state.card_type,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,},index=[num0+1])   
         with st.expander("确认学习计划",expanded=True):            
             st.dataframe(df_new)     
             form0 = st.form('selection0')
