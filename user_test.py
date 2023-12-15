@@ -171,12 +171,10 @@ def main():
     use_data=user_data_read('user_data.csv')
     #st.write(use_data['手机号'].astype(str).to_list())
     your_data=use_data[use_data['手机号'].astype(str)==st.session_state.pass0]
-    st.dataframe(your_data)
+    #st.dataframe(your_data)
     data=up_datefile()
     #st.set_page_config(page_title="自主学习",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
-   
     st.session_state.date_time=datetime.datetime.now() + datetime.timedelta(hours=8) # Streamlit Cloud的时区是UTC，加8小时即北京时间
-    
     if 'new_data' not in st.session_state:
         st.session_state.new_data = pd.DataFrame(columns=['姓名','手机号','学习卡', '日期', '时间段', '学习桌','预约次数'])
     col_xxk1,col_xxk2,col_xxk3=st.columns(3)
@@ -261,7 +259,7 @@ def main():
             
     user_file='user_schedule.csv'
     user_data = user_data_read(user_file)
-    st.write(user_data)
+    #st.write(user_data)
     if len(user_data)>=1:
         num0=user_data.shape[0]
         book_num=user_data[user_data['手机号']==st.session_state.phone_num].shape[0]
