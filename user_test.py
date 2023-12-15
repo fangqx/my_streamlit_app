@@ -210,10 +210,10 @@ def main():
         with cols2:
             times=cols2.radio('时间段',times_sel)
 
-        if 'date_sel1' not in st.session_state:
-            st.session_state.date0 = sel_date
+        if 'date_sel' not in st.session_state:
+            st.session_state.date_sel = sel_date
         else:
-            st.session_state.date0 = sel_date     
+            st.session_state.date_sel = sel_date     
             
         if 'times' not in st.session_state:
             st.session_state.date0 = times
@@ -243,7 +243,7 @@ def main():
     user_file='user_schedule.csv'
     user_data = user_data_read(user_file)
     check1 =  any(item in sel0 for item in desk_num[:])
-    if (check1) and (len(sel_date)>=1):    
+    if (check1) and (len(date_sel)>=1):    
         df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone,'学习卡': st.session_state.card,'日期': sel_date,'时间': st.session_state.times,'学习桌': st.session_state.desk,},index=[st.session_state.new_data.shape[0]+1])   
         with st.expander("确认学习计划",expanded=True):            
             st.dataframe(df_new)     
