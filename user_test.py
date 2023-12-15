@@ -237,7 +237,6 @@ def main():
         desk_ch1 = col1.radio(f"### 沉浸式课桌1-5", ['Option']+desk_num[:5],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
         desk_ch2 = col2.radio(f"### 沉浸式课桌6-10",  ['Option']+desk_num[5:10],index=0,captions=['No Selection','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧','靠走廊外侧'])
         desk_ch3 = col3.radio(f"### 沉浸式课桌11-15",  ['Option']+desk_num[10:],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
-
         sel0 =  [desk_ch1,desk_ch2,desk_ch3]
         sel_new0=[]
         for item in sel0:
@@ -251,6 +250,7 @@ def main():
                 st.session_state.desk = sel_new0[0]       
         else:                
             st.write('请重新选择桌号')
+            
     user_file='user_schedule.csv'
     user_data = user_data_read(user_file)
     check2 =  any(item in sel0 for item in desk_num[:])
