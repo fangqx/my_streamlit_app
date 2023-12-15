@@ -180,7 +180,7 @@ def main():
         ini_date=xxt0.split('-')
         end_date=xxt1.split('-')
         with cols1:
-            col0=st.date_input('开始日期',st.session_state.date_time,min_value =datetime.date(ini_date[0],ini_date[1],ini_date[2]),max_value=datetime.date(end_date[0],end_date[1],end_date[2]))
+            col0=st.date_input('开始日期',value=None,min_value =datetime.date(ini_date[0],ini_date[1],ini_date[2]),max_value=datetime.date(end_date[0],end_date[1],end_date[2]))
         #st.write(sel_new,card_name[:])
         with cols2:
             times=cols2.radio('时间段',times_sel)
