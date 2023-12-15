@@ -180,7 +180,7 @@ def main():
     st.session_state.date_time=datetime.datetime.now() + datetime.timedelta(hours=8) # Streamlit Cloud的时区是UTC，加8小时即北京时间
     
     if 'new_data' not in st.session_state:
-        st.session_state.new_data = pd.DataFrame(columns=['姓名','手机号','学习卡', '日期', '时间段', '学习桌',])
+        st.session_state.new_data = pd.DataFrame(columns=['姓名','手机号','学习卡', '日期', '时间段', '学习桌','预约次数'])
     col_xxk1,col_xxk2,col_xxk3=st.columns(3)
     xxk=your_data['学习卡'].astype(str).to_list()[0]
     xxt0=your_data['开始日期'].astype(str).to_list()[0]
@@ -264,6 +264,13 @@ def main():
     user_data = user_data_read(user_file)
     if len(user_data)>=1:
         num0=user_data.shape(0)
+        book_num=user_data[user_data['手机号']==st.session_state.phone_num].shape[0]
+        #check time and desk
+        other_user=user_data[user_data['手机号']!=st.session_state.phone_num]
+        day_check=other_user[other_user['日期']==st.session_state.date_sel]
+        time_check=day_check[day_check['时间']==st.session_state.times]
+        desk_number=day_check[day_check['时间']==st.session_state.times]
+        
     else:
         num0=0
     st.write(st.session_state.date_sel)
