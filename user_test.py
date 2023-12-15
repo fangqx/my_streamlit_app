@@ -25,11 +25,11 @@ def check_password():
         """Checks whether a password entered by the user is correct."""
         if st.session_state["password"] in use_data['手机号'].astype(str).to_list():
             st.session_state["password_correct"] = True
-            pass=st.session_state["password"]
+            pass1=st.session_state["password"]
             if 'pass0' not in st.session_state:
-                st.session_state.pass0=pass
+                st.session_state.pass0=pass1
             else:
-                st.session_state.pass0=pass
+                st.session_state.pass0=pass1
             #del st.session_state["password"]  # Don't store the password.
         else:
             st.session_state["password_correct"] = False
