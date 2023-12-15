@@ -271,9 +271,9 @@ def main():
         st.write(other_user['日期'].astype(str))
         day_check=other_user[other_user['日期'].astype(str)==str(st.session_state.date_sel)]
         st.write(day_check)
-        time_check=day_check[day_check['时间']==st.session_state.times]
+        time_check=day_check[day_check['时间'].astype(str)==st.session_state.times]
         st.write(time_check)
-        desk_check=time_check[time_check['学习桌']==st.session_state.times]
+        desk_check=time_check[time_check['学习桌'].astype(str)==st.session_state.desk]
         st.write(desk_check)
         
     else:
