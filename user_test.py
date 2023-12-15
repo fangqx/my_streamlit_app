@@ -233,9 +233,9 @@ def main():
             st.session_state.date_sel = sel_date     
             
         if 'times' not in st.session_state:
-            st.session_state.date0 = times
+            st.session_state.times = times
         else:
-            st.session_state.date0 = times     
+            st.session_state.times = times     
         
     with st.expander("学习桌选择",expanded=True):
         desk_num=['桌号: 1','桌号: 2','桌号: 3','桌号: 5','桌号: 6','桌号: 7','桌号: 8','桌号: 9','桌号: 10','桌号: 11','桌号: 12','桌号: 13','桌号: 15','桌号: 16','桌号: 17']  #data['桌号'].dropna().unique().tolist()
