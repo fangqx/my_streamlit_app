@@ -268,7 +268,7 @@ def main():
         book_num=user_data[user_data['手机号']==st.session_state.phone_num].shape[0]
         #check time and desk
         other_user=user_data[user_data['手机号']!=st.session_state.phone_num]
-        st.write(other_user)
+        st.write(other_user['日期'].astype(str).to_list())
         day_check=other_user[other_user['日期']==st.session_state.date_sel]
         st.write(day_check['日期'].astype(str).to_list(),day_check)
         time_check=day_check[day_check['时间']==st.session_state.times]
