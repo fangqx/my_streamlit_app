@@ -306,11 +306,28 @@ def main():
         df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone_num,'学习卡': st.session_state.card_type,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,'预约次数':st.session_state.your_sel_time+1},index=[num0+1])   
         with st.expander("确认学习计划",expanded=True):            
             st.dataframe(df_new)     
-            form0 = st.form('selection0')
-            submitted0 = form0.form_submit_button("确认正确")
-            if submitted0:
-                user_data_write(df_new,user_file)    
-                
+            def disable():
+                st.session_state.disabled = True
+            
+            # Initialize disabled for form_submit_button to False
+            if "disabled" not in st.session_state:
+                st.session_state.disabled = False
+            
+            with st.form("myform"):
+                # Assign a key to the widget so it's automatically in session state
+                name = st.text_input("Enter your name below:", key="name")
+                submit_button = st.form_submit_button(
+                    "确认正确", on_click=disable, disabled=st.session_state.disabled
+                )
+            
+                if submit_button:
+                    user_data_write(df_new,user_file) 
+               
+
+
+
+
+        
                 #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
         with st.expander("修改学习计划",expanded=True):
             df_new0=st.session_state.new_data
