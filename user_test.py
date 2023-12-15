@@ -270,39 +270,42 @@ def main():
         other_user=user_data[user_data['手机号']!=st.session_state.phone_num]
         day_check=other_user[other_user['日期']==st.session_state.date_sel]
         time_check=day_check[day_check['时间']==st.session_state.times]
-        desk_number=day_check[day_check['时间']==st.session_state.times]
+        desk_number=time_check[time_check['桌号']==st.session_state.times]
         
     else:
         num0=0
     st.write(st.session_state.date_sel)
-    check1 =  any(item in sel0 for item in desk_num[:])
-    if (check1):    
-        df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone_num,'学习卡': st.session_state.card_type,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,},index=[num0+1])   
-        with st.expander("确认学习计划",expanded=True):            
-            st.dataframe(df_new)     
-            form0 = st.form('selection0')
-            submitted0 = form0.form_submit_button("确认正确")
-            if submitted0:
-                user_data_write(df_new,user_file)    
-                
-                #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
-        with st.expander("修改学习计划",expanded=True):
-            df_new0=st.session_state.new_data
-            st.write('00',df_new0)
-            st.session_state.edited_df1 = st.data_editor(df_new0, num_rows="dynamic")  
-            form = st.form('selection')
-            def save_edits0():
-                st.session_state.df1 = st.session_state.edited_df1.copy()
-            #st.session_state.edited_df1 = st.session_state.new_data.copy()                
-            submitted = form.form_submit_button("修改计划",on_click=save_edits0)                 
-            if submitted:
-                df2=st.session_state.new_data
-                user_data_save(df2,'user_data_old.csv')
-                df1 = st.session_state.df1   
-                st.dataframe(df1)
-                user_data_save(df1,'user_data.csv')
-                st.session_state.new_data=df1
-                st.write(st.session_state.new_data)
+    if desk_check.shape[0]>=1:
+        st.markdown(f'##### 您选择的时间和桌号与他人冲突，请重新选择')
+    else:    
+        check1 =  any(item in sel0 for item in desk_num[:])
+        if (check1) and (len(st.session_state.date_sel)>=1):    
+            df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone_num,'学习卡': st.session_state.card_type,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,},index=[num0+1])   
+            with st.expander("确认学习计划",expanded=True):            
+                st.dataframe(df_new)     
+                form0 = st.form('selection0')
+                submitted0 = form0.form_submit_button("确认正确")
+                if submitted0:
+                    user_data_write(df_new,user_file)    
+                    
+                    #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
+            with st.expander("修改学习计划",expanded=True):
+                df_new0=st.session_state.new_data
+                st.write('00',df_new0)
+                st.session_state.edited_df1 = st.data_editor(df_new0, num_rows="dynamic")  
+                form = st.form('selection')
+                def save_edits0():
+                    st.session_state.df1 = st.session_state.edited_df1.copy()
+                #st.session_state.edited_df1 = st.session_state.new_data.copy()                
+                submitted = form.form_submit_button("修改计划",on_click=save_edits0)                 
+                if submitted:
+                    df2=st.session_state.new_data
+                    user_data_save(df2,'user_data_old.csv')
+                    df1 = st.session_state.df1   
+                    st.dataframe(df1)
+                    user_data_save(df1,'user_data.csv')
+                    st.session_state.new_data=df1
+                    st.write(st.session_state.new_data)
 
                               
     
