@@ -179,6 +179,7 @@ def main():
         cols1,cols2=st.columns(2)
         ini_date=xxt0.split('-')
         end_date=xxt1.split('-')
+        st.write(datetime.date(ini_date[0],ini_date[1],ini_date[2]))
         with cols1:
             col0=st.date_input('开始日期',value=None,min_value =datetime.date(ini_date[0],ini_date[1],ini_date[2]),max_value=datetime.date(end_date[0],end_date[1],end_date[2]))
         #st.write(sel_new,card_name[:])
