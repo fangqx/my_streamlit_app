@@ -155,16 +155,9 @@ def user_data_write(df,file_path):
     return df
 
 
-def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-    # Save edits by copying edited dataframes to "original" slots in session state
 
-
-def main():
-    
+def main():    
     use_data=user_data_read('user_data.csv')
-    
     st.write(use_data['手机号'].astype(str).to_list())
     if not check_password(use_data):
         st.stop()
@@ -175,9 +168,6 @@ def main():
     #st.set_page_config(page_title="自主学习",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
    
     st.session_state.date_time=datetime.datetime.now() + datetime.timedelta(hours=8) # Streamlit Cloud的时区是UTC，加8小时即北京时间
-    
-    study_sel=['自习卡类型','自习时间','自习位置']
-    self_study=st.sidebar.radio('自习计划选择',study_sel,index=0)
     
     if 'new_data' not in st.session_state:
         st.session_state.new_data = pd.DataFrame(columns=['姓名','手机号','学习卡', '日期', '时间段', '学习桌',])
