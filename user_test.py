@@ -116,6 +116,45 @@ def user_data_read(file_path):
         st.write('个人信息不存在')
     return df0
 
+def user_data_write(df,file_path):
+    repo_owner = 'fangqx'
+    repo_name = 'my_streamlit_app'
+    file_path = file_path
+    token = st.secrets["TOKEN"]
+    commit_message = 'create file'
+    github = Github(token)
+    repo = github.get_user(repo_owner).get_repo(repo_name)
+    url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_path}'
+    #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
+    #response = requests.get(url)
+    #st.write(response.content)  
+    all_files = []
+    all = repo.get_contents("")
+    while all:
+        file_content = all.pop(0)
+        if file_content.type == "dir":
+            all.extend(repo.get_contents(file_content.path))
+        else:
+            file = file_content
+            all_files.append(str(file).replace('ContentFile(path="','').replace('")',''))
+    #st.write(all_files)
+    git_file=file_path
+    if git_file in all_files:
+        content = repo.get_contents(git_file)
+        df0 = pd.read_csv(url)
+        df=df0._append(df)
+        df.to_csv('tem.txt', index=False)       
+        with open('tem.txt', 'rb') as f:
+            contents = f.read()        
+        repo.update_file(content.path, commit_message,contents, content.sha)
+    else:
+        df.to_csv('tem.txt', index=False)       
+        with open('tem.txt', 'rb') as f:
+            contents = f.read()                
+        repo.create_file((content.path, "init commit", contents)
+    return df
+
+
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -141,7 +180,7 @@ def main():
     self_study=st.sidebar.radio('自习计划选择',study_sel,index=0)
     
     if 'new_data' not in st.session_state:
-        st.session_state.new_data = pd.DataFrame(columns=['姓名','手机号','日期','学习卡', '开始日期', '结束日期', '开始时间', '结束时间','学习桌','价格','折扣','最终价格'])
+        st.session_state.new_data = pd.DataFrame(columns=['姓名','手机号','学习卡', '日期', '时间段', '学习桌',])
     col_xxk1,col_xxk2,col_xxk3=st.columns(3)
     xxk=your_data['学习卡'].astype(str).to_list()[0]
     xxt0=your_data['开始日期'].astype(str).to_list()[0]
@@ -171,26 +210,28 @@ def main():
     with cls3:
         tem=card_time['预约时段是否可变'].to_list()[0]    
         xx2=cls3.markdown(f'###### 您的桌号:  {tem}')
-    
 
     
-    
-    with st.expander("时间选择",expanded=True):
+    with st.expander("学习时间选择",expanded=True):
         cols1,cols2=st.columns(2)
         ini_date=xxt0.split('-')
         end_date=xxt1.split('-')
-        st.write(ini_date)
-        st.write(datetime.date(int(ini_date[0]),int(ini_date[1]),int(ini_date[2])))
         with cols1:
-            col0=st.date_input('开始日期',value=None,min_value =datetime.date(int(ini_date[0]),int(ini_date[1]),int(ini_date[2])),max_value=datetime.date(int(end_date[0]),int(end_date[1]),int(end_date[2])))
+            sel_date=st.date_input('开始日期',value=None,min_value =datetime.date(int(ini_date[0]),int(ini_date[1]),int(ini_date[2])),max_value=datetime.date(int(end_date[0]),int(end_date[1]),int(end_date[2])))
         #st.write(sel_new,card_name[:])
         with cols2:
             times=cols2.radio('时间段',times_sel)
+
+        if 'date_sel1' not in st.session_state:
+            st.session_state.date0 = date_sel1
+        else:
+            st.session_state.date0 = date_sel1     
+            
         if 'times' not in st.session_state:
             st.session_state.date0 = times
         else:
             st.session_state.date0 = times     
-
+        
     with st.expander("学习桌选择",expanded=True):
         desk_num=['桌号: 1','桌号: 2','桌号: 3','桌号: 5','桌号: 6','桌号: 7','桌号: 8','桌号: 9','桌号: 10','桌号: 11','桌号: 12','桌号: 13','桌号: 15','桌号: 16','桌号: 17']  #data['桌号'].dropna().unique().tolist()
         col1, col2,col3 = st.columns(3)       
@@ -211,66 +252,21 @@ def main():
                 st.session_state.desk = sel_new0[0]       
         else:                
             st.write('请重新选择桌号')
-            
-    with st.expander("个人信息输入",expanded=True):
-        if "visibility" not in st.session_state:
-            st.session_state.visibility = "visible"
-            st.session_state.disabled = False
-        
-        col10, col20, col30 = st.columns(3)                
-        with col10:
-            text_input0 = st.text_input(
-                "您的姓名 👇",
-                label_visibility=st.session_state.visibility,
-                disabled=st.session_state.disabled,
-            )
-            if text_input0:
-                st.write("You entered: ", text_input0)
-                if 'name' not in st.session_state:
-                    st.session_state.name = text_input0
-                else:
-                    st.session_state.name = text_input0   
-        with col20:
-            text_input1 = st.text_input(
-                "您的手机号 👇",
-                label_visibility=st.session_state.visibility,
-                disabled=st.session_state.disabled,
-            )
-        
-            if text_input1:
-                st.write("You entered: ", text_input1)
-
-                if 'phone' not in st.session_state:
-                    st.session_state.phone = text_input1
-                else:
-                    st.session_state.phone = text_input1          
-        with col30:
-            text_input2 = st.text_input(
-                "折扣：100-50 👇", value=100
-                
-            )
-            if text_input2:
-                st.write("You entered: ", text_input2)
-                if 'percent' not in st.session_state:
-                    st.session_state.percent = text_input2
-                else:
-                    st.session_state.percent = text_input2                      
-          
-    check1 =  any(item in sel for item in card_name[:])
+    user_file='user_schedule.csv'
+    user_data = user_data_read(user_file)
     check2 =  any(item in sel0 for item in desk_num[:])
-    if (check1) and (check2) and (text_input0) and (text_input1) and (text_input2):
-        if 'final_price' not in st.session_state:
-            st.session_state.final_price = float(st.session_state.percent)*float(st.session_state.price_sel0['价格'].to_list()[0])*0.01
-        else:
-            st.session_state.final_price = float(st.session_state.percent)*float(st.session_state.price_sel0['价格'].to_list()[0])*0.01              
-        df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone,'日期':st.session_state.date_time,'学习卡': st.session_state.card,'开始日期': st.session_state.date0,'结束日期': st.session_state.date1,'开始时间': st.session_state.time0,'结束时间': st.session_state.time1,'学习桌': st.session_state.desk,'价格':st.session_state.price_sel0['价格'].to_list()[0],'折扣':st.session_state.percent,'最终价格':st.session_state.final_price},index=[st.session_state.new_data.shape[0]+1])   
+    if (check1) and (len(sel_date)>=1):    
+        df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone,'学习卡': st.session_state.card,'日期': sel_date,'时间': st.session_state.times,'学习桌': st.session_state.desk,},index=[st.session_state.new_data.shape[0]+1])   
         with st.expander("确认学习计划",expanded=True):
+               
+
             st.dataframe(df_new)
+            
             form0 = st.form('selection0')
             submitted0 = form0.form_submit_button("确认正确")
             if submitted0:
-                st.session_state.new_data = pd.concat([st.session_state.new_data, df_new], axis=0)
-                st.dataframe(st.session_state.new_data)                        
+                user_data_write(df_new,user_file)    
+   
                 
                 #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
         with st.expander("修改学习计划",expanded=True):
