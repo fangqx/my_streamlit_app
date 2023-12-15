@@ -275,7 +275,7 @@ def main():
     else:
         num0=0
     st.write(st.session_state.date_sel)
-    if desk_check.shape[0]>=1:
+    if (len(user_data)>=1) and (desk_number.shape[0]>=1):
         st.markdown(f'##### 您选择的时间和桌号与他人冲突，请重新选择')
     else:    
         check1 =  any(item in sel0 for item in desk_num[:])
