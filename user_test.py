@@ -274,12 +274,13 @@ def main():
         #st.write(desk_check)
         your_sel=user_data[user_data['手机号'].astype(str)==st.session_state.phone_num]
         your_sel=your_sel[your_sel['学习卡'].astype(str)!=st.session_state.card_type]
+        st.write(your_sel)
         your_sel_time=your_sel.shape[0]
 
         your_time_check=your_sel[your_sel['日期'].astype(str)==str(st.session_state.date_sel)]
-        #st.write(day_check)
+        st.write(your_time_check)
         your_time_check=your_time_check[your_time_check['时间'].astype(str)==st.session_state.times]    
-        
+        st.write(your_time_check)
     else:
         your_sel_time=0
         num0=0
