@@ -161,7 +161,7 @@ def main():
     if not check_password(use_data):
         st.stop()
     st.title('自主学习--提高效率:heart:')
-    st.write(st.session_state["password"])
+    st.write(st.session_state.password)
     your_data=use_data[use_data['手机号'].astype(str)==st.session_state["password"]]
     st.dataframe(your_data)
     data=up_datefile()
