@@ -221,7 +221,7 @@ def main():
         ini_date=xxt0.split('-')
         end_date=xxt1.split('-')
         with cols1:
-            sel_date=st.date_input('开始日期',value=datetime.date(int(ini_date[0]),int(ini_date[1]),int(ini_date[2])),min_value =datetime.date(int(ini_date[0]),int(ini_date[1]),int(ini_date[2])),max_value=datetime.date(int(end_date[0]),int(end_date[1]),int(end_date[2])))
+            sel_date=st.date_input('日期',value=datetime.date(int(ini_date[0]),int(ini_date[1]),int(ini_date[2])),min_value =datetime.date(int(ini_date[0]),int(ini_date[1]),int(ini_date[2])),max_value=datetime.date(int(end_date[0]),int(end_date[1]),int(end_date[2])))
             if sel_date !=None:
                 if 'date_sel' not in st.session_state:
                     st.session_state.date_sel = sel_date
@@ -272,15 +272,25 @@ def main():
         #st.write(time_check)
         desk_check=time_check[time_check['学习桌'].astype(str)==st.session_state.desk]
         #st.write(desk_check)
+        your_sel=user_data[user_data['手机号'].astype(str)==st.session_state.phone_num]
+        your_sel=your_sel[your_sel['学习桌'].astype(str)!=st.session_state.desk]
+        your_sel_time=your_sel.shape[0]
+    
         
     else:
+        your_sel_time=0
         num0=0
+    if 'your_sel_time' not in st.session_state:
+        st.session_state.your_sel_time = your_sel_time
+    else:
+        st.session_state.your_sel_time = your_sel_time   
+        
     if (len(user_data)>=1) and (desk_check.shape[0]>=1):
         st.markdown(f'##### 您选择的时间和桌号与他人冲突，请重新选择')
     else:    
         check1 =  any(item in sel0 for item in desk_num[:])
         if (check1):    
-            df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone_num,'学习卡': st.session_state.card_type,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,},index=[num0+1])   
+            df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone_num,'学习卡': st.session_state.card_type,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,'预约次数':st.session_state.your_sel_time+1},index=[num0+1])   
             with st.expander("确认学习计划",expanded=True):            
                 st.dataframe(df_new)     
                 form0 = st.form('selection0')
