@@ -18,8 +18,9 @@ from io import BytesIO
 from github import Github
 import hmac
 
-def check_password(use_data):
-    """Returns `True` if the user had the correct password."""    
+def check_password():
+    """Returns `True` if the user had the correct password."""  
+    use_data=user_data_read('user_data.csv')
     def password_entered():
         """Checks whether a password entered by the user is correct."""
         if st.session_state["password"] in use_data['手机号'].astype(str).to_list():
@@ -160,12 +161,13 @@ def user_data_write(df,file_path):
 
 
 def main():    
-    use_data=user_data_read('user_data.csv')
-    st.write(use_data['手机号'].astype(str).to_list())
+
     if not check_password(use_data):
         st.stop()
     st.title('自主学习--提高效率:heart:')
     st.write(st.session_state.pass)
+    use_data=user_data_read('user_data.csv')
+    st.write(use_data['手机号'].astype(str).to_list())
     your_data=use_data[use_data['手机号'].astype(str)==st.session_state.pass]
     st.dataframe(your_data)
     data=up_datefile()
