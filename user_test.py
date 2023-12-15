@@ -24,6 +24,10 @@ def check_password(use_data):
         """Checks whether a password entered by the user is correct."""
         if st.session_state["password"] in use_data['手机号'].astype(str).to_list():
             st.session_state["password_correct"] = True
+            if 'pass' not in st.session_state:
+                st.session_state.pass=st.session_state["password"]
+            else:
+                st.session_state.pass=st.session_state["password"]
             #del st.session_state["password"]  # Don't store the password.
         else:
             st.session_state["password_correct"] = False
@@ -161,8 +165,8 @@ def main():
     if not check_password(use_data):
         st.stop()
     st.title('自主学习--提高效率:heart:')
-    st.write(st.session_state.password)
-    your_data=use_data[use_data['手机号'].astype(str)==st.session_state["password"]]
+    st.write(st.session_state.pass)
+    your_data=use_data[use_data['手机号'].astype(str)==st.session_state.pass]
     st.dataframe(your_data)
     data=up_datefile()
     #st.set_page_config(page_title="自主学习",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
