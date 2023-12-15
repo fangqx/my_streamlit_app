@@ -216,7 +216,7 @@ def main():
         tem=card_time['预约时段是否可变'].to_list()[0]    
         xx2=cls3.markdown(f'###### 您的桌号:  {tem}')
     st.markdown(f'#### 请预约您的自修时间')
-    with st.expander("学习时间选择",expanded=True):
+    with st.expander("学习时间选择",expanded=False):
         cols1,cols2=st.columns(2)
         ini_date=xxt0.split('-')
         end_date=xxt1.split('-')
@@ -237,7 +237,7 @@ def main():
             else:
                 st.session_state.times = times     
         
-    with st.expander("学习桌选择",expanded=True):
+    with st.expander("学习桌选择",expanded=False):
         desk_num=['桌号: 1','桌号: 2','桌号: 3','桌号: 5','桌号: 6','桌号: 7','桌号: 8','桌号: 9','桌号: 10','桌号: 11','桌号: 12','桌号: 13','桌号: 15','桌号: 16','桌号: 17']  #data['桌号'].dropna().unique().tolist()
         #col1, col2,col3 = st.columns(3)       
         #desk_ch1 = col1.radio(f"### 沉浸式课桌1-5", ['Option']+desk_num[:5],index=1,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
@@ -301,7 +301,7 @@ def main():
             
     else:    
         df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone_num,'学习卡': st.session_state.card_type,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,'预约次数':st.session_state.your_sel_time+1},index=[num0+1])   
-        with st.expander("确认学习计划",expanded=True):            
+        with st.expander("确认学习计划",expanded=False):            
             st.dataframe(df_new)     
             def disable():
                 st.session_state.disabled = True
