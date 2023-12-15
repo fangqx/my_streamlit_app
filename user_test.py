@@ -169,7 +169,7 @@ def main():
     st.write(st.session_state.pass0)
     use_data=user_data_read('user_data.csv')
     st.write(use_data['手机号'].astype(str).to_list())
-    your_data=use_data[use_data['手机号'].astype(str)==st.session_state.pass]
+    your_data=use_data[use_data['手机号'].astype(str)==st.session_state.pass0]
     st.dataframe(your_data)
     data=up_datefile()
     #st.set_page_config(page_title="自主学习",page_icon=":rainbow:",layout="wide",initial_sidebar_state="auto")
