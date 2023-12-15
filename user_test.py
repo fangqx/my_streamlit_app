@@ -270,7 +270,7 @@ def main():
         other_user=user_data[user_data['手机号']!=st.session_state.phone_num]
         st.write(other_user)
         day_check=other_user[other_user['日期']==st.session_state.date_sel]
-        st.write(other_user[other_user['日期'],day_check)
+        st.write(other_user[other_user['日期']],day_check)
         time_check=day_check[day_check['时间']==st.session_state.times]
         st.write(time_check)
         desk_check=time_check[time_check['学习桌']==st.session_state.times]
