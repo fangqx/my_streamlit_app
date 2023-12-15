@@ -159,7 +159,7 @@ def user_data_write(df,file_path):
         df.to_csv('tem.txt', index=False)       
         with open('tem.txt', 'rb') as f:
             contents = f.read()                
-        repo.create_file(content.path, "init commit", contents)
+        repo.create_file(git_file, "init commit", contents)
     return df
 
 
