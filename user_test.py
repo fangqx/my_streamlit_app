@@ -321,7 +321,8 @@ def main():
             
                 if submit_button:
                     user_data_write(df_new,user_file) 
-         with st.expander("查看学习计划",expanded=True):      
+                    
+         with st.expander("查看学习计划",expanded=False):      
              new_user_data=user_data_read(user_file)
              your_all_data=user_data[user_data['手机号'].astype(str)==st.session_state.phone_num]
              st.dataframe(your_all_data)
