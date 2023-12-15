@@ -270,7 +270,7 @@ def main():
         other_user=user_data[user_data['手机号']!=st.session_state.phone_num]
         day_check=other_user[other_user['日期']==st.session_state.date_sel]
         time_check=day_check[day_check['时间']==st.session_state.times]
-        desk_number=time_check[time_check['桌号']==st.session_state.times]
+        desk_number=time_check[time_check['学习桌']==st.session_state.times]
         
     else:
         num0=0
