@@ -18,11 +18,11 @@ from io import BytesIO
 from github import Github
 import hmac
 
-def check_password(user_data):
+def check_password(use_data):
     """Returns `True` if the user had the correct password."""    
     def password_entered():
         """Checks whether a password entered by the user is correct."""
-        if st.session_state["password"] in user_data['手机号'].astype(str).to_list():
+        if st.session_state["password"] in use_data['手机号'].astype(str).to_list():
             st.session_state["password_correct"] = True
             #del st.session_state["password"]  # Don't store the password.
         else:
