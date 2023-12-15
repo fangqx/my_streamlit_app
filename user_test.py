@@ -112,9 +112,8 @@ def user_data_read(file_path):
         #with open('tem.txt', 'rb') as f:
         #    contents = f.read()        
         #repo.update_file(content.path, commit_message,contents, content.sha)
-    else:
-        st.write('个人信息不存在')
-    return df0
+        return df0
+    
 
 def user_data_write(df,file_path):
     repo_owner = 'fangqx'
