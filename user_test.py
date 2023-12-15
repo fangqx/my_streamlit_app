@@ -264,7 +264,7 @@ def main():
     user_data = user_data_read(user_file)
     st.write(user_data)
     if len(user_data)>=1:
-        num0=user_data.shape(0)
+        num0=user_data.shape[0]
         book_num=user_data[user_data['手机号']==st.session_state.phone_num].shape[0]
         #check time and desk
         other_user=user_data[user_data['手机号']!=st.session_state.phone_num]
