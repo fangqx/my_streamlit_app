@@ -163,7 +163,7 @@ def user_data_write(df,file_path):
 
 def main():    
 
-    if not check_password(use_data):
+    if not check_password():
         st.stop()
     st.title('自主学习--提高效率:heart:')
     st.write(st.session_state.pass0)
