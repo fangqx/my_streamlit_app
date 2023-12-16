@@ -333,8 +333,7 @@ def main():
                     text_input0 = st.text_input(
                         "您的姓名 👇",
                         label_visibility=st.session_state.visibility,
-                        disabled=st.session_state.disabled,
-                    )
+                        disabled=st.session_state.disabled)
                     if text_input0:
                         st.write("You entered: ", text_input0)
                         if 'name' not in st.session_state:
@@ -357,9 +356,7 @@ def main():
                             st.session_state.phone = text_input1          
                 with col30:
                     text_input2 = st.text_input(
-                        "折扣：100-50 👇", value=100
-                        
-                    )
+                        "折扣：100-50 👇", value=100)
                     if text_input2:
                         st.write("You entered: ", text_input2)
                         if 'percent' not in st.session_state:
