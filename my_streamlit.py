@@ -125,6 +125,80 @@ def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
     # Save edits by copying edited dataframes to "original" slots in session state
+def user_data_read(file_path):
+    repo_owner = 'fangqx'
+    repo_name = 'my_streamlit_app'
+    file_path = file_path
+    token = st.secrets["TOKEN"]
+    commit_message = 'create file'
+    github = Github(token)
+    repo = github.get_user(repo_owner).get_repo(repo_name)
+    url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_path}'
+    #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
+    #response = requests.get(url)
+    #st.write(response.content)  
+    all_files = []
+    all = repo.get_contents("")
+    while all:
+        file_content = all.pop(0)
+        if file_content.type == "dir":
+            all.extend(repo.get_contents(file_content.path))
+        else:
+            file = file_content
+            all_files.append(str(file).replace('ContentFile(path="','').replace('")',''))
+    #st.write(all_files)
+    git_file=file_path
+    if git_file in all_files:
+        content = repo.get_contents(git_file)
+        df0 = pd.read_csv(url)
+        #df0=df0._append(df)
+        #df0.to_csv('tem.txt', index=False)       
+        #with open('tem.txt', 'rb') as f:
+        #    contents = f.read()        
+        #repo.update_file(content.path, commit_message,contents, content.sha)
+        return df0
+    else:
+        df= pd.DataFrame()
+        return df
+    
+
+def user_data_write(df,file_path):
+    repo_owner = 'fangqx'
+    repo_name = 'my_streamlit_app'
+    file_path = file_path
+    token = st.secrets["TOKEN"]
+    commit_message = 'create file'
+    github = Github(token)
+    repo = github.get_user(repo_owner).get_repo(repo_name)
+    url = f'https://raw.githubusercontent.com/{repo_owner}/{repo_name}/master/{file_path}'
+    #url=f'https://github.com/{repo_owner}/{repo_name}/blob/master/test.csv'
+    #response = requests.get(url)
+    #st.write(response.content)  
+    all_files = []
+    all = repo.get_contents("")
+    while all:
+        file_content = all.pop(0)
+        if file_content.type == "dir":
+            all.extend(repo.get_contents(file_content.path))
+        else:
+            file = file_content
+            all_files.append(str(file).replace('ContentFile(path="','').replace('")',''))
+    #st.write(all_files)
+    git_file=file_path
+    if git_file in all_files:
+        content = repo.get_contents(git_file)
+        #df0 = pd.read_csv(url)
+        #df=df0._append(df)
+        df.to_csv('tem.txt', index=False)       
+        with open('tem.txt', 'rb') as f:
+            contents = f.read()        
+        repo.update_file(content.path, commit_message,contents, content.sha)
+    else:
+        df.to_csv('tem.txt', index=False)       
+        with open('tem.txt', 'rb') as f:
+            contents = f.read()                
+        repo.create_file(git_file, "init commit", contents)
+    return df
 
 
 def main():
@@ -166,7 +240,7 @@ def main():
             card_price=['--价格: '+str(x)+' 元' for x in card_price0]
             #card_name = [a+b for a, b in zip(card_name, card_price)]
             
-            with st.expander("学习卡选择",expanded=True):
+            with st.expander("学习卡选择",expanded=False):
                 #st.markdown(f'### 学习计划')
                 col1, col2,col3 = st.columns(3)       
                 col1_choice = col1.radio(f"### 单次卡", ['Option']+card_name[:4],index=0,captions=['No Selection']+card_price[:4])
@@ -192,7 +266,7 @@ def main():
                     st.write('请重新选择')
                 
             
-            with st.expander("学习时间选择",expanded=True):
+            with st.expander("学习时间选择",expanded=False):
                 #st.write(sel_new,card_name[:])
                 check =  any(item in sel_new for item in card_name[:])
                 if check is True:
@@ -228,7 +302,7 @@ def main():
                         st.write('请重新选择时间段')
 
             
-            with st.expander("学习桌选择",expanded=True):
+            with st.expander("学习桌选择",expanded=False):
                 desk_num=['桌号: 1','桌号: 2','桌号: 3','桌号: 5','桌号: 6','桌号: 7','桌号: 8','桌号: 9','桌号: 10','桌号: 11','桌号: 12','桌号: 13','桌号: 15','桌号: 16','桌号: 17']  #data['桌号'].dropna().unique().tolist()
                 col1, col2,col3 = st.columns(3)       
                 desk_ch1 = col1.radio(f"### 沉浸式课桌1-5", ['Option']+desk_num[:5],index=0,captions=['No Selection','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧','靠墙内侧'])
@@ -249,7 +323,7 @@ def main():
                 else:                
                     st.write('请重新选择桌号')
                     
-            with st.expander("个人信息输入",expanded=True):
+            with st.expander("个人信息输入",expanded=False):
                 if "visibility" not in st.session_state:
                     st.session_state.visibility = "visible"
                     st.session_state.disabled = False
@@ -310,9 +384,8 @@ def main():
                         st.dataframe(st.session_state.new_data)                        
                         
                         #st.session_state.new_data = st.data_editor(df_new0,num_rows='dynamic')
-                with st.expander("修改学习计划",expanded=True):
+                with st.expander("修改学习计划",expanded=False):
                     df_new0=st.session_state.new_data
-                    st.write('00',df_new0)
                     st.session_state.edited_df1 = st.data_editor(df_new0, num_rows="dynamic")  
                     form = st.form('selection')
                     def save_edits0():
@@ -327,15 +400,33 @@ def main():
                         user_data_save(df1,'user_data.csv')
                         st.session_state.new_data=df1
                         st.write(st.session_state.new_data)
+                        
+            with st.expander("查看-修改学习计划预约",expanded=False):
+                user_file='user_schedule.csv'
+                new_user_data=user_data_read(user_file)
+                text_input1 = st.text_input(
+                    "您的手机号 👇",
+                    label_visibility=st.session_state.visibility,
+                    disabled=st.session_state.disabled,)
+                if text_input1:
+                    your_all_data=user_data[user_data['手机号'].astype(str)==st.session_state.phone_num]
+                    other_all_data=user_data[user_data['手机号'].astype(str)!=st.session_state.phone_num]
 
-                              
-    
-    d=st.sidebar.date_input('Date',st.session_state.date_time.date())
-    t=st.sidebar.time_input('Time',st.session_state.date_time.time())
-    t=f'{t}'.split('.')[0]
-    st.sidebar.write(f'The current date time is {d} {t}')
-    
-   
+                    st.dataframe(your_all_data,hide_index=True)
+                    st.session_state.edited_df1 = st.data_editor(your_all_data, num_rows="dynamic")  
+                    form = st.form('selection')
+                    def save_edits1():
+                        st.session_state.df1 = st.session_state.edited_df1.copy()
+                    #st.session_state.edited_df1 = st.session_state.new_data.copy()                
+                    submitted = form.form_submit_button("修改预约计划",on_click=save_edits1)                 
+                    if submitted:
+                        df1 = st.session_state.df1   
+                        st.dataframe(df1)
+                        df_all=other_all_data._append(df1)
+                        user_data_write(df_all,'user_schedule.csv')
+
+
+
 
 if __name__ == '__main__':
 
