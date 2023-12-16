@@ -403,9 +403,8 @@ def main():
                 new_user_data=user_data_read(user_file)
                 text_input2 = st.text_input("您的手机号👇:",)
                 if text_input2:
-                    your_all_data=user_data[user_data['手机号'].astype(str)==st.session_state.phone_num]
-                    other_all_data=user_data[user_data['手机号'].astype(str)!=st.session_state.phone_num]
-
+                    your_all_data=user_data[user_data['手机号'].astype(str)==text_input2]
+                    other_all_data=user_data[user_data['手机号'].astype(str)!=text_input2]
                     st.dataframe(your_all_data,hide_index=True)
                     st.session_state.edited_df1 = st.data_editor(your_all_data, num_rows="dynamic")  
                     form = st.form('selection')
