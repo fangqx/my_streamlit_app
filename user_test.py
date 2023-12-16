@@ -283,8 +283,6 @@ def main():
         your_sel=user_data[user_data['手机号'].astype(str)==st.session_state.phone_num]
         your_sel=your_sel[your_sel['学习卡'].astype(str)==st.session_state.card_type]
         your_sel_time=your_sel.shape[0]
-        st.write(your_sel_time)
-
         your_time_check=your_sel[your_sel['日期'].astype(str)==str(st.session_state.date_sel)]
         your_time_check=your_time_check[your_time_check['时间'].astype(str)==st.session_state.times]    
     else:
