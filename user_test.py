@@ -322,7 +322,7 @@ def main():
     with st.expander("您的学习计划预约",expanded=False):
             new_user_data=user_data_read(user_file)
             your_all_data=user_data[user_data['手机号'].astype(str)==st.session_state.phone_num]
-            st.dataframe(your_all_data)
+            st.dataframe(your_all_data,hide_index=True)
 
 
 if __name__ == '__main__':
