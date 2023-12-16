@@ -401,11 +401,9 @@ def main():
             with st.expander("查看-修改学习计划预约",expanded=False):
                 user_file='user_schedule.csv'
                 new_user_data=user_data_read(user_file)
-                text_input1 = st.text_input(
-                    "您的手机号 👇",
-                    label_visibility=st.session_state.visibility,
-                    disabled=st.session_state.disabled,)
-                if text_input1:
+                text_input2 = st.text_input(
+                    "您的手机号 👇",)
+                if text_input2:
                     your_all_data=user_data[user_data['手机号'].astype(str)==st.session_state.phone_num]
                     other_all_data=user_data[user_data['手机号'].astype(str)!=st.session_state.phone_num]
 
