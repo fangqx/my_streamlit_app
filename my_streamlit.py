@@ -399,7 +399,7 @@ def main():
                 user_file='user_schedule.csv'
                 new_user_data=user_data_read(user_file)
                 text_input2 = st.text_input("您的手机号👇:",)
-                st.write(new_user_data)
+                st.write(text_input2)
                 if text_input2:
                     your_all_data=user_data[user_data['手机号'].astype(str)==text_input2]
                     other_all_data=user_data[user_data['手机号'].astype(str)!=text_input2]
