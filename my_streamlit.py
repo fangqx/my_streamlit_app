@@ -402,8 +402,8 @@ def main():
                 
                 if text_input2:
                     st.write(text_input2)
-                    your_all_data=user_data[user_data['手机号'].astype(str)==str(text_input2)]
-                    other_all_data=user_data[user_data['手机号'].astype(str)!=str(text_input2)]
+                    your_all_data=new_user_data[new_user_data['手机号'].astype(str)==str(text_input2)]
+                    other_all_data=new_user_data[new_user_data['手机号'].astype(str)!=str(text_input2)]
                     st.dataframe(your_all_data,hide_index=True)
                     st.session_state.edited_df1 = st.data_editor(your_all_data, num_rows="dynamic")  
                     form = st.form('selection')
