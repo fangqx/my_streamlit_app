@@ -299,7 +299,7 @@ def main():
         st.markdown(f'##### 您选择的时间和上次选择的时间重合，请重新选择')
             
     else:    
-        df_new = pd.DataFrame({'姓名':st.session_state.name,'手机号':st.session_state.phone_num,'学习卡': st.session_state.card_type,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,'预约次数':st.session_state.your_sel_time+1},index=[num0+1])   
+        df_new = pd.DataFrame({'Date':datetime.date.today,'姓名':st.session_state.name,'手机号':st.session_state.phone_num,'学习卡': st.session_state.card_type,'日期': st.session_state.date_sel,'时间': st.session_state.times,'学习桌': st.session_state.desk,'预约次数':st.session_state.your_sel_time+1},index=[num0+1])   
         with st.expander("确认学习计划",expanded=False):            
             st.dataframe(df_new)     
             def disable():
